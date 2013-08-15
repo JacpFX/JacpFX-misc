@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <taskdef name="jfxdeploy" classname="com.sun.javafx.tools.ant.DeployFXTask" classpathref="maven.plugin.classpath"/>
+  <taskdef name="jfxsignjar" classname="com.sun.javafx.tools.ant.FXSignJarTask" classpathref="maven.plugin.classpath"/>
+  <taskdef name="csstobin" classname="com.sun.javafx.tools.ant.CSSToBinTask" classpathref="maven.plugin.classpath"/>
+  <csstobin outdir="/home/ady/JacpFXIntelliJ/JacpFXDemo/target/deploy">
+    <fileset dir="/home/ady/JacpFXIntelliJ/JacpFXDemo/target/classes/styles" includes="**/*.css"/>
+  </csstobin>
+  <jfxdeploy height="768" width="1024" nativeBundles="all" outfile="JacpFXDemo" outdir="/home/ady/JacpFXIntelliJ/JacpFXDemo/target/deploy">
+    <info title="JacpFXDemo"/>
+    <application mainClass="org.jacp.demo.main.ContactMain" name="JacpFXDemo"/>
+    <resources>
+      <fileset dir="/home/ady/JacpFXIntelliJ/JacpFXDemo/target" includes="*.jar"/>
+      <fileset dir="/home/ady/JacpFXIntelliJ/JacpFXDemo/target/dependency" includes="*.jar"/>
+    </resources>
+    <platform javafx="2.2+">
+      <jvmarg value="-Xms512m"/>
+      <jvmarg value="-Xmx1024m"/>
+    </platform>
+  </jfxdeploy>
+</target>
+</project>
