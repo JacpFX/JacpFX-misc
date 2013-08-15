@@ -13,7 +13,8 @@ import javafx.scene.layout.Pane;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.DeclarativeComponent;
+import org.jacp.api.annotations.Component;
+import org.jacp.api.annotations.Declarative;
 import org.jacp.api.annotations.PostConstruct;
 import org.jacp.api.annotations.PreDestroy;
 import org.jacp.demo.common.GenderType;
@@ -23,8 +24,9 @@ import org.jacp.javafx.rcp.component.AFXComponent;
 import org.jacp.javafx.rcp.component.FXComponent;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 
-@DeclarativeComponent(defaultExecutionTarget = "PdetailComponent", id = GlobalConstants.ComponentConstants.COMPONENT_DETAIL_VIEW, name = "XMlDetailView", active = true, viewLocation = "/fxml/UserDetail.fxml", resourceBundleLocation = "bundles.languageBundle")
+@Component(defaultExecutionTarget = "PdetailComponent", id = GlobalConstants.ComponentConstants.COMPONENT_DETAIL_VIEW, name = "XMlDetailView", active = true, resourceBundleLocation = "bundles.languageBundle")
 // , localeID="en_US")
+@Declarative( viewLocation = "/fxml/UserDetail.fxml")
 public class XMLDetailView implements FXComponent {
 	private final static Log LOGGER = LogFactory
 			.getLog(XMLDetailView.class);
@@ -49,7 +51,7 @@ public class XMLDetailView implements FXComponent {
 
 	@Override
 	public Node handle(IAction<Event, Object> action) {
-		LOGGER.debug("XMLDetailView handleAction message: "+action.getMessage());
+		LOGGER.info("XMLDetailView handleAction message: "+action.getMessage()+"  "+lblCountry);
 		return null;
 	}
 
