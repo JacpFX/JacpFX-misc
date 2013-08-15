@@ -42,7 +42,7 @@ public class ContactMain extends AFXSpringLauncher {
     }
 
     /**
-     * @param args    ddd
+     * @param args  aa  ddd
      */
     public static void main(final String[] args) {
         Application.launch(args);
