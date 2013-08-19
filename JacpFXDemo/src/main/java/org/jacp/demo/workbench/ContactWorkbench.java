@@ -42,6 +42,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import org.jacp.api.action.IAction;
+import org.jacp.api.annotations.Workbench;
 import org.jacp.api.componentLayout.IWorkbenchLayout;
 import org.jacp.api.util.ToolbarPosition;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
@@ -56,6 +57,7 @@ import org.jacp.javafx.rcp.workbench.AFXWorkbench;
  * @author Andy Moncsek, Patrick Symmangk
  * 
  */
+@Workbench(name="workbench",perspectives = "id01")
 public class ContactWorkbench extends AFXWorkbench {
 
     private final String projectURL = "http://code.google.com/p/jacp/wiki/Documentation";
