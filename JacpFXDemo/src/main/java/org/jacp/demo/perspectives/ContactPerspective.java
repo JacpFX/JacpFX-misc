@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
@@ -34,12 +35,16 @@ import org.jacp.api.action.IActionListener;
 import org.jacp.api.annotations.PostConstruct;
 import org.jacp.api.annotations.PreDestroy;
 import org.jacp.api.annotations.Perspective;
+import org.jacp.api.annotations.Resource;
+import org.jacp.api.componentLayout.IPerspectiveLayout;
 import org.jacp.api.util.ToolbarPosition;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 import org.jacp.javafx.rcp.componentLayout.PerspectiveLayout;
 import org.jacp.javafx.rcp.components.toolBar.JACPToolBar;
+import org.jacp.javafx.rcp.context.JACPContext;
 import org.jacp.javafx.rcp.perspective.AFXPerspective;
+import org.jacp.javafx.rcp.perspective.FXPerspective;
 import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
 
 /**
@@ -61,7 +66,7 @@ import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
         viewLocation = "/fxml/contactPerspective.fxml",
         resourceBundleLocation = "bundles.languageBundle" ,
         localeID="en_US")
-public class ContactPerspective extends AFXPerspective {
+public class ContactPerspective implements FXPerspective {
 	private final static Log LOGGER = LogFactory
 			.getLog(ContactPerspective.class);
 	private String topId = "PmainContentTop";
@@ -83,6 +88,9 @@ public class ContactPerspective extends AFXPerspective {
 	@FXML
 	private AnchorPane detailAnchor;
 
+    @Resource
+    JACPContext context;
+
 	@PostConstruct
 	/**
 	 * create buttons in tool bars; menu entries  
@@ -99,14 +107,14 @@ public class ContactPerspective extends AFXPerspective {
 
 			@Override
 			public void handle(final ActionEvent e) {
-				final IActionListener<EventHandler<Event>, Event, Object> listener = ContactPerspective.this
+				final IActionListener<EventHandler<Event>, Event, Object> listener = context
 						.getActionListener("switch");
 				listener.getAction().setMessage("switch");
 				listener.performAction(null);
 
 			}
 		});
-		north.addOnEnd(this.getId(), custom);
+		north.addOnEnd(context.getId(), custom);
 	}
 
 	@PreDestroy
@@ -151,5 +159,6 @@ public class ContactPerspective extends AFXPerspective {
 		perspectiveLayout.registerTargetLayoutComponent(this.detailId,
 				detailView);
 	}
+
 
 }
