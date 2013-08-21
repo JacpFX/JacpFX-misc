@@ -20,12 +20,11 @@ package org.jacp.demo.callbacks;
 import javafx.event.Event;
 
 import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.Component;
+import org.jacp.api.annotations.component.Component;
 import org.jacp.api.annotations.Resource;
-import org.jacp.api.annotations.Stateless;
+import org.jacp.api.annotations.component.Stateless;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.ContactDTO;
-import org.jacp.javafx.rcp.component.AStatelessCallbackComponent;
 import org.jacp.javafx.rcp.component.CallbackComponent;
 import org.jacp.javafx.rcp.context.JACPContext;
 
@@ -44,7 +43,7 @@ public class CreatorCallback implements CallbackComponent {
     public Object handle(final IAction<Event, Object> action) {
         if (action.isMessageType(ContactDTO.class)) {
             // return all values to defined target
-            context.setHandleTarget(GlobalConstants.cascade(GlobalConstants.PerspectiveConstants.DEMO_PERSPECTIVE, GlobalConstants.ComponentConstants.COMPONENT_TABLE_VIEW));
+            context.setReturnTarget(GlobalConstants.cascade(GlobalConstants.PerspectiveConstants.DEMO_PERSPECTIVE, GlobalConstants.ComponentConstants.COMPONENT_TABLE_VIEW));
             waitAmount(100);
             System.out.println("THIS THREAD: "+Thread.currentThread()+" this:"+this);
             return ContentGenerator.createEntries((action.getTypedMessage(ContactDTO.class)));

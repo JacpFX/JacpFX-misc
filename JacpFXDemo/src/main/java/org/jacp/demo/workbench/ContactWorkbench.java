@@ -42,7 +42,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.Workbench;
+import org.jacp.api.annotations.workbench.Workbench;
 import org.jacp.api.componentLayout.IWorkbenchLayout;
 import org.jacp.api.util.ToolbarPosition;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;

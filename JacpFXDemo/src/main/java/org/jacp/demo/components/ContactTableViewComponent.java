@@ -34,7 +34,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jacp.api.action.IAction;
 import org.jacp.api.action.IActionListener;
-import org.jacp.api.annotations.Component;
+import org.jacp.api.annotations.component.Component;
 import org.jacp.api.annotations.Resource;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
@@ -54,7 +54,7 @@ import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
  * @author Andy Moncsek
  * 
  */
-@Component(defaultExecutionTarget = "PmainContentTop", id = GlobalConstants.ComponentConstants.COMPONENT_TABLE_VIEW, name = "contactDemoTableView", active = true)
+@Component(targetLayout = "PmainContentTop", id = GlobalConstants.ComponentConstants.COMPONENT_TABLE_VIEW, name = "contactDemoTableView", active = true)
 public class ContactTableViewComponent implements FXComponent {
 	private final static Log LOGGER = LogFactory
 			.getLog(ContactTableViewComponent.class);

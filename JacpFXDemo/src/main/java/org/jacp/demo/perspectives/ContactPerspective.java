@@ -21,7 +21,6 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
@@ -32,20 +31,20 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jacp.api.action.IAction;
 import org.jacp.api.action.IActionListener;
-import org.jacp.api.annotations.PostConstruct;
-import org.jacp.api.annotations.PreDestroy;
-import org.jacp.api.annotations.Perspective;
+import org.jacp.api.annotations.lifecycle.PostConstruct;
+import org.jacp.api.annotations.lifecycle.PreDestroy;
+import org.jacp.api.annotations.perspective.Perspective;
 import org.jacp.api.annotations.Resource;
-import org.jacp.api.componentLayout.IPerspectiveLayout;
 import org.jacp.api.util.ToolbarPosition;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 import org.jacp.javafx.rcp.componentLayout.PerspectiveLayout;
 import org.jacp.javafx.rcp.components.toolBar.JACPToolBar;
 import org.jacp.javafx.rcp.context.JACPContext;
-import org.jacp.javafx.rcp.perspective.AFXPerspective;
 import org.jacp.javafx.rcp.perspective.FXPerspective;
 import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
+
+import java.util.ResourceBundle;
 
 /**
  * Contact perspective; here you define the basic layout for your application
@@ -95,8 +94,8 @@ public class ContactPerspective implements FXPerspective {
 	/**
 	 * create buttons in tool bars; menu entries  
 	 */
-	public void PostConstructPerspective(final FXComponentLayout layout) {
-		LOGGER.debug("PostConstructPerspective");
+	public void PostConstructPerspective(final FXComponentLayout layout, final ResourceBundle resourceBundle) {
+		LOGGER.debug("PostConstructPerspective ressource:"+resourceBundle);
 		// create button in toolbar; button should switch top and bottom id's
 		final JACPToolBar north = layout
 				.getRegisteredToolBar(ToolbarPosition.NORTH);

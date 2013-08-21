@@ -28,13 +28,11 @@ import javafx.scene.control.Button;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.Component;
-import org.jacp.api.annotations.PostConstruct;
+import org.jacp.api.annotations.component.Component;
+import org.jacp.api.annotations.lifecycle.PostConstruct;
 import org.jacp.api.annotations.Resource;
-import org.jacp.api.context.Context;
 import org.jacp.api.util.ToolbarPosition;
 import org.jacp.demo.entity.Contact;
-import org.jacp.javafx.rcp.component.AFXComponent;
 import org.jacp.javafx.rcp.component.FXComponent;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 import org.jacp.javafx.rcp.components.toolBar.JACPToolBar;
@@ -48,7 +46,7 @@ import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
  * 
  * @author Andy Moncsek Patrick Symmangk
  */
-@Component(defaultExecutionTarget = "PleftMenu", id = "id001", name = "contactDemoTreeView", active = true)
+@Component(targetLayout = "PleftMenu", id = "id001", name = "contactDemoTreeView", active = true)
 public class ContactTreeViewComponent implements FXComponent {
 	private final static Log LOGGER = LogFactory
 			.getLog(ContactTreeViewComponent.class);

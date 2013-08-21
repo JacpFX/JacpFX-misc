@@ -27,7 +27,7 @@ import javafx.scene.chart.XYChart;
 
 import org.jacp.api.action.IAction;
 import org.jacp.api.action.IActionListener;
-import org.jacp.api.annotations.Component;
+import org.jacp.api.annotations.component.Component;
 import org.jacp.api.annotations.Resource;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
