@@ -57,7 +57,7 @@ import org.jacp.javafx.rcp.workbench.AFXWorkbench;
  * @author Andy Moncsek, Patrick Symmangk
  * 
  */
-@Workbench(name="workbench",perspectives = "id01")
+@Workbench(id = "id1", name="workbench",perspectives = "id01")
 public class ContactWorkbench extends AFXWorkbench {
 
     private final String projectURL = "http://code.google.com/p/jacp/wiki/Documentation";

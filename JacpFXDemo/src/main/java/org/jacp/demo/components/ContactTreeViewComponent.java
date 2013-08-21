@@ -75,6 +75,7 @@ public class ContactTreeViewComponent implements FXComponent {
 	public Node postHandle(final Node node,
 			final IAction<Event, Object> action) throws Exception {
 		// add a new contact in FXApplication thread
+        LOGGER.debug("parentId: "+context.getParentId() );
 		if (action.isMessageType(Contact.class)) {
 			final Contact contact = action.getTypedMessage(Contact.class);
 			this.addNewContact(contact);
