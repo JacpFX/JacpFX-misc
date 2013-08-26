@@ -25,36 +25,24 @@
  */
 package org.jacp.test.components;
 
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.jacp.api.action.IAction;
 import org.jacp.api.annotations.Resource;
 import org.jacp.api.annotations.component.Component;
-import org.jacp.api.annotations.component.Declarative;
 import org.jacp.api.annotations.lifecycle.PostConstruct;
 import org.jacp.api.annotations.lifecycle.PreDestroy;
 import org.jacp.javafx.rcp.component.FXComponent;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
-import org.jacp.javafx.rcp.components.managedDialog.ManagedDialogHandler;
 import org.jacp.javafx.rcp.context.JACPContext;
-import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
 
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
@@ -63,10 +51,10 @@ import java.util.logging.Logger;
  *
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  */
-@Component(targetLayout = "content0", id = "id002", name = "content1", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
-public class ChatView implements FXComponent {
+@Component(targetLayout = "content0", id = "id002", name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+public class SimpleView implements FXComponent {
 
-    private final Logger log = Logger.getLogger(ChatView.class
+    private final Logger log = Logger.getLogger(SimpleView.class
             .getName());
     @FXML
     private TextField message;
@@ -75,7 +63,7 @@ public class ChatView implements FXComponent {
     private VBox chatField;
 
     String current = "content0";
-    Button button = new Button("move");
+
 
     @Resource private JACPContext context;
 
@@ -94,11 +82,12 @@ public class ChatView implements FXComponent {
      */
     public Node postHandle(final Node arg0,
                                  final IAction<Event, Object> action) {
+        Button button = new Button("move");
         button.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
             @Override
             public void handle(MouseEvent event) {
-                String number = current.replace("current","");
+                String number = current.replace("content","");
                 String value = current.replace(number,"").concat(String.valueOf((Integer.valueOf(number)+1)%3));
                 current = value;
                 context.setTargetLayout(current);
@@ -106,7 +95,7 @@ public class ChatView implements FXComponent {
             }
         });
         button.setStyle("-fx-background-color: red");
-        return new VBox(button);
+        return button;
     }
 
 
