@@ -34,6 +34,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.jacp.api.action.IAction;
 import org.jacp.api.componentLayout.IWorkbenchLayout;
+import org.jacp.api.util.ToolbarPosition;
 import org.jacp.test.main.ApplicationLauncher;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 import org.jacp.javafx.rcp.components.menuBar.JACPMenuBar;
@@ -52,7 +53,7 @@ import java.util.List;
  *
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  */
-@org.jacp.api.annotations.workbench.Workbench(id = "id1", name="workbench",perspectives = {"id02","id01"})
+@org.jacp.api.annotations.workbench.Workbench(id = "id1", name="workbench",perspectives = {"id03","id02","id01"})
 public class Workbench extends AFXWorkbench {
     private Stage stage;
 
@@ -62,6 +63,7 @@ public class Workbench extends AFXWorkbench {
         layout.setWorkbenchXYSize(1024, 600);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(true);
+        layout.registerToolBar(ToolbarPosition.SOUTH);
         this.stage = stage;
 
     }
