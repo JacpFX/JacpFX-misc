@@ -72,8 +72,8 @@ public class PerspectiveTestTwoA implements FXPerspective {
     }
 
     @OnHide
-    public void onHide(final FXComponentLayout layout) {
-        final JACPToolBar north = layout.getRegisteredToolBar(ToolbarPosition.SOUTH);
+    public void onHide() {
+        final JACPToolBar north = context.getComponentLayout().getRegisteredToolBar(ToolbarPosition.SOUTH);
         final List<Node> breadCrumbButtons = north.getNodes("id02");
         setVisibility(breadCrumbButtons, false);
     }
