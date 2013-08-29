@@ -38,6 +38,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jacp.api.action.IAction;
 import org.jacp.api.annotations.component.Component;
+import org.jacp.api.annotations.component.View;
 import org.jacp.demo.entity.Contact;
 import org.jacp.demo.enums.BarChartAction;
 import org.jacp.demo.main.Util;
@@ -50,7 +51,8 @@ import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
  * 
  * @author Andy Moncsek Patrick Symmangk
  */
-@Component(targetLayout = "PmainContentBottom", id = "id003", name = "contactDemoChartView", active = true)
+@Component( id = "id003", name = "contactDemoChartView", active = true)
+@View(initialTargetLayoutId ="PmainContentBottom" )
 public class ContactChartViewComponent implements FXComponent {
 	private final static Log LOGGER = LogFactory
 			.getLog(ContactChartViewComponent.class);

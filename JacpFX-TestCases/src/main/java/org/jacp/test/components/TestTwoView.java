@@ -37,6 +37,7 @@ import javafx.scene.layout.VBox;
 import org.jacp.api.action.IAction;
 import org.jacp.api.annotations.Resource;
 import org.jacp.api.annotations.component.Component;
+import org.jacp.api.annotations.component.View;
 import org.jacp.api.annotations.lifecycle.PostConstruct;
 import org.jacp.api.annotations.lifecycle.PreDestroy;
 import org.jacp.javafx.rcp.component.FXComponent;
@@ -52,7 +53,8 @@ import java.util.logging.Logger;
  *
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  */
-@Component(targetLayout = "content1", id = "id003", name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+@Component(id = "id003", name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+@View(initialTargetLayoutId = "content1")
 public class TestTwoView implements FXComponent {
 
     private final Logger log = Logger.getLogger(TestTwoView.class
@@ -108,7 +110,6 @@ public class TestTwoView implements FXComponent {
 
         return container;
     }
-
 
 
     @PostConstruct
