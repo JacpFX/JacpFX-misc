@@ -42,13 +42,16 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import org.jacp.api.action.IAction;
+import org.jacp.api.annotations.Resource;
 import org.jacp.api.annotations.workbench.Workbench;
 import org.jacp.api.componentLayout.IWorkbenchLayout;
 import org.jacp.api.util.ToolbarPosition;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 import org.jacp.javafx.rcp.components.menuBar.JACPMenuBar;
 import org.jacp.javafx.rcp.components.modalDialog.JACPModalDialog;
+import org.jacp.javafx.rcp.context.JACPContext;
 import org.jacp.javafx.rcp.workbench.AFXWorkbench;
+import org.jacp.javafx.rcp.workbench.FXWorkbench;
 
 /**
  * Workbench for contact demo with JacpFX (JavaFX2 and Spring). The workbench is
@@ -58,10 +61,13 @@ import org.jacp.javafx.rcp.workbench.AFXWorkbench;
  * 
  */
 @Workbench(id = "id1", name="workbench",perspectives = "id01")
-public class ContactWorkbench extends AFXWorkbench {
+public class ContactWorkbench implements FXWorkbench {
 
     private final String projectURL = "http://code.google.com/p/jacp/wiki/Documentation";
     private final String message = "JacpFX is a Framework to create Rich Clients in MVC style with JavaFX 2, Spring and an Actor like component approach. It provides a simple API to create a workspace, perspectives, components and to compose your Client application easily. More Info see: ";
+
+    @Resource
+    private JACPContext context;
 
     @Override
     public void handleInitialLayout(final IAction<Event, Object> action, final IWorkbenchLayout<Node> layout, final Stage stage) {
@@ -152,5 +158,6 @@ public class ContactWorkbench extends AFXWorkbench {
         });
         return link;
     }
+
 
 }
