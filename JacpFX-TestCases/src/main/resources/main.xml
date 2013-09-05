@@ -10,6 +10,5 @@
     <context:component-scan base-package="org.jacp.test"/>
     <context:annotation-config/>
 
-    <bean id="workbench" class="org.jacp.test.workbench.Workbench"/>
 
 </beans>
