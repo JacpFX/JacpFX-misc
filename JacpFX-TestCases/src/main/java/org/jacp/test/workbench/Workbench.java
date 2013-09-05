@@ -33,7 +33,11 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.jacp.api.action.IAction;
+import org.jacp.api.annotations.Resource;
 import org.jacp.api.componentLayout.IWorkbenchLayout;
+import org.jacp.api.util.ToolbarPosition;
+import org.jacp.javafx.rcp.context.JACPContext;
+import org.jacp.javafx.rcp.workbench.FXWorkbench;
 import org.jacp.test.main.ApplicationLauncher;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 import org.jacp.javafx.rcp.components.menuBar.JACPMenuBar;
@@ -52,9 +56,11 @@ import java.util.List;
  *
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  */
-@org.jacp.api.annotations.workbench.Workbench(id = "id1", name="workbench",perspectives = {"id02","id01"})
-public class Workbench extends AFXWorkbench {
+@org.jacp.api.annotations.workbench.Workbench(id = "id1", name="workbench",perspectives = {"id03","id02","id01"})
+public class Workbench implements FXWorkbench {
     private Stage stage;
+    @Resource
+    JACPContext context;
 
     @Override
     public void handleInitialLayout(final IAction<Event, Object> action,
@@ -62,6 +68,7 @@ public class Workbench extends AFXWorkbench {
         layout.setWorkbenchXYSize(1024, 600);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(true);
+        layout.registerToolBar(ToolbarPosition.SOUTH);
         this.stage = stage;
 
     }
@@ -132,7 +139,7 @@ public class Workbench extends AFXWorkbench {
             @Override
             public void handle(final ActionEvent arg0) {
                 // create a modal dialog
-                getActionListener("id01","show").performAction(arg0);
+                context.getActionListener("id01","show").performAction(arg0);
 
             }
         });
@@ -141,7 +148,7 @@ public class Workbench extends AFXWorkbench {
             @Override
             public void handle(final ActionEvent arg0) {
                 // create a modal dialog
-                getActionListener("id02","show").performAction(arg0);
+                context.getActionListener("id02","show").performAction(arg0);
 
             }
         });

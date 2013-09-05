@@ -1,33 +1,17 @@
-/************************************************************************
- *
- * Copyright (C) 2010 - 2012
- *
- * [PerspectiveOne.java]
- * AHCP Project (http://jacp.googlecode.com)
- * All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at 
- *
- *     http://www.apache.org/licenses/LICENSE-2.0 
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an "AS IS"
- * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- *
- *
- ************************************************************************/
 package org.jacp.test.perspectives;
 
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import org.jacp.api.action.IAction;
+import org.jacp.api.annotations.Resource;
+import org.jacp.api.annotations.lifecycle.OnHide;
 import org.jacp.api.annotations.lifecycle.OnShow;
 import org.jacp.api.annotations.lifecycle.PostConstruct;
 import org.jacp.api.annotations.lifecycle.PreDestroy;
@@ -36,35 +20,39 @@ import org.jacp.api.util.ToolbarPosition;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 import org.jacp.javafx.rcp.componentLayout.PerspectiveLayout;
 import org.jacp.javafx.rcp.components.toolBar.JACPToolBar;
+import org.jacp.javafx.rcp.context.JACPContext;
 import org.jacp.javafx.rcp.perspective.FXPerspective;
-import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
+import org.jacp.javafx.rcp.util.FXUtil;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * A simple perspective defining a split pane
- *
- * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
+ * Created with IntelliJ IDEA.
+ * User: Andy Moncsek
+ * Date: 27.08.13
+ * Time: 16:01
+ * To change this template use File | Settings | File Templates.
  */
-
-@Perspective(id = "id01", name = "contactPerspective",
-        components ={
-                "id002"} ,
+@Perspective(id = "id02", name = "contactPerspective",
+        components ={"id003"} ,
         viewLocation = "/fxml/perspectiveOne.fxml",
         resourceBundleLocation = "bundles.languageBundle" ,
         localeID="en_US")
-public class PerspectiveOne implements FXPerspective {
+public class PerspectiveTestTwoA implements FXPerspective {
     @FXML
     private HBox content1;
     @FXML
     private HBox content2;
     @FXML
     private HBox content3;
+    @Resource
+    JACPContext context;
 
     @Override
     public void handlePerspective(final IAction<Event, Object> action,
                                   final PerspectiveLayout perspectiveLayout) {
-        if (action.isMessage(MessageUtil.INIT)) {
+        if (action.isMessage(FXUtil.MessageUtil.INIT)) {
 
             GridPane.setVgrow(perspectiveLayout.getRootComponent(),
                     Priority.ALWAYS);
@@ -74,7 +62,7 @@ public class PerspectiveOne implements FXPerspective {
             // register left panel
             perspectiveLayout.registerTargetLayoutComponent("content0",
                     this.content1);
-           perspectiveLayout.registerTargetLayoutComponent("content1",
+            perspectiveLayout.registerTargetLayoutComponent("content1",
                     this.content2);
             perspectiveLayout.registerTargetLayoutComponent("content2",
                     this.content3);
@@ -83,9 +71,17 @@ public class PerspectiveOne implements FXPerspective {
 
     }
 
-    @OnShow
-    public void onShow(final FXComponentLayout layout) {
-
+    @OnHide
+    public void onHide() {
+        final JACPToolBar north = context.getComponentLayout().getRegisteredToolBar(ToolbarPosition.SOUTH);
+        final List<Node> breadCrumbButtons = north.getNodes("id02");
+        setVisibility(breadCrumbButtons, false);
+    }
+     @OnShow
+    public void onShow(final FXComponentLayout layout){
+         final JACPToolBar north = layout.getRegisteredToolBar(ToolbarPosition.SOUTH);
+         final List<Node> breadCrumbButtons = north.getNodes("id02");
+         setVisibility(breadCrumbButtons, true);
     }
 
     @PostConstruct
@@ -96,7 +92,29 @@ public class PerspectiveOne implements FXPerspective {
      */
     public void onStartPerspective(final FXComponentLayout layout,
                                    final ResourceBundle resourceBundle) {
+        System.out.println("START"+layout);
+        final JACPToolBar toolbar = layout.getRegisteredToolBar(ToolbarPosition.SOUTH);
+        final Button p1 = new Button("Perspective A");
+        p1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                context.getActionListener("id02","show").performAction(event);
+            }
+        });
+        final Button p2 = new Button("Perspective B");
+        p2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                context.getActionListener("id03","show").performAction(event);
+            }
+        });
+        p1.setVisible(false);
+        p2.setVisible(false);
+        toolbar.addAllOnEnd("id02",p1,p2);
+    }
 
+    private void setVisibility(List<Node> nodes, boolean visibility) {
+     nodes.forEach(n->n.setVisible(visibility));
     }
 
     @PreDestroy
