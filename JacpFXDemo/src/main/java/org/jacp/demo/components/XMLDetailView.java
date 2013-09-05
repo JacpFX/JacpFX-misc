@@ -14,7 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jacp.api.action.IAction;
 import org.jacp.api.annotations.component.Component;
-import org.jacp.api.annotations.component.Declarative;
+import org.jacp.api.annotations.component.DeclarativeView;
 import org.jacp.api.annotations.lifecycle.PostConstruct;
 import org.jacp.api.annotations.lifecycle.PreDestroy;
 import org.jacp.demo.common.GenderType;
@@ -23,9 +23,9 @@ import org.jacp.demo.entity.Contact;
 import org.jacp.javafx.rcp.component.FXComponent;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 
-@Component(targetLayout = "PdetailComponent", id = GlobalConstants.ComponentConstants.COMPONENT_DETAIL_VIEW, name = "XMlDetailView", active = true, resourceBundleLocation = "bundles.languageBundle")
+@Component(id = GlobalConstants.ComponentConstants.COMPONENT_DETAIL_VIEW, name = "XMlDetailView", active = true, resourceBundleLocation = "bundles.languageBundle")
 // , localeID="en_US")
-@Declarative( viewLocation = "/fxml/UserDetail.fxml")
+@DeclarativeView(initialTargetLayoutId = "PdetailComponent", viewLocation = "/fxml/UserDetail.fxml")
 public class XMLDetailView implements FXComponent {
 	private final static Log LOGGER = LogFactory
 			.getLog(XMLDetailView.class);

@@ -29,6 +29,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jacp.api.action.IAction;
 import org.jacp.api.annotations.component.Component;
+import org.jacp.api.annotations.component.View;
 import org.jacp.api.annotations.lifecycle.PostConstruct;
 import org.jacp.api.annotations.Resource;
 import org.jacp.api.util.ToolbarPosition;
@@ -46,7 +47,8 @@ import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
  * 
  * @author Andy Moncsek Patrick Symmangk
  */
-@Component(targetLayout = "PleftMenu", id = "id001", name = "contactDemoTreeView", active = true)
+@Component(id = "id001", name = "contactDemoTreeView", active = true)
+@View(initialTargetLayoutId ="PleftMenu" )
 public class ContactTreeViewComponent implements FXComponent {
 	private final static Log LOGGER = LogFactory
 			.getLog(ContactTreeViewComponent.class);

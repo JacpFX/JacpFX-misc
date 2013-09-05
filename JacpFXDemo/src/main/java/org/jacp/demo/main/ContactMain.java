@@ -22,6 +22,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import org.jacp.demo.workbench.ContactWorkbench;
+import org.jacp.javafx.rcp.workbench.FXWorkbench;
 import org.jacp.project.launcher.AFXSpringLauncher;
 
 /**
@@ -48,6 +50,12 @@ public class ContactMain extends AFXSpringLauncher {
         Application.launch(args);
     }
 
+
+    @Override
+    protected Class<? extends FXWorkbench> getWorkbechClass() {
+        return ContactWorkbench.class;
+    }
+
     @Override
     protected String[] getBasePackages() {
         return new String[]{"org.jacp.demo.components","org.jacp.demo.callbacks","org.jacp.demo.perspectives"};  //To change body of implemented methods use File | Settings | File Templates.
@@ -59,7 +67,7 @@ public class ContactMain extends AFXSpringLauncher {
 
         stage.getIcons().add(new Image("images/icons/JACP_512_512.png"));
         // add style sheet
-       // this.scene.getStylesheets().addAll(ContactMain.class.getResource("/styles/main.css").toExternalForm(), ContactMain.class.getResource("/styles/windowbuttons.css").toExternalForm());
+        // this.scene.getStylesheets().addAll(ContactMain.class.getResource("/styles/main.css").toExternalForm(), ContactMain.class.getResource("/styles/windowbuttons.css").toExternalForm());
 
 //        ScenicView.show(stage.getScene());
 
