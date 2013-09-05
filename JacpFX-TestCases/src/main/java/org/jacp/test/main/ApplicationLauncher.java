@@ -26,7 +26,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.jacp.javafx.rcp.workbench.FXWorkbench;
 import org.jacp.project.launcher.AFXSpringLauncher;
+import org.jacp.test.workbench.Workbench;
 
 import java.net.URL;
 import java.util.logging.Logger;
@@ -53,6 +55,11 @@ public class ApplicationLauncher extends AFXSpringLauncher {
      */
     public static void main(final String[] args) {
         Application.launch(args);
+    }
+
+    @Override
+    protected Class<? extends FXWorkbench> getWorkbechClass() {
+        return Workbench.class;
     }
 
     @Override
