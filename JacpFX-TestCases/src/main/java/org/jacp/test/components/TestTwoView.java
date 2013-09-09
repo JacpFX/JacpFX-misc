@@ -44,6 +44,7 @@ import org.jacp.javafx.rcp.component.FXComponent;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 import org.jacp.javafx.rcp.context.JACPContext;
 import org.jacp.javafx.rcp.util.FXUtil;
+import org.jacp.test.main.ApplicationLauncher;
 
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -93,6 +94,7 @@ public class TestTwoView implements FXComponent {
             current =   context.getParentId().equals("id02")?"id03":"id02";
             context.setExecutionTarget(current);
             label.setText(" current Perspective: "+current);
+
         } else {
             button.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
@@ -106,6 +108,7 @@ public class TestTwoView implements FXComponent {
             button.setStyle("-fx-background-color: red");
             label.setText(" current Perspective: "+current);
             container.getChildren().addAll(button,label);
+            ApplicationLauncher.latch.countDown();
         }
 
         return container;

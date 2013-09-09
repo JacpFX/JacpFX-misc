@@ -23,6 +23,7 @@ import org.jacp.javafx.rcp.components.toolBar.JACPToolBar;
 import org.jacp.javafx.rcp.context.JACPContext;
 import org.jacp.javafx.rcp.perspective.FXPerspective;
 import org.jacp.javafx.rcp.util.FXUtil;
+import org.jacp.test.main.ApplicationLauncher;
 
 import java.util.List;
 import java.util.ResourceBundle;
@@ -38,7 +39,7 @@ import java.util.ResourceBundle;
         components ={"id003"} ,
         viewLocation = "/fxml/perspectiveOne.fxml",
         resourceBundleLocation = "bundles.languageBundle" ,
-        localeID="en_US")
+        localeID="en_US",active = true)
 public class PerspectiveTestTwoA implements FXPerspective {
     @FXML
     private HBox content1;
@@ -66,7 +67,7 @@ public class PerspectiveTestTwoA implements FXPerspective {
                     this.content2);
             perspectiveLayout.registerTargetLayoutComponent("content2",
                     this.content3);
-
+            ApplicationLauncher.latch.countDown();
         }
 
     }

@@ -38,6 +38,7 @@ import org.jacp.javafx.rcp.componentLayout.PerspectiveLayout;
 import org.jacp.javafx.rcp.components.toolBar.JACPToolBar;
 import org.jacp.javafx.rcp.perspective.FXPerspective;
 import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
+import org.jacp.test.main.ApplicationLauncher;
 
 import java.util.ResourceBundle;
 
@@ -78,7 +79,7 @@ public class PerspectiveOne implements FXPerspective {
                     this.content2);
             perspectiveLayout.registerTargetLayoutComponent("content2",
                     this.content3);
-
+            ApplicationLauncher.latch.countDown();
         }
 
     }
