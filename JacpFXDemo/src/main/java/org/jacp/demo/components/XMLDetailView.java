@@ -23,9 +23,7 @@ import org.jacp.demo.entity.Contact;
 import org.jacp.javafx.rcp.component.FXComponent;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 
-@Component(id = GlobalConstants.ComponentConstants.COMPONENT_DETAIL_VIEW, name = "XMlDetailView", active = true, resourceBundleLocation = "bundles.languageBundle")
-// , localeID="en_US")
-@DeclarativeView(initialTargetLayoutId = "PdetailComponent", viewLocation = "/fxml/UserDetail.fxml")
+@DeclarativeView(id = GlobalConstants.ComponentConstants.COMPONENT_DETAIL_VIEW, name = "XMlDetailView", active = true, resourceBundleLocation = "bundles.languageBundle",initialTargetLayoutId = "PdetailComponent", viewLocation = "/fxml/UserDetail.fxml")
 public class XMLDetailView implements FXComponent {
 	private final static Log LOGGER = LogFactory
 			.getLog(XMLDetailView.class);

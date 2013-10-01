@@ -47,8 +47,7 @@ import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
  * 
  * @author Andy Moncsek Patrick Symmangk
  */
-@Component(id = "id001", name = "contactDemoTreeView", active = true)
-@View(initialTargetLayoutId ="PleftMenu" )
+@View(id = "id001", name = "contactDemoTreeView", active = true,initialTargetLayoutId ="PleftMenu" )
 public class ContactTreeViewComponent implements FXComponent {
 	private final static Log LOGGER = LogFactory
 			.getLog(ContactTreeViewComponent.class);

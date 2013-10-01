@@ -51,8 +51,7 @@ import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
  * 
  * @author Andy Moncsek Patrick Symmangk
  */
-@Component( id = "id003", name = "contactDemoChartView", active = true)
-@View(initialTargetLayoutId ="PmainContentBottom" )
+@View(id = "id003", name = "contactDemoChartView", active = true,initialTargetLayoutId ="PmainContentBottom" )
 public class ContactChartViewComponent implements FXComponent {
 	private final static Log LOGGER = LogFactory
 			.getLog(ContactChartViewComponent.class);

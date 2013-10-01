@@ -55,8 +55,7 @@ import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
  * @author Andy Moncsek
  * 
  */
-@Component(id = GlobalConstants.ComponentConstants.COMPONENT_TABLE_VIEW, name = "contactDemoTableView", active = true)
-@View(initialTargetLayoutId ="PmainContentTop" )
+@View(id = GlobalConstants.ComponentConstants.COMPONENT_TABLE_VIEW, name = "contactDemoTableView", active = true,initialTargetLayoutId ="PmainContentTop" )
 public class ContactTableViewComponent implements FXComponent {
 	private final static Log LOGGER = LogFactory
 			.getLog(ContactTableViewComponent.class);
