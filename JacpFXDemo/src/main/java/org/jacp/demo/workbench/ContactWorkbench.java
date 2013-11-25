@@ -1,17 +1,19 @@
 /*
- * Copyright (C) 2010,2011.
- * AHCP Project (http://code.google.com/p/jacp)
+ * Copyright (C) 2010 - 2013
+ *
+ * [FX2ComponentLayout.java]
+ * AHCP Project (http://jacp.googlecode.com)
  * All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at 
+ * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0 
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an "AS IS"
- * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
@@ -53,6 +55,8 @@ import org.jacp.javafx.rcp.context.JACPContext;
 import org.jacp.javafx.rcp.workbench.AFXWorkbench;
 import org.jacp.javafx.rcp.workbench.FXWorkbench;
 
+import static org.jacp.api.util.ToolbarPosition.*;
+
 /**
  * Workbench for contact demo with JacpFX (JavaFX2 and Spring). The workbench is
  * the root node of your JacpFX application.
@@ -72,7 +76,7 @@ public class ContactWorkbench implements FXWorkbench {
     @Override
     public void handleInitialLayout(final IAction<Event, Object> action, final IWorkbenchLayout<Node> layout, final Stage stage) {
         layout.setWorkbenchXYSize(1024, 768);
-        layout.registerToolBar(ToolbarPosition.NORTH);
+        layout.registerToolBars(NORTH, SOUTH, EAST, WEST);
         layout.setStyle(StageStyle.UNDECORATED);
         layout.setMenuEnabled(true);
     }
