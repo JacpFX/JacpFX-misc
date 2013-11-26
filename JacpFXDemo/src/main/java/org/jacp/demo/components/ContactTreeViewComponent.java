@@ -27,18 +27,17 @@ import javafx.scene.control.Button;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.component.Component;
-import org.jacp.api.annotations.component.View;
-import org.jacp.api.annotations.lifecycle.PostConstruct;
-import org.jacp.api.annotations.Resource;
-import org.jacp.api.util.ToolbarPosition;
+import org.jacpfx.api.action.IAction;
+import org.jacpfx.api.annotations.component.View;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.util.ToolbarPosition;
 import org.jacp.demo.entity.Contact;
-import org.jacp.javafx.rcp.component.FXComponent;
-import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
-import org.jacp.javafx.rcp.components.toolBar.JACPToolBar;
-import org.jacp.javafx.rcp.context.JACPContext;
-import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
+import org.jacpfx.rcp.component.FXComponent;
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.components.toolBar.JACPToolBar;
+import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.rcp.util.FXUtil.MessageUtil;
 
 /**
  * The ContactTreeViewComponent displays the contact category on the left side

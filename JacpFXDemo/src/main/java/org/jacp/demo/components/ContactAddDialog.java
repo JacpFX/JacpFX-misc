@@ -35,10 +35,10 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-import org.jacp.api.action.IActionListener;
+import org.jacpfx.api.action.IActionListener;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
-import org.jacp.javafx.rcp.components.modalDialog.JACPModalDialog;
+import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
 import org.springframework.util.StringUtils;
 
 /**

@@ -19,14 +19,14 @@ package org.jacp.demo.callbacks;
 
 import javafx.event.Event;
 
-import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.component.Component;
-import org.jacp.api.annotations.Resource;
-import org.jacp.api.annotations.component.Stateless;
+import org.jacpfx.api.action.IAction;
+import org.jacpfx.api.annotations.component.Component;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.component.Stateless;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.ContactDTO;
-import org.jacp.javafx.rcp.component.CallbackComponent;
-import org.jacp.javafx.rcp.context.JACPContext;
+import org.jacpfx.rcp.component.CallbackComponent;
+import org.jacpfx.rcp.context.JACPContext;
 
 /**
  * The CreatorCallback creates contact data with random numbers

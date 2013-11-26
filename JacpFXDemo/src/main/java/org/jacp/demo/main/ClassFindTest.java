@@ -1,6 +1,6 @@
 package org.jacp.demo.main;
 
-import org.jacp.javafx.rcp.util.ClassFinder;
+import org.jacpfx.rcp.util.ClassFinder;
 
 /**
  * Created with IntelliJ IDEA.

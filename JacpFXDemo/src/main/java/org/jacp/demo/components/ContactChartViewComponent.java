@@ -36,14 +36,13 @@ import javafx.scene.layout.Priority;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.component.Component;
-import org.jacp.api.annotations.component.View;
+import org.jacpfx.api.action.IAction;
+import org.jacpfx.api.annotations.component.View;
 import org.jacp.demo.entity.Contact;
 import org.jacp.demo.enums.BarChartAction;
 import org.jacp.demo.main.Util;
-import org.jacp.javafx.rcp.component.FXComponent;
-import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
+import org.jacpfx.rcp.component.FXComponent;
+import org.jacpfx.rcp.util.FXUtil.MessageUtil;
 
 /**
  * The chart view displays a faked consumer chart for each contact; The chart

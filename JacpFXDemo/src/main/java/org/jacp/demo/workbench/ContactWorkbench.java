@@ -43,19 +43,17 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.Resource;
-import org.jacp.api.annotations.workbench.Workbench;
-import org.jacp.api.componentLayout.IWorkbenchLayout;
-import org.jacp.api.util.ToolbarPosition;
-import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
-import org.jacp.javafx.rcp.components.menuBar.JACPMenuBar;
-import org.jacp.javafx.rcp.components.modalDialog.JACPModalDialog;
-import org.jacp.javafx.rcp.context.JACPContext;
-import org.jacp.javafx.rcp.workbench.AFXWorkbench;
-import org.jacp.javafx.rcp.workbench.FXWorkbench;
+import org.jacpfx.api.action.IAction;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.workbench.Workbench;
+import org.jacpfx.api.componentLayout.IWorkbenchLayout;
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
+import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
+import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.rcp.workbench.FXWorkbench;
 
-import static org.jacp.api.util.ToolbarPosition.*;
+import static org.jacpfx.api.util.ToolbarPosition.*;
 
 /**
  * Workbench for contact demo with JacpFX (JavaFX2 and Spring). The workbench is

@@ -29,28 +29,25 @@ import javafx.scene.layout.Priority;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jacp.api.action.IAction;
-import org.jacp.api.action.IActionListener;
-import org.jacp.api.annotations.lifecycle.PostConstruct;
-import org.jacp.api.annotations.lifecycle.PreDestroy;
-import org.jacp.api.annotations.perspective.Perspective;
-import org.jacp.api.annotations.Resource;
-import org.jacp.api.util.ToolbarPosition;
+import org.jacpfx.api.action.IAction;
+import org.jacpfx.api.action.IActionListener;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.lifecycle.PreDestroy;
+import org.jacpfx.api.annotations.perspective.Perspective;
+import org.jacpfx.api.annotations.Resource;
 import org.jacp.demo.components.util.JACPOptionButtonCreator;
 import org.jacp.demo.constants.GlobalConstants;
-import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
-import org.jacp.javafx.rcp.componentLayout.PerspectiveLayout;
-import org.jacp.javafx.rcp.components.toolBar.JACPOptionButton;
-import org.jacp.javafx.rcp.components.toolBar.JACPOptionButtonOrientation;
-import org.jacp.javafx.rcp.components.toolBar.JACPToolBar;
-import org.jacp.javafx.rcp.context.JACPContext;
-import org.jacp.javafx.rcp.perspective.FXPerspective;
-import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
+import org.jacpfx.rcp.components.toolBar.JACPToolBar;
+import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.rcp.perspective.FXPerspective;
+import org.jacpfx.rcp.util.FXUtil.MessageUtil;
 
 import java.util.ResourceBundle;
 
-import static org.jacp.api.util.ToolbarPosition.*;
-import static org.jacp.javafx.rcp.components.toolBar.JACPOptionButtonOrientation.*;
+import static org.jacpfx.api.util.ToolbarPosition.*;
+import static org.jacpfx.rcp.components.toolBar.JACPOptionButtonOrientation.*;
 
 /**
  * Contact perspective; here you define the basic layout for your application

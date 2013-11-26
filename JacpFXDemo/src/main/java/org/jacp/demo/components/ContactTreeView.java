@@ -38,7 +38,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.util.Callback;
 
-import org.jacp.api.action.IActionListener;
+import org.jacpfx.api.action.IActionListener;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
 import org.jacp.demo.enums.BarChartAction;

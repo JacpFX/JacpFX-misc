@@ -22,9 +22,9 @@
 package org.jacp.demo.components.util;
 
 import javafx.scene.control.Button;
-import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
-import org.jacp.javafx.rcp.components.toolBar.JACPOptionButton;
-import org.jacp.javafx.rcp.components.toolBar.JACPOptionButtonOrientation;
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.components.toolBar.JACPOptionButton;
+import org.jacpfx.rcp.components.toolBar.JACPOptionButtonOrientation;
 
 /**
  * @author Patrick Symmangk

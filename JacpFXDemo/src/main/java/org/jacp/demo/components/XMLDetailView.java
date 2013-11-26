@@ -12,16 +12,15 @@ import javafx.scene.layout.Pane;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jacp.api.action.IAction;
-import org.jacp.api.annotations.component.Component;
-import org.jacp.api.annotations.component.DeclarativeView;
-import org.jacp.api.annotations.lifecycle.PostConstruct;
-import org.jacp.api.annotations.lifecycle.PreDestroy;
+import org.jacpfx.api.action.IAction;
+import org.jacpfx.api.annotations.component.DeclarativeView;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacp.demo.common.GenderType;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
-import org.jacp.javafx.rcp.component.FXComponent;
-import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.component.FXComponent;
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 
 @DeclarativeView(id = GlobalConstants.ComponentConstants.COMPONENT_DETAIL_VIEW, name = "XMlDetailView", active = true, resourceBundleLocation = "bundles.languageBundle",initialTargetLayoutId = "PdetailComponent", viewLocation = "/fxml/UserDetail.fxml")
 public class XMLDetailView implements FXComponent {

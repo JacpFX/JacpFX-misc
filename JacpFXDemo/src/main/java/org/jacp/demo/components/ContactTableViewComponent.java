@@ -32,22 +32,21 @@ import javafx.util.Callback;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jacp.api.action.IAction;
-import org.jacp.api.action.IActionListener;
-import org.jacp.api.annotations.component.Component;
-import org.jacp.api.annotations.Resource;
-import org.jacp.api.annotations.component.View;
+import org.jacpfx.api.action.IAction;
+import org.jacpfx.api.action.IActionListener;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.component.View;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
 import org.jacp.demo.entity.ContactDTO;
 import org.jacp.demo.main.Util;
-import org.jacp.javafx.rcp.component.FXComponent;
-import org.jacp.javafx.rcp.components.modalDialog.JACPModalDialog;
-import org.jacp.javafx.rcp.context.JACPContext;
-import org.jacp.javafx.rcp.controls.optionPane.JACPDialogButton;
-import org.jacp.javafx.rcp.controls.optionPane.JACPDialogUtil;
-import org.jacp.javafx.rcp.controls.optionPane.JACPOptionPane;
-import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
+import org.jacpfx.rcp.component.FXComponent;
+import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
+import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.controls.optionPane.JACPDialogButton;
+import org.jacpfx.controls.optionPane.JACPDialogUtil;
+import org.jacpfx.controls.optionPane.JACPOptionPane;
+import org.jacpfx.rcp.util.FXUtil.MessageUtil;
 
 /**
  * The ContactTableViewComponent create the table view for an category

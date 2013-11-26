@@ -23,8 +23,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import org.jacp.demo.workbench.ContactWorkbench;
-import org.jacp.javafx.rcp.workbench.FXWorkbench;
-import org.jacp.project.launcher.AFXSpringLauncher;
+import org.jacpfx.rcp.workbench.FXWorkbench;
+import org.jacpfx.spring.launcher.AFXSpringLauncher;
 
 /**
  * JacpFX application launcher and main method for contact demo. This is the
