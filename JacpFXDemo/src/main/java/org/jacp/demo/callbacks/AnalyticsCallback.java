@@ -17,24 +17,21 @@
  */
 package org.jacp.demo.callbacks;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.chart.XYChart;
-
-import org.jacpfx.api.action.IAction;
-import org.jacpfx.api.action.IActionListener;
-import org.jacpfx.api.annotations.component.Component;
-import org.jacpfx.api.annotations.Resource;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
 import org.jacp.demo.entity.ContactDTO;
 import org.jacp.demo.main.Util;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.component.Component;
+import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.CallbackComponent;
 import org.jacpfx.rcp.context.JACPContext;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * The AnalyticsCallback components creates chart data (random data)
@@ -49,9 +46,9 @@ public class AnalyticsCallback implements CallbackComponent {
     private JACPContext context;
 
     @Override
-    public Object handle(final IAction<Event, Object> action) throws Exception {
-        if (action.isMessageType(Contact.class)) {
-            final Contact contact = action.getTypedMessage(Contact.class);
+    public Object handle(final Message<Event, Object> message) throws Exception {
+        if (message.isMessageBodyTypeOf(Contact.class)) {
+            final Contact contact = message.getTypedMessageBody(Contact.class);
             this.creatAndSendData(contact);
         }
         return null;
@@ -76,9 +73,8 @@ public class AnalyticsCallback implements CallbackComponent {
     }
 
     private void sendChartData(final Object data) {
-        final IActionListener<EventHandler<Event>, Event, Object> listener = context.getActionListener(
+        context.send(
                 GlobalConstants.cascade(GlobalConstants.PerspectiveConstants.DEMO_PERSPECTIVE, GlobalConstants.ComponentConstants.COMPONENT_CHART_VIEW), data);
-        listener.performAction(null);
     }
 
     private List<XYChart.Data<String, Number>> createChartData() {

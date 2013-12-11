@@ -23,7 +23,6 @@
 package org.jacp.demo.components;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -34,8 +33,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-
-import org.jacpfx.api.action.IActionListener;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
 import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
@@ -94,8 +91,7 @@ public class ContactAddDialog {
                     // contacts
                     final Contact contact = new Contact();
                     contact.setFirstName(catName);
-                    final IActionListener<EventHandler<Event>, Event, Object> listener = parent.getContext().getActionListener(contact);
-                    listener.performAction(actionEvent);
+                    parent.getContext().send(contact);
                     JACPModalDialog.getInstance().hideModalDialog();
                 }
             }

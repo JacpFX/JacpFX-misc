@@ -24,15 +24,14 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jacpfx.api.action.IAction;
+import org.jacp.demo.entity.Contact;
+import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.View;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
-import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.message.Message;
 import org.jacpfx.api.util.ToolbarPosition;
-import org.jacp.demo.entity.Contact;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
@@ -59,12 +58,12 @@ public class ContactTreeViewComponent implements FXComponent {
 	/**
 	 * handle the component in worker thread
 	 */
-	public Node handle(final IAction<Event, Object> action) throws Exception {
+	public Node handle(final Message<Event, Object> message) throws Exception {
 		// on initial message create the layout outside the FXApplication thread
-		if (action.isMessage(MessageUtil.INIT)) {
+		if (message.isMessageBodyTypeOf(MessageUtil.class) && message.getMessageBody() == (MessageUtil.INIT)) {
 			return this.createInitialLayout();
 		}
-		LOGGER.debug("ContactTreeViewComponent handleAction message: "+action.getMessage());
+		LOGGER.debug("ContactTreeViewComponent handleAction message: " + message.getMessageBody());
 		return null;
 	}
 
@@ -73,11 +72,11 @@ public class ContactTreeViewComponent implements FXComponent {
 	 * handle the component in FX application thread
 	 */
 	public Node postHandle(final Node node,
-			final IAction<Event, Object> action) throws Exception {
+			final Message<Event, Object> message) throws Exception {
 		// add a new contact in FXApplication thread
         LOGGER.debug("parentId: "+context.getParentId() );
-		if (action.isMessageType(Contact.class)) {
-			final Contact contact = action.getTypedMessage(Contact.class);
+		if (message.isMessageBodyTypeOf(Contact.class)) {
+			final Contact contact = message.getTypedMessageBody(Contact.class);
 			this.addNewContact(contact);
 		}
 		return this.pane;

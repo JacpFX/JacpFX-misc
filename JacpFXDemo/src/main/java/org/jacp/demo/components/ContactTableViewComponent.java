@@ -17,10 +17,6 @@
  */
 package org.jacp.demo.components;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -29,44 +25,46 @@ import javafx.scene.Node;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jacpfx.api.action.IAction;
-import org.jacpfx.api.action.IActionListener;
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.component.View;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
 import org.jacp.demo.entity.ContactDTO;
 import org.jacp.demo.main.Util;
-import org.jacpfx.rcp.component.FXComponent;
-import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
-import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.component.View;
+import org.jacpfx.api.message.Message;
 import org.jacpfx.controls.optionPane.JACPDialogButton;
 import org.jacpfx.controls.optionPane.JACPDialogUtil;
 import org.jacpfx.controls.optionPane.JACPOptionPane;
+import org.jacpfx.rcp.component.FXComponent;
+import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
+import org.jacpfx.rcp.context.JACPContext;
 import org.jacpfx.rcp.util.FXUtil.MessageUtil;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The ContactTableViewComponent create the table view for an category
- * 
+ *
  * @author Andy Moncsek
- * 
  */
-@View(id = GlobalConstants.ComponentConstants.COMPONENT_TABLE_VIEW, name = "contactDemoTableView", active = true,initialTargetLayoutId ="PmainContentTop" )
+@View(id = GlobalConstants.ComponentConstants.COMPONENT_TABLE_VIEW, name = "contactDemoTableView", active = true, initialTargetLayoutId = "PmainContentTop")
 public class ContactTableViewComponent implements FXComponent {
-	private final static Log LOGGER = LogFactory
-			.getLog(ContactTableViewComponent.class);
+    private final static Log LOGGER = LogFactory
+            .getLog(ContactTableViewComponent.class);
     private final Map<String, ContactTableView> all = Collections.synchronizedMap(new HashMap<String, ContactTableView>());
     private ContactTableView current;
     @Resource
     private JACPContext context;
+
     @Override
     /**
      * run handleAction in worker Thread
      */
-    public Node handle(final IAction<Event, Object> action) throws Exception {
+    public Node handle(final Message<Event, Object> action) throws Exception {
         return null;
     }
 
@@ -74,18 +72,18 @@ public class ContactTableViewComponent implements FXComponent {
     /**
      * run postHandle in FX application Thread, use this method to update UI code
      */
-    public Node postHandle(final Node node, final IAction<Event, Object> action) throws Exception {
-        if (action.getMessage() instanceof Contact) {
+    public Node postHandle(final Node node, final Message<Event, Object> message) throws Exception {
+        if (message.getMessageBody() instanceof Contact) {
             // contact selected
-            final Contact contact = (Contact) action.getMessage();
+            final Contact contact = (Contact) message.getMessageBody();
             if (contact.isEmpty()) {
                 this.showDialogIfEmpty(contact);
             }
             this.current = this.getView(contact);
 
-        } else if (action.getMessage() instanceof ContactDTO) {
+        } else if (message.getMessageBody() instanceof ContactDTO) {
             // contact data received
-            final ContactDTO dto = (ContactDTO) action.getMessage();
+            final ContactDTO dto = (ContactDTO) message.getMessageBody();
             final ContactTableView view = this.all.get(dto.getParentName());
             // add first 1000 entries directly to table
             if (view.getContactTableView().getItems().size() < Util.PARTITION_SIZE) {
@@ -96,7 +94,7 @@ public class ContactTableViewComponent implements FXComponent {
             }
             view.updatePositionLabel();
 
-        } else if (action.getMessage().equals(MessageUtil.INIT)) {
+        } else if (message.getMessageBody().equals(MessageUtil.INIT)) {
             return this.getView(null).getTableViewLayout();
         }
         return this.current.getTableViewLayout();
@@ -118,12 +116,10 @@ public class ContactTableViewComponent implements FXComponent {
                                     // send contact to TableView
                                     // component to show containing
                                     // contacts
-                                    final IActionListener<EventHandler<Event>, Event, Object> listener =context.getActionListener(
+                                    context.send(
                                             GlobalConstants.cascade(GlobalConstants.PerspectiveConstants.DEMO_PERSPECTIVE, GlobalConstants.CallbackConstants.CALLBACK_ANALYTICS), contact);
-                                    listener.performAction(arg0);
-                                    final IActionListener<EventHandler<Event>, Event, Object> detailListener = context.getActionListener(
+                                    context.send(
                                             GlobalConstants.cascade(GlobalConstants.PerspectiveConstants.DEMO_PERSPECTIVE, GlobalConstants.ComponentConstants.COMPONENT_DETAIL_VIEW), contact);
-                                    detailListener.performAction(arg0);
 
                                 }
                             });
@@ -175,8 +171,7 @@ public class ContactTableViewComponent implements FXComponent {
                 contact.setEmpty(false);
                 // redirect contact to coordinator callback to create
                 // contacts
-                final IActionListener<EventHandler<Event>, Event, Object> listener = context.getActionListener("id01.id004", contact);
-                listener.performAction(arg0);
+                context.send("id01.id004", contact);
             }
         });
 

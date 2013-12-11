@@ -18,17 +18,14 @@
 package org.jacp.demo.callbacks;
 
 import javafx.event.Event;
-import javafx.event.EventHandler;
-
-import org.jacpfx.api.action.IAction;
-import org.jacpfx.api.action.IActionListener;
-import org.jacpfx.api.annotations.component.Component;
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.component.Stateless;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
 import org.jacp.demo.entity.ContactDTO;
 import org.jacp.demo.main.Util;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.component.Component;
+import org.jacpfx.api.annotations.component.Stateless;
+import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.CallbackComponent;
 import org.jacpfx.rcp.context.JACPContext;
 
@@ -46,9 +43,9 @@ public class CoordinatorCallback implements CallbackComponent {
     @Resource
     private JACPContext context;
     @Override
-    public Object handle(final IAction<Event, Object> action) {
-        if (action.getMessage() instanceof Contact) {
-            final Contact contact = (Contact) action.getMessage();
+    public Object handle(final Message<Event, Object> message) {
+        if (message.isMessageBodyTypeOf(Contact.class)) {
+            final Contact contact = (Contact) message.getMessageBody();
             if (contact.getContacts().isEmpty()) {
                 if (contact.getAmount() > Util.PARTITION_SIZE) {
                     int amount = contact.getAmount();
@@ -86,9 +83,8 @@ public class CoordinatorCallback implements CallbackComponent {
      */
     private void createAmountAndSend(final String name, final int amount) {
         final ContactDTO dto = new ContactDTO(name, amount);
-        final IActionListener<EventHandler<Event>, Event, Object> listener = context.getActionListener(
+        context.send(
                 GlobalConstants.cascade(GlobalConstants.PerspectiveConstants.DEMO_PERSPECTIVE, GlobalConstants.CallbackConstants.CALLBACK_CREATOR), dto);
-        listener.performAction(null);
     }
 
 }

@@ -36,11 +36,11 @@ import javafx.scene.layout.Priority;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jacpfx.api.action.IAction;
+import org.jacp.demo.enums.BarChartAction;
 import org.jacpfx.api.annotations.component.View;
 import org.jacp.demo.entity.Contact;
-import org.jacp.demo.enums.BarChartAction;
 import org.jacp.demo.main.Util;
+import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.util.FXUtil.MessageUtil;
 
@@ -66,25 +66,25 @@ public class ContactChartViewComponent implements FXComponent {
 			"2010", "2011" };
 
 	@Override
-	public Node handle(final IAction<Event, Object> action) throws Exception {
-		if (action.getMessage().equals(MessageUtil.INIT)) {
+	public Node handle(final Message<Event, Object> message) throws Exception {
+		if (message.getMessageBody().equals(MessageUtil.INIT)) {
 			this.root = this.createRoot();
 			this.root.getChildren().add(this.createChart());
 		}
-		LOGGER.debug("ContactChartViewComponent handleAction message: "+action.getMessage());
+		LOGGER.debug("ContactChartViewComponent handlemessage message: "+message.getMessageBody());
 		return null;
 	}
 
 	@Override
 	public Node postHandle(final Node node,
-			final IAction<Event, Object> action) throws Exception {
-		if (action.getMessage() instanceof BarChartAction) {
-			if (BarChartAction.RESET.equals(action.getMessage())) {
+			final Message<Event, Object> message) throws Exception {
+		if (message.getMessageBody() instanceof BarChartAction) {
+			if (BarChartAction.RESET.equals(message.getMessageBody())) {
 				this.clearChartPane();
 			}
 		}
-		if (action.getMessage() instanceof Contact) {
-			final Contact contact = (Contact) action.getMessage();
+		if (message.getMessageBody() instanceof Contact) {
+			final Contact contact = (Contact) message.getMessageBody();
 			this.refreshChartPane(contact);
 			final List<Data<String, Number>> data = contact.getDto()
 					.getSeriesOneData();

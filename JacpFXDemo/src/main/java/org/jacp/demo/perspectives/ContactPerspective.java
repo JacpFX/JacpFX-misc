@@ -26,17 +26,15 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jacpfx.api.action.IAction;
-import org.jacpfx.api.action.IActionListener;
+import org.jacp.demo.components.util.JACPOptionButtonCreator;
+import org.jacp.demo.constants.GlobalConstants;
+import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.annotations.perspective.Perspective;
-import org.jacpfx.api.annotations.Resource;
-import org.jacp.demo.components.util.JACPOptionButtonCreator;
-import org.jacp.demo.constants.GlobalConstants;
+import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
@@ -70,6 +68,9 @@ import static org.jacpfx.rcp.components.toolBar.JACPOptionButtonOrientation.*;
 public class ContactPerspective implements FXPerspective {
     private final static Log LOGGER = LogFactory
             .getLog(ContactPerspective.class);
+
+    private static final String SWITCH_MESSAGE = "switch";
+
     private String topId = "PmainContentTop";
 
     private String bottomId = "PmainContentBottom";
@@ -110,10 +111,7 @@ public class ContactPerspective implements FXPerspective {
 
             @Override
             public void handle(final ActionEvent e) {
-                final IActionListener<EventHandler<Event>, Event, Object> listener = context
-                        .getActionListener("switch");
-                listener.getAction().setMessage("switch");
-                listener.performAction(null);
+                context.send(SWITCH_MESSAGE);
 
             }
         });
@@ -143,17 +141,17 @@ public class ContactPerspective implements FXPerspective {
     }
 
     @Override
-    public void handlePerspective(final IAction<Event, Object> action,
+    public void handlePerspective(final Message<Event, Object> message,
                                   final PerspectiveLayout perspectiveLayout) {
-        if (action.getMessage().equals(MessageUtil.INIT)) {
+        if (MessageUtil.INIT.equals(message.getMessageBody())) {
             this.createPerspectiveLayout(perspectiveLayout);
-        } else if (action.getMessage().equals("switch")) {
+        } else if (SWITCH_MESSAGE.equals(message.getMessageBody())) {
             final String tmp = this.topId;
             this.topId = this.bottomId;
             this.bottomId = tmp;
             this.createPerspectiveLayout(perspectiveLayout);
         }
-        LOGGER.debug("handlePerspective message: " + action.getMessage());
+        LOGGER.debug("handlePerspective message: " + message.getMessageBody());
     }
 
     private void createPerspectiveLayout(

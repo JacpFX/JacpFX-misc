@@ -27,11 +27,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -42,11 +38,10 @@ import javafx.scene.text.TextBuilder;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import org.jacpfx.api.action.IAction;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.workbench.Workbench;
 import org.jacpfx.api.componentLayout.IWorkbenchLayout;
+import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
 import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
@@ -72,7 +67,7 @@ public class ContactWorkbench implements FXWorkbench {
     private JACPContext context;
 
     @Override
-    public void handleInitialLayout(final IAction<Event, Object> action, final IWorkbenchLayout<Node> layout, final Stage stage) {
+    public void handleInitialLayout(final Message<Event, Object> message, final IWorkbenchLayout<Node> layout, final Stage stage) {
         layout.setWorkbenchXYSize(1024, 768);
         layout.registerToolBars(NORTH, SOUTH, EAST, WEST);
         layout.setStyle(StageStyle.UNDECORATED);

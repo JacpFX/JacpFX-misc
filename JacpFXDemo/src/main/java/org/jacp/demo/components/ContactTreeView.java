@@ -1,5 +1,5 @@
 /************************************************************************
- * 
+ *
  * Copyright (C) 2010 - 2012
  *
  * [ContactTreeView.java]
@@ -27,18 +27,12 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.util.Callback;
-
-import org.jacpfx.api.action.IActionListener;
 import org.jacp.demo.constants.GlobalConstants;
 import org.jacp.demo.entity.Contact;
 import org.jacp.demo.enums.BarChartAction;
@@ -113,14 +107,12 @@ public class ContactTreeView extends ScrollPane {
                                     // component to show containing
                                     // contacts
                                     // send event to Table View
-                                    final IActionListener<EventHandler<Event>, Event, Object> listener = ContactTreeView.this.parent.getContext().getActionListener(
+                                    ContactTreeView.this.parent.getContext().send(
                                             GlobalConstants.cascade(GlobalConstants.PerspectiveConstants.DEMO_PERSPECTIVE, GlobalConstants.ComponentConstants.COMPONENT_TABLE_VIEW), contact);
-                                    listener.performAction(event);
                                     // Send Event to BarChart
-                                    final IActionListener<EventHandler<Event>, Event, Object> resetListener = ContactTreeView.this.parent.getContext().getActionListener(
+                                    ContactTreeView.this.parent.getContext().send(
                                             GlobalConstants.cascade(GlobalConstants.PerspectiveConstants.DEMO_PERSPECTIVE, GlobalConstants.ComponentConstants.COMPONENT_CHART_VIEW),
                                             BarChartAction.RESET);
-                                    resetListener.performAction(event);
                                 }
                             });
                         }
