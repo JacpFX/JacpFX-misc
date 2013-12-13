@@ -60,7 +60,7 @@ public class ContactTreeViewComponent implements FXComponent {
 	 */
 	public Node handle(final Message<Event, Object> message) throws Exception {
 		// on initial message create the layout outside the FXApplication thread
-		if (message.isMessageBodyTypeOf(MessageUtil.class) && message.getMessageBody() == (MessageUtil.INIT)) {
+		if (message.messageBodyEquals(MessageUtil.INIT)) {
 			return this.createInitialLayout();
 		}
 		LOGGER.debug("ContactTreeViewComponent handleAction message: " + message.getMessageBody());
