@@ -21,11 +21,15 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jacp.demo.components.util.JACPOptionButtonCreator;
@@ -37,6 +41,7 @@ import org.jacpfx.api.annotations.perspective.Perspective;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
+import org.jacpfx.rcp.components.toolBar.JACPHoverMenu;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.JACPContext;
 import org.jacpfx.rcp.perspective.FXPerspective;
@@ -131,6 +136,24 @@ public class ContactPerspective implements FXPerspective {
         south.addToCenter(context.getId(), JACPOptionButtonCreator.createDefaultOptionButton("bottom Button", layout, TOP));
         south.addOnEnd(context.getId(), JACPOptionButtonCreator.createDefaultOptionButton("bottom Button", layout, TOP));
 
+
+
+        JACPHoverMenu menu = new JACPHoverMenu("Hovermenu", layout);
+
+        VBox p = new VBox();
+        p.setPadding(new Insets(10));
+        Button b = new Button("HELLO");
+        CheckBox check = new CheckBox("checkbox");
+
+
+        p.getChildren().addAll(b , check);
+
+        ColorPicker picker = new ColorPicker();
+        menu.getContentPane().getChildren().add(p);
+
+
+        north.addToCenter(context.getId(), menu);
+        north.addToCenter(context.getId(), picker);
 
     }
 

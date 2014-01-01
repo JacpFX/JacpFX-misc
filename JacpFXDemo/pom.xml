@@ -205,25 +205,25 @@
 
         <dependency>
             <groupId>org.jacpfx</groupId>
-            <artifactId>JACP.API</artifactId>
+            <artifactId>jacpfx.API</artifactId>
             <version>${jacp.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jacpfx</groupId>
-            <artifactId>JACP.JavaFX</artifactId>
+            <artifactId>jacpfx.JavaFX</artifactId>
             <version>${jacp.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jacpfx</groupId>
-            <artifactId>JACP.JavaFXSpring</artifactId>
+            <artifactId>jacpfx.JavaFXSpring</artifactId>
             <version>${jacp.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jacpfx</groupId>
-            <artifactId>JACP.JavaFXControls</artifactId>
+            <artifactId>jacpfx.JavaFXControls</artifactId>
             <version>${jacp.version}</version>
             <scope>compile</scope>
         </dependency>
