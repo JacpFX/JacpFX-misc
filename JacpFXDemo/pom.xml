@@ -23,14 +23,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>2.2</javafx.version>
         <jacp.version>2.0-ALPHA-SNAPSHOT</jacp.version>
-        <spring.version>4.0.0.M2</spring.version>
+        <spring.version>4.0.0.RELEASE</spring.version>
     </properties>
-    <!--	<repositories>
-            <repository>
-                <id>jacp</id>
-                <url>http://developer.ahcp.de/nexus/content/repositories/jacp</url>
-            </repository>
-        </repositories>-->
     <build>
         <pluginManagement>
             <plugins>
