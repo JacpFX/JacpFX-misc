@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 - 2012.
+ * Copyright (C) 2010 - 2014.
  * AHCP Project (http://code.google.com/p/jacp)
  * All rights reserved.
  *
