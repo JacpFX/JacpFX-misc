@@ -27,7 +27,7 @@ import org.jacpfx.api.annotations.component.Component;
 import org.jacpfx.api.annotations.component.Stateless;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.CallbackComponent;
-import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.rcp.context.Context;
 
 /**
  * The coordinatorCallback splits the amount of contacts in to chunks and sends
@@ -41,7 +41,7 @@ import org.jacpfx.rcp.context.JACPContext;
 
 public class CoordinatorCallback implements CallbackComponent {
     @Resource
-    private JACPContext context;
+    private Context context;
     @Override
     public Object handle(final Message<Event, Object> message) {
         if (message.isMessageBodyTypeOf(Contact.class)) {

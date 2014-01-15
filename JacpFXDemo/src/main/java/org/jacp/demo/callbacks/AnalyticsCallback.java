@@ -27,7 +27,7 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.Component;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.CallbackComponent;
-import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.rcp.context.Context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ import java.util.Random;
 public class AnalyticsCallback implements CallbackComponent {
     private final Random rnd = new Random();
     @Resource
-    private JACPContext context;
+    private Context context;
 
     @Override
     public Object handle(final Message<Event, Object> message) throws Exception {

@@ -25,7 +25,7 @@ import org.jacpfx.api.annotations.component.Component;
 import org.jacpfx.api.annotations.component.Stateless;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.CallbackComponent;
-import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.rcp.context.Context;
 
 /**
  * The CreatorCallback creates contact data with random numbers
@@ -37,7 +37,7 @@ import org.jacpfx.rcp.context.JACPContext;
 @Stateless
 public class CreatorCallback implements CallbackComponent {
     @Resource
-    private JACPContext context;
+    private Context context;
     @Override
     public Object handle(final Message<Event, Object> message) {
         if (message.isMessageBodyTypeOf(ContactDTO.class)) {

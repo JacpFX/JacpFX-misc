@@ -40,12 +40,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.workbench.Workbench;
-import org.jacpfx.api.componentLayout.IWorkbenchLayout;
+import org.jacpfx.api.componentLayout.WorkbenchLayout;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
 import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
-import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 
 import static org.jacpfx.api.util.ToolbarPosition.*;
@@ -64,10 +64,10 @@ public class ContactWorkbench implements FXWorkbench {
     private final String message = "JacpFX is a Framework to create Rich Clients in MVC style with JavaFX 2, Spring and an Actor like component approach. It provides a simple API to create a workspace, perspectives, components and to compose your Client application easily. More Info see: ";
 
     @Resource
-    private JACPContext context;
+    private Context context;
 
     @Override
-    public void handleInitialLayout(final Message<Event, Object> message, final IWorkbenchLayout<Node> layout, final Stage stage) {
+    public void handleInitialLayout(final Message<Event, Object> message, final WorkbenchLayout<Node> layout, final Stage stage) {
         layout.setWorkbenchXYSize(1024, 768);
         layout.registerToolBars(NORTH, SOUTH, EAST, WEST);
         layout.setStyle(StageStyle.UNDECORATED);

@@ -43,7 +43,7 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.components.toolBar.JACPHoverMenu;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
-import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
 import org.jacpfx.rcp.util.FXUtil.MessageUtil;
 
@@ -96,7 +96,7 @@ public class ContactPerspective implements FXPerspective {
     private AnchorPane detailAnchor;
 
     @Resource
-    JACPContext context;
+    Context context;
 
     @PostConstruct
     /**

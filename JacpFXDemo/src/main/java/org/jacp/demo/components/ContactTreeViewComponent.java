@@ -35,7 +35,7 @@ import org.jacpfx.api.util.ToolbarPosition;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
-import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.util.FXUtil.MessageUtil;
 
 /**
@@ -52,7 +52,7 @@ public class ContactTreeViewComponent implements FXComponent {
 	private ContactTreeView pane;
 	private ObservableList<Contact> contactList;
     @Resource
-    private JACPContext context;
+    private Context context;
 
 	@Override
 	/**
@@ -135,7 +135,7 @@ public class ContactTreeViewComponent implements FXComponent {
 		this.contactList.add(contact);
 	}
 
-    public JACPContext getContext(){
+    public Context getContext(){
         return this.context;
     }
 }

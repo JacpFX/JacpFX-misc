@@ -39,7 +39,7 @@ import org.jacpfx.controls.optionPane.JACPDialogUtil;
 import org.jacpfx.controls.optionPane.JACPOptionPane;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.components.modalDialog.JACPModalDialog;
-import org.jacpfx.rcp.context.JACPContext;
+import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.util.FXUtil.MessageUtil;
 
 import java.util.Collections;
@@ -58,7 +58,7 @@ public class ContactTableViewComponent implements FXComponent {
     private final Map<String, ContactTableView> all = Collections.synchronizedMap(new HashMap<String, ContactTableView>());
     private ContactTableView current;
     @Resource
-    private JACPContext context;
+    private Context context;
 
     @Override
     /**
