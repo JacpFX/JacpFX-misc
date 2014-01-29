@@ -61,7 +61,7 @@ import java.util.ResourceBundle;
  */
 @Perspective(id = ComponentIds.PERSPECTIVE_ONE, name = "contactPerspective",
         components = {
-                "id002"},
+                "id002","id003"},
         //viewLocation = "/fxml/perspectiveOne.fxml",
         resourceBundleLocation = "bundles.languageBundle",
         localeID = "en_US")
