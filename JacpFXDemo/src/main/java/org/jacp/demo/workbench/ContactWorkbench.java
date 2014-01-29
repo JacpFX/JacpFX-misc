@@ -51,7 +51,7 @@ import org.jacpfx.rcp.workbench.FXWorkbench;
 import static org.jacpfx.api.util.ToolbarPosition.*;
 
 /**
- * Workbench for contact demo with JacpFX (JavaFX2 and Spring). The workbench is
+ * Workbench for contact quickstart with JacpFX (JavaFX2 and Spring). The workbench is
  * the root node of your JacpFX application.
  * 
  * @author Andy Moncsek, Patrick Symmangk
@@ -126,7 +126,7 @@ public class ContactWorkbench implements FXWorkbench {
     }
 
     private Label createTitle() {
-        final Label title = new Label("JacpFX project demo");
+        final Label title = new Label("JacpFX project quickstart");
         title.setId("jacp-custom-title");
         VBox.setMargin(title, new Insets(2, 2, 10, 2));
         return title;

@@ -92,9 +92,9 @@
                     <archive>
                         <manifestEntries>
                             <JavaFX-Version>${javafx.version}+</JavaFX-Version>
-                            <Main-Class>org.jacp.demo.main.ContactMain</Main-Class>
+                            <Main-Class>org.jacp.quickstart.main.ContactMain</Main-Class>
                             <implementation-version>1.0</implementation-version>
-                            <JavaFX-Application-Class>org.jacp.demo.main.ContactMain</JavaFX-Application-Class>
+                            <JavaFX-Application-Class>org.jacp.quickstart.main.ContactMain</JavaFX-Application-Class>
                             <JavaFX-Class-Path>
                                 aopalliance-1.0.jar commons-logging-1.1.1.jar
                                 JACP.API-${jacp.version}.jar JACP.JavaFX-${jacp.version}.jar
@@ -148,7 +148,7 @@
                                            outdir="${project.build.directory}/deploy" outfile="${build.finalName}"
                                            nativeBundles="all">
                                     <info title="${project.name}"/>
-                                    <application name="${project.name}" mainClass="org.jacp.demo.main.ContactMain"/>
+                                    <application name="${project.name}" mainClass="org.jacp.quickstart.main.ContactMain"/>
                                     <resources>
                                         <fileset dir="${project.build.directory}" includes="*.jar"/>
                                         <fileset dir="${project.build.directory}/dependency"

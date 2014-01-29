@@ -42,6 +42,9 @@ import org.jacp.api.annotations.OnTearDown;
 import org.jacp.javafx.rcp.component.AFXComponent;
 import org.jacp.javafx.rcp.componentLayout.FXComponentLayout;
 import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
+import org.jacpfx.api.annotations.component.View;
+import org.jacpfx.api.message.Message;
+import org.jacpfx.rcp.component.FXComponent;
 
 /**
  * A simple JacpFX UI component
@@ -49,17 +52,17 @@ import org.jacp.javafx.rcp.util.FXUtil.MessageUtil;
  * @author Andy Moncsek
  * 
  */
-@Component(defaultExecutionTarget = "Pleft", id = "id001", name = "componentLeft", active = true)
-public class ComponentLeft extends AFXComponent {
+@View(id = "id007", name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US", initialTargetLayoutId = "content1")
+public class ComponentLeft implements FXComponent {
 	private ScrollPane pane;
 	private Label leftLabel;
 	private Logger log = Logger.getLogger(ComponentLeft.class.getName());
 
 	@Override
 	/**
-	 * The handleAction method always runs outside the main application thread. You can create new nodes, execute long running tasks but you are not allowed to manipulate existing nodes here.
+	 * The handle method always runs outside the main application thread. You can create new nodes, execute long running tasks but you are not allowed to manipulate existing nodes here.
 	 */
-	public Node handleAction(IAction<Event, Object> action) {
+    public Node handle(final Message<Event, Object> message) {
 		// runs in worker thread
 		if (action.getLastMessage().equals(MessageUtil.INIT)) {
 			return createUI();
@@ -71,12 +74,13 @@ public class ComponentLeft extends AFXComponent {
 	/**
 	 * The postHandleAction method runs always in the main application thread.
 	 */
-	public Node postHandleAction(Node arg0, IAction<Event, Object> action) {
+    public Node postHandle(final Node arg0,
+                           final Message<Event, Object> message) {
 		// runs in FX application thread
 		if (action.getLastMessage().equals(MessageUtil.INIT)) {
 			this.pane = (ScrollPane) arg0;
 		} else {
-			leftLabel.setText(action.getLastMessage().toString());
+			leftLabel.setText(message.getMessageBody().toString());
 		}
 		return this.pane;
 	}

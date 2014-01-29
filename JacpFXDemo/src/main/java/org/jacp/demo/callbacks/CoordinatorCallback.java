@@ -64,7 +64,7 @@ public class CoordinatorCallback implements CallbackComponent {
     }
 
     /**
-     * for demo purposes
+     * for quickstart purposes
      */
     private void waitAmount(final int amount) {
         try {

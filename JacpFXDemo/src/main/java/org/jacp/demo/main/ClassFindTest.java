@@ -14,14 +14,14 @@ public class ClassFindTest {
          ClassFinder finder = new ClassFinder();
        ClassFinderOrig finderOrig = new ClassFinderOrig();
        long start = System.currentTimeMillis();
-      /* Class[] result = finder.getAll("org.jacp.demo.callbacks");
+      /* Class[] result = finder.getAll("org.jacp.quickstart.callbacks");
        for(Class c : result) {
            System.out.println(c);
        }*/
        long end = System.currentTimeMillis();
        System.out.println("Execution time was "+(end-start)+" ms.");
        start = System.currentTimeMillis();
-       Class[] result2 = finderOrig.getAll("org.jacp.demo.callbacks");
+       Class[] result2 = finderOrig.getAll("org.jacp.quickstart.callbacks");
        for(Class c : result2) {
            System.out.println(c);
        }
@@ -30,7 +30,7 @@ public class ClassFindTest {
        System.out.println("Execution time was "+(end-start)+" ms.");
 
        start = System.currentTimeMillis();
-       Class[] result = finder.getAll("org.jacp.demo");
+       Class[] result = finder.getAll("org.jacp.quickstart");
        for(Class c : result) {
            System.out.println("--"+c);
        }

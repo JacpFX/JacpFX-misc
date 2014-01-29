@@ -24,10 +24,10 @@ import javafx.stage.Stage;
 
 import org.jacp.demo.workbench.ContactWorkbench;
 import org.jacpfx.rcp.workbench.FXWorkbench;
-import org.jacpfx.spring.launcher.AFXSpringLauncher;
+import org.jacpfx.spring.launcher.AFXSpringXmlLauncher;
 
 /**
- * JacpFX application launcher and main method for contact demo. This is the
+ * JacpFX application launcher and main method for contact quickstart. This is the
  * entry class to start initial context of an JacpFX application. Here you
  * define the location of the spring-xml and can handle settings like css
  * configuration.
@@ -35,12 +35,16 @@ import org.jacpfx.spring.launcher.AFXSpringLauncher;
  * @author Andy Moncsek
  * 
  */
-public class ContactMain extends AFXSpringLauncher {
+public class ContactMain extends AFXSpringXmlLauncher {
 
     private Scene scene;
 
     public ContactMain() {
-        super("main.xml");
+    }
+
+    @Override
+    public String getXmlConfig() {
+        return "main.xml";
     }
 
     /**
@@ -58,7 +62,7 @@ public class ContactMain extends AFXSpringLauncher {
 
     @Override
     protected String[] getBasePackages() {
-        return new String[]{"org.jacp.demo.components","org.jacp.demo.callbacks","org.jacp.demo.perspectives"};  //To change body of implemented methods use File | Settings | File Templates.
+        return new String[]{"org.jacp.quickstart.components","org.jacp.quickstart.callbacks","org.jacp.quickstart.perspectives"};  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
