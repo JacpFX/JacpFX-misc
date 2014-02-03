@@ -49,7 +49,7 @@ import java.util.logging.Logger;
  *
  * @author Andy Moncsek
  */
-@View(id = "id002", name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US", initialTargetLayoutId = "Pleft")
+@View(id = "id002", name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", initialTargetLayoutId = "Pleft")
 public class ComponentLeft implements FXComponent {
     private ScrollPane pane;
     private Label leftLabel;
