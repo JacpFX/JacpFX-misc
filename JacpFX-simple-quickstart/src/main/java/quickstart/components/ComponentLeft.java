@@ -40,9 +40,13 @@ import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.util.FXUtil;
+import org.jacpfx.rcp.util.LayoutUtil;
 
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+
+import static javafx.scene.layout.Priority.ALWAYS;
+import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil.*;
 
 /**
  * A simple JacpFX UI component
@@ -115,8 +119,9 @@ public class ComponentLeft implements FXComponent {
         final ScrollPane pane = new ScrollPane();
         pane.setFitToHeight(true);
         pane.setFitToWidth(true);
-        GridPane.setHgrow(pane, Priority.ALWAYS);
-        GridPane.setVgrow(pane, Priority.ALWAYS);
+
+        setFullGrow(ALWAYS, pane);
+
         final VBox box = new VBox();
         final Button left = new Button("Left");
         leftLabel = new Label("");

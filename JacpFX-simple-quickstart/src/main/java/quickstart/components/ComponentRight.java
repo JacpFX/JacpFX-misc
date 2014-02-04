@@ -117,6 +117,7 @@ public class ComponentRight implements FXComponent {
         ScrollPane pane = new ScrollPane();
         pane.setFitToHeight(true);
         pane.setFitToWidth(true);
+
         GridPane.setHgrow(pane, Priority.ALWAYS);
         GridPane.setVgrow(pane, Priority.ALWAYS);
         final VBox box = new VBox();

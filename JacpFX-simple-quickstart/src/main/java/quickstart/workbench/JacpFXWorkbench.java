@@ -76,10 +76,10 @@ public class JacpFXWorkbench implements FXWorkbench {
         final MenuItem itemHelp = new MenuItem("Help");
         itemHelp.setOnAction((event) -> {
             JACPOptionPane dialog = JACPDialogUtil.createOptionPane("Help", "Add some help text ");
-            dialog.setDefaultButton(JACPDialogButton.NO);
+            dialog.setDefaultButton(JACPDialogButton.OK);
             dialog.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
-            dialog.setOnYesAction((arg) -> context.hideModalDialog());
-            context.showModalDialog(dialog);
+            dialog.setOnOkAction((arg) -> this.context.hideModalDialog());
+            this.context.showModalDialog(dialog);
         });
         return itemHelp;
     }

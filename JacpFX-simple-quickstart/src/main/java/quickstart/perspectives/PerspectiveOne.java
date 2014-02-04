@@ -49,14 +49,19 @@ import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
 import org.jacpfx.rcp.util.FXUtil;
+import org.jacpfx.rcp.util.LayoutUtil;
 import quickstart.util.ComponentIds;
 
 import java.util.ResourceBundle;
 
+import static javafx.scene.layout.Priority.ALWAYS;
+import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil;
+
 /**
  * A simple perspective defining a split pane
  * 
- * @author Andy Moncsek
+ * @author: Andy Moncsek
+ * @author: Patrick Symmangk (pete.jacp@gmail.com)
  * 
  */
 @Perspective(id = ComponentIds.PERSPECTIVE_ONE, name = "contactPerspective",
@@ -80,16 +85,14 @@ public class PerspectiveOne implements FXPerspective {
 
 			// create left button menu
 			GridPane leftMenu = new GridPane();
-			GridPane.setHgrow(leftMenu, Priority.ALWAYS);
-			GridPane.setVgrow(leftMenu, Priority.ALWAYS);
-
 			// create main content Top
 			GridPane mainContent = new GridPane();
-			GridPane.setHgrow(mainContent, Priority.ALWAYS);
-			GridPane.setVgrow(mainContent, Priority.ALWAYS);
 
-			GridPane.setVgrow(mainLayout, Priority.ALWAYS);
-			GridPane.setHgrow(mainLayout, Priority.ALWAYS);
+            // let them grow
+            GridPaneUtil.setFullGrow(ALWAYS, leftMenu);
+            GridPaneUtil.setFullGrow(ALWAYS, mainContent);
+            GridPaneUtil.setFullGrow(ALWAYS, mainLayout);
+
 			mainLayout.getItems().addAll(leftMenu, mainContent);
 			// Register root component
 			perspectiveLayout.registerRootComponent(mainLayout);
