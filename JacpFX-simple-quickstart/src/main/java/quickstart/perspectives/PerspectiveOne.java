@@ -68,8 +68,7 @@ import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil;
         components = {
                 "id002","id003"},
         //viewLocation = "/fxml/perspectiveOne.fxml",
-        resourceBundleLocation = "bundles.languageBundle",
-        localeID = "en_US")
+        resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveOne implements FXPerspective {
     @Resource
     public Context context;
