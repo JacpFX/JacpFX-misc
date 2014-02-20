@@ -26,14 +26,10 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
@@ -50,19 +46,16 @@ import org.jacpfx.rcp.components.toolBar.JACPOptionButton;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
-import org.jacpfx.rcp.util.CSSUtil;
 import org.jacpfx.rcp.util.FXUtil;
+import org.jacpfx.rcp.util.LayoutUtil;
 import quickstart.ui.PerspectiveOptionButton;
 import quickstart.ui.Perspectives;
 import quickstart.util.ComponentIds;
-import quickstart.util.MessageConstants;
 import quickstart.util.PerspectiveIds;
 
 import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Priority.ALWAYS;
-import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil;
-import static quickstart.util.PerspectiveIds.PerspectiveOneIds;
 
 /**
  * A simple perspective defining a split pane
@@ -93,11 +86,11 @@ public class PerspectiveTwo implements FXPerspective {
 
         if (action.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
             // let them grow
-            GridPaneUtil.setFullGrow(ALWAYS, perspectiveLayout.getRootComponent());
+            LayoutUtil.GridPaneUtil.setFullGrow(ALWAYS, perspectiveLayout.getRootComponent());
             // register left menu
-            perspectiveLayout.registerTargetLayoutComponent(PerspectiveOneIds.TARGET_CONTAINER_LEFT, contentTop);
+            perspectiveLayout.registerTargetLayoutComponent(PerspectiveIds.TARGET_CONTAINER_LEFT, contentTop);
             // register main content
-            perspectiveLayout.registerTargetLayoutComponent(PerspectiveOneIds.TARGET_CONTAINER_MAIN, contentBottom);
+            perspectiveLayout.registerTargetLayoutComponent(PerspectiveIds.TARGET_CONTAINER_MAIN, contentBottom);
             errorButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {

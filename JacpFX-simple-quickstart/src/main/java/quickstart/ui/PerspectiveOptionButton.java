@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.toolBar.JACPOptionButton;
 import org.jacpfx.rcp.context.Context;
+import quickstart.util.MessageConstants;
 
 /**
  * Created with IntelliJ IDEA.
