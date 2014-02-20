@@ -66,10 +66,6 @@ public class ComponentRight implements FXComponent {
      * execute long running tasks but you are not allowed to manipulate existing nodes here.
      */
     public Node handle(final Message<Event, Object> message) {
-        // runs in worker thread
-        if (message.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
-            return createUI();
-        }
         return null;
     }
 
@@ -97,7 +93,7 @@ public class ComponentRight implements FXComponent {
      */
     public void onStartComponent(final FXComponentLayout arg0,
                                  final ResourceBundle resourceBundle) {
-
+        createUI();
 
     }
 

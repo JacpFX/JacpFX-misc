@@ -64,7 +64,7 @@ import static javafx.scene.layout.Priority.ALWAYS;
  * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
 @Perspective(id = PerspectiveIds.PERSPECTIVE_TWO, name = "contactPerspective",
-        components = {ComponentIds.COMPONENT_RIGHT},
+        components = {},
         viewLocation = "/fxml/perspectiveOne.fxml",
         resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveTwo implements FXPerspective {

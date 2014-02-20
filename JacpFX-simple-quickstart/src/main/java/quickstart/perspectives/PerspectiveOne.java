@@ -68,7 +68,7 @@ import static quickstart.util.PerspectiveIds.TARGET_CONTAINER_MAIN;
  * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
 @Perspective(id = PerspectiveIds.PERSPECTIVE_ONE, name = "contactPerspective",
-        components = {COMPONENT_LEFT, COMPONENT_RIGHT},
+        components = {},
         //viewLocation = "/fxml/perspectiveOne.fxml",
         resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveOne implements FXPerspective {
