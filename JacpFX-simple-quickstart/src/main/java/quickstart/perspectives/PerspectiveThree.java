@@ -46,12 +46,9 @@ import org.jacpfx.rcp.components.toolBar.JACPOptionButton;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
-import org.jacpfx.rcp.util.CSSUtil;
 import org.jacpfx.rcp.util.FXUtil;
 import quickstart.ui.PerspectiveOptionButton;
 import quickstart.ui.Perspectives;
-import quickstart.util.ComponentIds;
-import quickstart.util.MessageConstants;
 import quickstart.util.PerspectiveIds;
 
 import java.util.ResourceBundle;
