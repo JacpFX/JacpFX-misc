@@ -42,13 +42,20 @@ import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 import quickstart.util.ComponentIds;
+import quickstart.util.PerspectiveIds;
 
 /**
  * A simple JacpFX workbench
  *
  * @author Andy Moncsek
  */
-@Workbench(id = "id1", name = "workbench", perspectives = {ComponentIds.PERSPECTIVE_ONE})
+@Workbench(id = "id1", name = "workbench",
+        perspectives = {
+                PerspectiveIds.PERSPECTIVE_FOUR,
+                PerspectiveIds.PERSPECTIVE_THREE,
+                PerspectiveIds.PERSPECTIVE_TWO,
+                PerspectiveIds.PERSPECTIVE_ONE
+        })
 public class JacpFXWorkbench implements FXWorkbench {
 
     @Resource

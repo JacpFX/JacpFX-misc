@@ -27,11 +27,18 @@ package quickstart.util;
 
 /**
  * Created by amo on 28.01.14.
+ *
+ * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
-public class ComponentIds {
+public class PerspectiveIds {
 
-    public static final String COMPONENT_LEFT       = "id002";
-    public static final String COMPONENT_RIGHT      = "id003";
-    public static final String STATELESS_CALLBACK   = "id004";
-    public static final String STATEFUL_CALLBACK    = "id005";
+    public static final String PERSPECTIVE_ONE = "idPone";
+    public static final String PERSPECTIVE_TWO = "idPtwo";
+    public static final String PERSPECTIVE_THREE = "idPthree";
+    public static final String PERSPECTIVE_FOUR = "idPfour";
+
+
+    public static final String TARGET_CONTAINER_LEFT = "PLeft";
+    public static final String TARGET_CONTAINER_MAIN = "PMain";
+
 }

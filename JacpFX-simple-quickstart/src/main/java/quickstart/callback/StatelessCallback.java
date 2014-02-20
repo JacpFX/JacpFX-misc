@@ -30,6 +30,7 @@ import org.jacpfx.api.annotations.component.Component;
 import org.jacpfx.api.annotations.component.Stateless;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.CallbackComponent;
+import quickstart.util.ComponentIds;
 
 /**
  * A stateless JacpFX component
@@ -37,7 +38,7 @@ import org.jacpfx.rcp.component.CallbackComponent;
  *
  */
 //@CallbackComponent(id = "id004", name = "statelessCallback", active = false)
-@Component(id = "id004", name = "statelessCallback", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+@Component(id = ComponentIds.STATELESS_CALLBACK, name = "statelessCallback", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
 @Stateless
 public class StatelessCallback implements CallbackComponent {
 	private Logger log = Logger.getLogger(StatelessCallback.class.getName());

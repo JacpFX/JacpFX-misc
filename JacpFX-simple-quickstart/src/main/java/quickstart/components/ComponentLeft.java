@@ -28,8 +28,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.View;
@@ -39,21 +38,24 @@ import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
+import org.jacpfx.rcp.util.CSSUtil;
 import org.jacpfx.rcp.util.FXUtil;
-import org.jacpfx.rcp.util.LayoutUtil;
+import quickstart.util.ComponentIds;
+import quickstart.util.PathUtil;
+import quickstart.util.PerspectiveIds;
 
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import static javafx.scene.layout.Priority.ALWAYS;
-import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil.*;
+import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil.setFullGrow;
 
 /**
  * A simple JacpFX UI component
  *
  * @author Andy Moncsek
  */
-@View(id = "id002", name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", initialTargetLayoutId = "Pleft")
+@View(id = ComponentIds.COMPONENT_LEFT, name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", initialTargetLayoutId = PerspectiveIds.TARGET_CONTAINER_LEFT)
 public class ComponentLeft implements FXComponent {
     private ScrollPane pane;
     private Label leftLabel;
@@ -122,14 +124,18 @@ public class ComponentLeft implements FXComponent {
 
         setFullGrow(ALWAYS, pane);
 
-        final VBox box = new VBox();
+        final BorderPane box = new BorderPane();
+        final BorderPane bottomBox = new BorderPane();
         final Button left = new Button("Left");
+        CSSUtil.addCSSClass("quickstart-component", bottomBox);
+        CSSUtil.addCSSClass("quickstart-component-button", left);
         leftLabel = new Label("");
         left.setOnMouseClicked((event) -> {
-            context.send("id01.id003", "hello stateful component");
+            context.send(PathUtil.createPath(PerspectiveIds.PERSPECTIVE_ONE, ComponentIds.COMPONENT_RIGHT), "hello stateful component");
         });
-        VBox.setMargin(left, new Insets(4, 2, 4, 5));
-        box.getChildren().addAll(left, leftLabel);
+        box.setCenter(left);
+        box.setBottom(bottomBox);
+        bottomBox.setCenter(leftLabel);
         pane.setContent(box);
         return pane;
     }

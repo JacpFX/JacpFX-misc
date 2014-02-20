@@ -29,7 +29,6 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
-import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.GridPane;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
@@ -47,9 +46,12 @@ import org.jacpfx.rcp.components.toolBar.JACPOptionButton;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
+import org.jacpfx.rcp.util.CSSUtil;
 import org.jacpfx.rcp.util.FXUtil;
 import quickstart.ui.PerspectiveOptionButton;
 import quickstart.ui.Perspectives;
+import quickstart.util.ComponentIds;
+import quickstart.util.MessageConstants;
 import quickstart.util.PerspectiveIds;
 
 import java.util.ResourceBundle;
@@ -58,8 +60,6 @@ import static javafx.scene.layout.Priority.ALWAYS;
 import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil;
 import static quickstart.util.ComponentIds.COMPONENT_LEFT;
 import static quickstart.util.ComponentIds.COMPONENT_RIGHT;
-import static quickstart.util.PerspectiveIds.TARGET_CONTAINER_LEFT;
-import static quickstart.util.PerspectiveIds.TARGET_CONTAINER_MAIN;
 
 /**
  * A simple perspective defining a split pane
@@ -67,21 +67,19 @@ import static quickstart.util.PerspectiveIds.TARGET_CONTAINER_MAIN;
  * @author: Andy Moncsek
  * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
-@Perspective(id = PerspectiveIds.PERSPECTIVE_ONE, name = "contactPerspective",
+@Perspective(id = PerspectiveIds.PERSPECTIVE_FOUR, name = "contactPerspective",
         components = {COMPONENT_LEFT, COMPONENT_RIGHT},
         //viewLocation = "/fxml/perspectiveOne.fxml",
         resourceBundleLocation = "bundles.languageBundle")
-public class PerspectiveOne implements FXPerspective {
+public class PerspectiveFour implements FXPerspective {
     @Resource
     public Context context;
-
-    private SplitPane mainLayout;
 
     @Override
     public void handlePerspective(final Message<Event, Object> action,
                                   final PerspectiveLayout perspectiveLayout) {
         if (action.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
-            mainLayout = new SplitPane();
+            SplitPane mainLayout = new SplitPane();
             mainLayout.setOrientation(Orientation.HORIZONTAL);
             mainLayout.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
             mainLayout.setDividerPosition(0, 0.55f);
@@ -100,22 +98,9 @@ public class PerspectiveOne implements FXPerspective {
             // Register root component
             perspectiveLayout.registerRootComponent(mainLayout);
             // register left menu
-            perspectiveLayout.registerTargetLayoutComponent(TARGET_CONTAINER_LEFT, leftMenu);
+            perspectiveLayout.registerTargetLayoutComponent(PerspectiveIds.TARGET_CONTAINER_LEFT, leftMenu);
             // register main content
-            perspectiveLayout.registerTargetLayoutComponent(TARGET_CONTAINER_MAIN, mainContent);
-
-            EventHandler<SwipeEvent> swipeHandler = new EventHandler<SwipeEvent>() {
-                @Override
-                public void handle(SwipeEvent swipeEvent) {
-                    System.out.println("SWIPE");
-                }
-            };
-
-            mainLayout.setOnSwipeLeft(swipeHandler);
-            mainLayout.setOnSwipeRight(swipeHandler);
-            mainLayout.setOnSwipeDown(swipeHandler);
-            mainLayout.setOnSwipeUp(swipeHandler);
-
+            perspectiveLayout.registerTargetLayoutComponent(PerspectiveIds.TARGET_CONTAINER_MAIN, mainContent);
         }
 
     }
@@ -138,9 +123,7 @@ public class PerspectiveOne implements FXPerspective {
         // define toolbars and menu entries
         JACPToolBar toolbar = layout.getRegisteredToolBar(ToolbarPosition.NORTH);
         Button pressMe = new Button("press me");
-
-        JACPOptionButton options = new PerspectiveOptionButton(layout, context, "Perspectives", Perspectives.PERSPECTIVE_1);
-
+        JACPOptionButton options = new PerspectiveOptionButton(layout, context, "Perspectives", Perspectives.PERSPECTIVE_4);
         pressMe.setOnAction((event) -> {
             // create a modal dialog
             JACPOptionPane dialog = JACPDialogUtil.createOptionPane("modal dialog", "Add some action");
@@ -154,10 +137,9 @@ public class PerspectiveOne implements FXPerspective {
                 }
             });
             context.showModalDialog(dialog);
+
         }
         );
-
-
         toolbar.addAllOnEnd(pressMe, options);
     }
 

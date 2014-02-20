@@ -30,13 +30,14 @@ import javafx.event.Event;
 import org.jacpfx.api.annotations.component.Component;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.CallbackComponent;
+import quickstart.util.ComponentIds;
 
 /**
  * a stateful JacpFX component
  * @author Andy Moncsek
  *
  */
-@Component(id = "id005", name = "statefulCallback", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+@Component(id = ComponentIds.STATEFUL_CALLBACK, name = "statefulCallback", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
 public class StatefulCallback implements CallbackComponent {
 	private Logger log = Logger.getLogger(StatefulCallback.class.getName());
     @Override

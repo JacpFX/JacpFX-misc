@@ -23,14 +23,13 @@
 package quickstart.components;
 
 import javafx.event.Event;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.View;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
@@ -39,7 +38,11 @@ import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
+import org.jacpfx.rcp.util.CSSUtil;
 import org.jacpfx.rcp.util.FXUtil;
+import quickstart.util.ComponentIds;
+import quickstart.util.PathUtil;
+import quickstart.util.PerspectiveIds;
 
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -49,7 +52,7 @@ import java.util.logging.Logger;
  *
  * @author Andy Moncsek
  */
-@View(id = "id003", name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US", initialTargetLayoutId = "PMain")
+@View(id = ComponentIds.COMPONENT_RIGHT, name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US", initialTargetLayoutId = PerspectiveIds.TARGET_CONTAINER_MAIN)
 public class ComponentRight implements FXComponent {
     private ScrollPane pane;
     private Label rightLabel;
@@ -120,14 +123,19 @@ public class ComponentRight implements FXComponent {
 
         GridPane.setHgrow(pane, Priority.ALWAYS);
         GridPane.setVgrow(pane, Priority.ALWAYS);
-        final VBox box = new VBox();
+        final BorderPane box = new BorderPane();
+        final BorderPane bottomBox = new BorderPane();
         final Button right = new Button("right");
+
+        CSSUtil.addCSSClass("quickstart-component", bottomBox);
+        CSSUtil.addCSSClass("quickstart-component-button", right);
         rightLabel = new Label("");
         right.setOnMouseClicked((event) -> {
-            context.send("id01.id004", "hello stateless component");
+            context.send(PathUtil.createPath(PerspectiveIds.PERSPECTIVE_ONE, ComponentIds.STATELESS_CALLBACK), "hello stateless component");
         });
-        VBox.setMargin(right, new Insets(4, 2, 4, 5));
-        box.getChildren().addAll(right, rightLabel);
+        box.setCenter(right);
+        bottomBox.setCenter(rightLabel);
+        box.setBottom(bottomBox);
         pane.setContent(box);
         return pane;
     }

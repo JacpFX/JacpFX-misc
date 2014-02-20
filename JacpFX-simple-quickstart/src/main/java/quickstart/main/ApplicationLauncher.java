@@ -1,5 +1,5 @@
 /************************************************************************
- * 
+ *
  * Copyright (C) 2010 - 2012
  *
  * [ApplicationLauncher.java]
@@ -32,14 +32,14 @@ import quickstart.workbench.JacpFXWorkbench;
 
 /**
  * The application launcher containing the main method
- * @author Andy Moncsek
  *
+ * @author Andy Moncsek
  */
 public class ApplicationLauncher extends AFXSpringXmlLauncher {
 
 
-	public ApplicationLauncher() {
-	}
+    public ApplicationLauncher() {
+    }
 
     @Override
     public String getXmlConfig() {
@@ -56,20 +56,22 @@ public class ApplicationLauncher extends AFXSpringXmlLauncher {
         return new String[]{"quickstart"};
     }
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		Application.launch(args);
-	}
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
 
-	@Override
-	public void postInit(Stage stage) {
-		Scene scene = stage.getScene();
-		// add style sheet
-		scene.getStylesheets().addAll(
-				ApplicationLauncher.class.getResource("/styles/style.css")
-						.toExternalForm());
-	}
+    @Override
+    public void postInit(Stage stage) {
+        Scene scene = stage.getScene();
+        // add style sheet
+        scene.getStylesheets().addAll(
+                ApplicationLauncher.class.getResource("/styles/style.css")
+                        .toExternalForm(),
+                ApplicationLauncher.class.getResource("/styles/quickstart.css")
+                .toExternalForm());
+    }
 
 }
