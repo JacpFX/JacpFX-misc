@@ -1,4 +1,4 @@
-JacpFX Quickstart-Archetype template
+JacpFX UI composition example
 ======
 
-This is a template for maven archetypes
+This project is the example project for [JacpFX structuring and composition](http://jacpfx.org/structComposition.html)
