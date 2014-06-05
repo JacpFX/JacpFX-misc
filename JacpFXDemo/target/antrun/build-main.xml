@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="maven-antrun-" default="main"  >
 <target name="main">
-  <taskdef name="jfxdeploy" classname="com.sun.javafx.tools.ant.DeployFXTask" classpathref="maven.plugin.classpath"/>
-  <taskdef name="jfxsignjar" classname="com.sun.javafx.tools.ant.FXSignJarTask" classpathref="maven.plugin.classpath"/>
-  <taskdef name="csstobin" classname="com.sun.javafx.tools.ant.CSSToBinTask" classpathref="maven.plugin.classpath"/>
-  <csstobin outdir="/home/ady/JacpFXIntelliJGit/JacpFX-misc/JacpFXDemo/target/deploy">
-    <fileset dir="/home/ady/JacpFXIntelliJGit/JacpFX-misc/JacpFXDemo/target/classes/styles" includes="**/*.css"/>
+  <taskdef classname="com.sun.javafx.tools.ant.DeployFXTask" name="jfxdeploy" classpathref="maven.plugin.classpath"/>
+  <taskdef classname="com.sun.javafx.tools.ant.FXSignJarTask" name="jfxsignjar" classpathref="maven.plugin.classpath"/>
+  <taskdef classname="com.sun.javafx.tools.ant.CSSToBinTask" name="csstobin" classpathref="maven.plugin.classpath"/>
+  <csstobin outdir="/Users/amo/Documents/development/JacpFX/JacpFX-misc/JacpFXDemo/target/deploy">
+    <fileset includes="**/*.css" dir="/Users/amo/Documents/development/JacpFX/JacpFX-misc/JacpFXDemo/target/classes/styles"/>
   </csstobin>
-  <jfxdeploy height="768" width="1024" nativeBundles="all" outfile="JacpFXDemo" outdir="/home/ady/JacpFXIntelliJGit/JacpFX-misc/JacpFXDemo/target/deploy">
+  <jfxdeploy nativeBundles="all" outfile="JacpFXDemo" width="1024" height="768" outdir="/Users/amo/Documents/development/JacpFX/JacpFX-misc/JacpFXDemo/target/deploy">
     <info title="JacpFXDemo"/>
-    <application mainClass="org.jacp.demo.main.ContactMain" name="JacpFXDemo"/>
+    <application mainClass="org.jacp.quickstart.main.ContactMain" name="JacpFXDemo"/>
     <resources>
-      <fileset dir="/home/ady/JacpFXIntelliJGit/JacpFX-misc/JacpFXDemo/target" includes="*.jar"/>
-      <fileset dir="/home/ady/JacpFXIntelliJGit/JacpFX-misc/JacpFXDemo/target/dependency" includes="*.jar"/>
+      <fileset includes="*.jar" dir="/Users/amo/Documents/development/JacpFX/JacpFX-misc/JacpFXDemo/target"/>
+      <fileset includes="*.jar" dir="/Users/amo/Documents/development/JacpFX/JacpFX-misc/JacpFXDemo/target/dependency"/>
     </resources>
     <platform javafx="2.2+">
       <jvmarg value="-Xms512m"/>

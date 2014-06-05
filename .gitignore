@@ -7,3 +7,7 @@
 *.iml
 target
 .svn
+
+
+
+JacpFXDemo/target/*
