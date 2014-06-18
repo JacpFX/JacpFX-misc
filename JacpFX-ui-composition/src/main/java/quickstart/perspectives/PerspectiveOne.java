@@ -58,9 +58,8 @@ import static javafx.scene.layout.Priority.ALWAYS;
  * @author: Andy Moncsek
  * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
-@Perspective(id = BaseConfiguration.PERSPECTIVE_ONE, name = "contactPerspective",
+@Perspective(id = BaseConfiguration.PERSPECTIVE_ONE, name = "PerspectiveOne",
         components = {BaseConfiguration.COMPONENT_ONE, BaseConfiguration.COMPONENT_TWO},
-        //viewLocation = "/fxml/PerspectiveTwo.fxml",
         resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveOne implements FXPerspective {
     @Resource
@@ -68,9 +67,9 @@ public class PerspectiveOne implements FXPerspective {
 
 
     @Override
-    public void handlePerspective(final Message<Event, Object> action,
+    public void handlePerspective(final Message<Event, Object> message,
                                   final PerspectiveLayout perspectiveLayout) {
-        if (action.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
+        if (message.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
             // initial event
 
         }
@@ -80,7 +79,7 @@ public class PerspectiveOne implements FXPerspective {
 
     @OnShow
     public void onShow(final FXComponentLayout layout) {
-
+        System.out.println("FXComponentLayout: "+ layout+" in: "+context.getId());
     }
 
 
@@ -92,24 +91,22 @@ public class PerspectiveOne implements FXPerspective {
     @PostConstruct
     public void onStartPerspective(final PerspectiveLayout perspectiveLayout, final FXComponentLayout layout,
                                    final ResourceBundle resourceBundle) {
-        BorderPane mainPane = new BorderPane();
-        LayoutUtil.GridPaneUtil.setFullGrow(ALWAYS, mainPane);
+
 
         SplitPane mainLayout = new SplitPane();
+        LayoutUtil.GridPaneUtil.setFullGrow(ALWAYS, mainLayout);
         mainLayout.setOrientation(Orientation.VERTICAL);
         mainLayout.setDividerPosition(0, 0.55f);
-        mainPane.setCenter(mainLayout);
+
 
         HBox contentTop = new HBox();
-        HBox.setHgrow(contentTop, Priority.ALWAYS);
 
         HBox contentBottom = new HBox();
-        HBox.setHgrow(contentBottom, Priority.ALWAYS);
 
         mainLayout.getItems().addAll(contentTop, contentBottom);
 
         // Register root component
-        perspectiveLayout.registerRootComponent(mainPane);
+        perspectiveLayout.registerRootComponent(mainLayout);
         // register left menu
         perspectiveLayout.registerTargetLayoutComponent(BaseConfiguration.TARGET_CONTAINER_TOP, contentTop);
         // register main content
@@ -120,6 +117,7 @@ public class PerspectiveOne implements FXPerspective {
 
     private void createToolbar(final FXComponentLayout layout) {
         // define toolbars and menu entries
+        JACPOptionButton optionButton = new JACPOptionButton("Perspective 1",layout);
         JACPToolBar toolbar = layout.getRegisteredToolBar(ToolbarPosition.NORTH);
         JACPOptionButton options = new PerspectiveOptionButton(layout, context, "Perspective 1", Perspectives.PERSPECTIVE_1);
 

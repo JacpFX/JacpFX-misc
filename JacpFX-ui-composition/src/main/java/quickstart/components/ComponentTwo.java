@@ -38,9 +38,11 @@ import org.jacpfx.api.annotations.component.View;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
+import org.jacpfx.api.util.ToolbarPosition;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
+import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
 import quickstart.configuration.BaseConfiguration;
 import quickstart.fragments.FragmentOne;
@@ -89,14 +91,14 @@ public class ComponentTwo implements FXComponent {
      * @param arg0
      * @param resourceBundle
      */
-    public void onStartComponent(final FXComponentLayout arg0,
+    public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
         pane = (VBox) createUI();
         HBox lastRow = new HBox();
         ManagedFragmentHandler<FragmentOne> fragment = context.getManagedFragmentHandler(FragmentOne.class);
         lastRow.getChildren().addAll(fragment.getFragmentNode());
         pane.getChildren().add(lastRow);
-
+        JACPToolBar toolbar = layout.getRegisteredToolBar(ToolbarPosition.NORTH);
     }
 
     @PreDestroy

@@ -56,7 +56,7 @@ import static javafx.scene.layout.Priority.ALWAYS;
  * @author: Andy Moncsek
  * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
-@Perspective(id = BaseConfiguration.PERSPECTIVE_TWO, name = "contactPerspective",
+@Perspective(id = BaseConfiguration.PERSPECTIVE_TWO, name = "PerspectiveTwo",
         components = {},
         viewLocation = "/fxml/PerspectiveTwo.fxml",
         resourceBundleLocation = "bundles.languageBundle")
@@ -75,10 +75,10 @@ public class PerspectiveTwo implements FXPerspective {
     public Context context;
 
     @Override
-    public void handlePerspective(final Message<Event, Object> action,
+    public void handlePerspective(final Message<Event, Object> message,
                                   final PerspectiveLayout perspectiveLayout) {
 
-        if (action.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
+        if (message.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
         }
 
     }

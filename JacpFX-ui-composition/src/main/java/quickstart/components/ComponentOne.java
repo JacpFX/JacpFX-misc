@@ -25,19 +25,26 @@
 package quickstart.components;
 
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
+import org.jacpfx.api.annotations.lifecycle.OnShow;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
+import org.jacpfx.api.component.SubComponent;
 import org.jacpfx.api.message.Message;
+import org.jacpfx.api.util.ToolbarPosition;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
+import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
+import org.jacpfx.rcp.registry.ComponentRegistry;
+import org.jacpfx.rcp.util.FXUtil;
 import quickstart.configuration.BaseConfiguration;
 import quickstart.fragments.FragmentTwo;
 
@@ -88,7 +95,7 @@ public class ComponentOne implements FXComponent {
      * @param arg0
      * @param resourceBundle
      */
-    public void onStartComponent(final FXComponentLayout arg0,
+    public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
 
 
@@ -97,7 +104,10 @@ public class ComponentOne implements FXComponent {
         lastRow.getChildren().addAll(fragment.getFragmentNode());
         mainPane.getChildren().add(lastRow);
 
+        JACPToolBar toolbar = layout.getRegisteredToolBar(ToolbarPosition.NORTH);
 
+        SubComponent<EventHandler<Event>, Event, Object> component = ComponentRegistry.findComponentByQualifiedId(this.context.getParentId(),this.context.getId());
+        System.out.println(component);
     }
 
     @PreDestroy
@@ -108,6 +118,16 @@ public class ComponentOne implements FXComponent {
     public void onTearDownComponent(final FXComponentLayout arg0) {
         this.log.info("run on tear down of ComponentOne ");
 
+    }
+
+    @OnShow
+    /**
+     * The @OnTearDown annotations labels methods executed when the component is set to inactive
+     * @param arg0
+     */
+    public void onShowComponent(final FXComponentLayout arg0) {
+        this.log.info("run on tear down of ComponentOne ");
+        System.out.println("FXComponentLayout: "+ arg0+" in: "+context.getId());
     }
 
 

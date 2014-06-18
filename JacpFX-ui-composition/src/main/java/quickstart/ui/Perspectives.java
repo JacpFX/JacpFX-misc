@@ -1,6 +1,6 @@
 package quickstart.ui;
 
-import quickstart.util.PerspectiveIds;
+
 
 /**
  * Created with IntelliJ IDEA.
