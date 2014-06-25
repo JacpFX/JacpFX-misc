@@ -67,11 +67,11 @@ public class ApplicationLauncher extends AFXSpringXmlLauncher {
     public void postInit(Stage stage) {
         Scene scene = stage.getScene();
         // add style sheet
-        scene.getStylesheets().addAll(
+     /*   scene.getStylesheets().addAll(
                 ApplicationLauncher.class.getResource("/styles/style.css")
                         .toExternalForm(),
                 ApplicationLauncher.class.getResource("/styles/quickstart.css")
-                .toExternalForm());
+                .toExternalForm());*/
     }
 
 }
