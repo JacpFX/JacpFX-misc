@@ -1,5 +1,5 @@
 /************************************************************************
- * 
+ *
  * Copyright (C) 2010 - 2012
  *
  * [StatefulCallback.java]
@@ -22,28 +22,57 @@
  ************************************************************************/
 package quickstart.callback;
 
-import java.util.logging.Logger;
-
 import javafx.event.Event;
-
-
+import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.Component;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.CallbackComponent;
-import quickstart.util.ComponentIds;
+import org.jacpfx.rcp.context.Context;
+import org.jacpfx.rcp.util.FXUtil;
+import quickstart.config.BasicConfig;
+
+import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 /**
  * a stateful JacpFX component
- * @author Andy Moncsek
  *
+ * @author Andy Moncsek
  */
-@Component(id = ComponentIds.STATEFUL_CALLBACK, name = "statefulCallback", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+@Component(id = BasicConfig.STATEFUL_CALLBACK, name = "statefulCallback", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
 public class StatefulCallback implements CallbackComponent {
-	private Logger log = Logger.getLogger(StatefulCallback.class.getName());
+    private Logger log = Logger.getLogger(StatefulCallback.class.getName());
+    @Resource
+    private Context context;
+
     @Override
     public Object handle(final Message<Event, Object> message) {
-        log.info(message.getMessageBody().toString());
-		return "StatefulCallback - hello";
-	}
+        if(!message.messageBodyEquals(FXUtil.MessageUtil.INIT))     {
+           context.setReturnTarget(BasicConfig.PERSPECTIVE_ONE.concat(".").concat(BasicConfig.COMPONENT_RIGHT));
+            return "Hello: " + message.getTypedMessageBody(String.class)+" from StatefulCallback";
+        }
+        return null;
+    }
+
+    @PreDestroy
+    /**
+     * The @PreDestroy annotations labels methods executed when the component is set to inactive
+     */
+    public void onPreDestroyComponent() {
+        this.log.info("run on tear down of StatefulCallback ");
+
+    }
+
+    @PostConstruct
+    /**
+     * The @PostConstruct annotation labels methods executed when the component switch from inactive to active state
+     * @param resourceBundle
+     */
+    public void onPostConstructComponent(final ResourceBundle resourceBundle) {
+        this.log.info("run on start of StatefulCallback ");
+
+    }
 
 }

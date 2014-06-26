@@ -83,7 +83,7 @@ public class ComponentFXMLRight extends AFXComponent {
 			final IAction<Event, Object> action) {
 		// runs in FX application thread
 		if (action.getLastMessage().equals(MessageUtil.INIT)) {
-			// the initial message for all components
+			// the initial message for all component
 		} else {
 			final int counterLoc = this.counter.incrementAndGet();
 			this.countryTextField.setText("my country" + counterLoc);

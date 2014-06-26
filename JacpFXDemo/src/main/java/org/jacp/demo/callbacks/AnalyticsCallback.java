@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * The AnalyticsCallback components creates chart data (random data)
+ * The AnalyticsCallback component creates chart data (random data)
  * 
  * @author Andy Moncsek
  * 

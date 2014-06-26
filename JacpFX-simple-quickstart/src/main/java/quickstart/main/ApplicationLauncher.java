@@ -25,9 +25,9 @@ package quickstart.main;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import org.jacpfx.rcp.workbench.FXWorkbench;
-import org.jacpfx.spring.launcher.AFXSpringXmlLauncher;
+import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
+import quickstart.config.BasicConfig;
 import quickstart.workbench.JacpFXWorkbench;
 
 /**
@@ -35,16 +35,12 @@ import quickstart.workbench.JacpFXWorkbench;
  *
  * @author Andy Moncsek
  */
-public class ApplicationLauncher extends AFXSpringXmlLauncher {
+public class ApplicationLauncher extends AFXSpringJavaConfigLauncher {
 
 
     public ApplicationLauncher() {
     }
 
-    @Override
-    public String getXmlConfig() {
-        return "main.xml";
-    }
 
     @Override
     protected Class<? extends FXWorkbench> getWorkbenchClass() {
@@ -74,4 +70,8 @@ public class ApplicationLauncher extends AFXSpringXmlLauncher {
                 .toExternalForm());*/
     }
 
+    @Override
+    protected Class<?>[] getConfigClasses() {
+        return new Class<?>[]{BasicConfig.class};
+    }
 }

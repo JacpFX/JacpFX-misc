@@ -35,8 +35,7 @@
 }
 
 .quickstart-component-button,
-.quickstart-component-button:hover
-{
+.quickstart-component-button:hover {
     -fx-min-width: 100;
     -fx-min-height: 100;
     -fx-background-radius: 10, 8;
@@ -47,11 +46,11 @@
     -fx-padding: 10 10 100 10;
 }
 
-.quickstart-component .label{
-     -fx-border-width: 1;
+.quickstart-component .label {
+    -fx-border-width: 1;
     -fx-border-radius: 10, 8;
     -fx-border-color: linear-gradient(#afafaf 0%, #f5f5f5 100%), linear-gradient(#787878 0%, #737373 100%);
-    -fx-border-insets: 0,1;
-    -fx-padding: 40 80 40 80 ;
+    -fx-border-insets: 0, 1;
+    -fx-padding: 40 80 40 80;
     -fx-min-width: 300;
 }

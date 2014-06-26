@@ -61,7 +61,7 @@ import static org.jacpfx.api.util.ToolbarPosition.*;
 public class ContactWorkbench implements FXWorkbench {
 
     private final String projectURL = "http://code.google.com/p/jacp/wiki/Documentation";
-    private final String message = "JacpFX is a Framework to create Rich Clients in MVC style with JavaFX 2, Spring and an Actor like component approach. It provides a simple API to create a workspace, perspectives, components and to compose your Client application easily. More Info see: ";
+    private final String message = "JacpFX is a Framework to create Rich Clients in MVC style with JavaFX 2, Spring and an Actor like component approach. It provides a simple API to create a workspace, perspective, component and to compose your Client application easily. More Info see: ";
 
     @Resource
     private Context context;

@@ -54,7 +54,7 @@ import static org.jacpfx.rcp.components.toolBar.JACPOptionButtonOrientation.*;
 
 /**
  * Contact perspective; here you define the basic layout for your application
- * view and declare targets for your UI components.
+ * view and declare targets for your UI component.
  *
  * @author Andy Moncsek, Patrick Symmangk
  */

@@ -20,15 +20,13 @@
  *
  *
  ************************************************************************/
-package quickstart.components;
+package quickstart.component;
 
 import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.View;
@@ -37,12 +35,11 @@ import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
-import org.jacpfx.rcp.util.CSSUtil;
 import org.jacpfx.rcp.util.FXUtil;
-import quickstart.util.ComponentIds;
-import quickstart.util.PathUtil;
-import quickstart.util.PerspectiveIds;
+import quickstart.config.BasicConfig;
+import quickstart.fragment.DialogFragment;
 
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -55,10 +52,9 @@ import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil.setFullGrow;
  *
  * @author Andy Moncsek
  */
-@View(id = ComponentIds.COMPONENT_LEFT, name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", initialTargetLayoutId = PerspectiveIds.TARGET_CONTAINER_LEFT)
+@View(id = BasicConfig.COMPONENT_LEFT, name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", initialTargetLayoutId = BasicConfig.TARGET_CONTAINER_LEFT)
 public class ComponentLeft implements FXComponent {
-    private ScrollPane pane;
-    private Label leftLabel;
+    private Node pane;
     private Logger log = Logger.getLogger(ComponentLeft.class.getName());
     @Resource
     private Context context;
@@ -69,9 +65,7 @@ public class ComponentLeft implements FXComponent {
      */
     public Node handle(final Message<Event, Object> message) {
         // runs in worker thread
-        if (message.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
-            return createUI();
-        }
+
         return null;
     }
 
@@ -83,31 +77,29 @@ public class ComponentLeft implements FXComponent {
                            final Message<Event, Object> message) {
         // runs in FX application thread
         if (message.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
-            this.pane = (ScrollPane) arg0;
-        } else {
-            leftLabel.setText(message.getMessageBody().toString());
+
         }
         return this.pane;
     }
 
     @PostConstruct
     /**
-     * The @OnStart annotation labels methods executed when the component switch from inactive to active state
+     * The @PostConstruct annotation labels methods executed when the component switch from inactive to active state
      * @param arg0
      * @param resourceBundle
      */
-    public void onStartComponent(final FXComponentLayout arg0,
-                                 final ResourceBundle resourceBundle) {
-
-
+    public void onPostConstructComponent(final FXComponentLayout arg0,
+                                         final ResourceBundle resourceBundle) {
+        this.pane = createUI();
+        this.log.info("run on start of ComponentLeft ");
     }
 
     @PreDestroy
     /**
-     * The @OnTearDown annotations labels methods executed when the component is set to inactive
+     * The @PreDestroy annotations labels methods executed when the component is set to inactive
      * @param arg0
      */
-    public void onTearDownComponent(final FXComponentLayout arg0) {
+    public void onPreDestroyComponent(final FXComponentLayout arg0) {
         this.log.info("run on tear down of ComponentLeft ");
 
     }
@@ -118,26 +110,15 @@ public class ComponentLeft implements FXComponent {
      * @return
      */
     private Node createUI() {
-        final ScrollPane pane = new ScrollPane();
-        pane.setFitToHeight(true);
-        pane.setFitToWidth(true);
-
-        setFullGrow(ALWAYS, pane);
-
-        final BorderPane box = new BorderPane();
-        final BorderPane bottomBox = new BorderPane();
-        final Button left = new Button("Left");
-        CSSUtil.addCSSClass("quickstart-component", bottomBox);
-        CSSUtil.addCSSClass("quickstart-component-button", left);
-        leftLabel = new Label("");
-        left.setOnMouseClicked((event) -> {
-            context.send(PathUtil.createPath(PerspectiveIds.PERSPECTIVE_ONE, ComponentIds.COMPONENT_RIGHT), "hello stateful component");
-        });
-        box.setCenter(left);
-        box.setBottom(bottomBox);
-        bottomBox.setCenter(leftLabel);
-        pane.setContent(box);
-        return pane;
+        final VBox main = new VBox();
+        main.setSpacing(10);
+        main.setPadding(new Insets(0, 20, 10, 20));
+        setFullGrow(ALWAYS, main);
+        final ManagedFragmentHandler<DialogFragment> handler = context.getManagedFragmentHandler(DialogFragment.class);
+        final DialogFragment controller = handler.getController();
+        controller.init();
+        main.getChildren().addAll(handler.getFragmentNode());
+        return main;
     }
 
 

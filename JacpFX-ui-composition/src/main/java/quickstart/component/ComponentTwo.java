@@ -22,7 +22,7 @@
  *
  * *********************************************************************
  */
-package quickstart.components;
+package quickstart.component;
 
 import javafx.event.Event;
 import javafx.geometry.Insets;

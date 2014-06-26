@@ -22,7 +22,7 @@
  *
  * *********************************************************************
  */
-package quickstart.components;
+package quickstart.component;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -44,7 +44,6 @@ import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.registry.ComponentRegistry;
-import org.jacpfx.rcp.util.FXUtil;
 import quickstart.configuration.BaseConfiguration;
 import quickstart.fragments.FragmentTwo;
 
