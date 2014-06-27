@@ -41,7 +41,11 @@ import java.util.logging.Logger;
  *
  * @author Andy Moncsek
  */
-@Component(id = BasicConfig.STATEFUL_CALLBACK, name = "statefulCallback", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+@Component(id = BasicConfig.STATEFUL_CALLBACK,
+        name = "statefulCallback",
+        active = true,
+        localeID = "en_US",
+        resourceBundleLocation = "bundles.languageBundle")
 public class StatefulCallback implements CallbackComponent {
     private Logger log = Logger.getLogger(StatefulCallback.class.getName());
     @Resource

@@ -52,7 +52,11 @@ import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil.setFullGrow;
  *
  * @author Andy Moncsek
  */
-@View(id = BasicConfig.COMPONENT_LEFT, name = "SimpleView", active = true, resourceBundleLocation = "bundles.languageBundle", initialTargetLayoutId = BasicConfig.TARGET_CONTAINER_LEFT)
+@View(id = BasicConfig.COMPONENT_LEFT,
+        name = "SimpleView",
+        active = true,
+        resourceBundleLocation = "bundles.languageBundle",
+        initialTargetLayoutId = BasicConfig.TARGET_CONTAINER_LEFT)
 public class ComponentLeft implements FXComponent {
     private Node pane;
     private Logger log = Logger.getLogger(ComponentLeft.class.getName());

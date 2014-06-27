@@ -26,6 +26,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
@@ -48,14 +49,16 @@ import java.util.logging.Logger;
 @DeclarativeView(id = BasicConfig.COMPONENT_RIGHT,
         name = "SimpleView",
         viewLocation = "/fxml/ComponentRight.fxml",
-        active = true, resourceBundleLocation = "bundles.languageBundle",
-        localeID = "en_US", initialTargetLayoutId = BasicConfig.TARGET_CONTAINER_MAIN)
+        active = true,
+        resourceBundleLocation = "bundles.languageBundle",
+        localeID = "en_US",
+        initialTargetLayoutId = BasicConfig.TARGET_CONTAINER_MAIN)
 public class ComponentRight implements FXComponent {
     private Logger log = Logger.getLogger(ComponentRight.class.getName());
     @Resource
     private Context context;
     @FXML
-    private Label name;
+    private TextArea name;
 
     @Override
     /**

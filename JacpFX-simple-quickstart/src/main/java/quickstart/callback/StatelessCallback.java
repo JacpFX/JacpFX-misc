@@ -42,7 +42,12 @@ import java.util.logging.Logger;
  *
  * @author Andy Moncsek
  */
-@Component(id = BasicConfig.STATELESS_CALLBACK, name = "statelessCallback", active = true, resourceBundleLocation = "bundles.languageBundle", localeID = "en_US")
+@Component(id = BasicConfig.STATELESS_CALLBACK,
+        name = "statelessCallback",
+        active = true,
+        localeID = "en_US",
+        resourceBundleLocation = "bundles.languageBundle"
+        )
 @Stateless
 public class StatelessCallback implements CallbackComponent {
     private Logger log = Logger.getLogger(StatelessCallback.class.getName());

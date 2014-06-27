@@ -25,6 +25,7 @@ package quickstart.perspective;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import org.jacpfx.api.annotations.Resource;
@@ -54,8 +55,12 @@ import static javafx.scene.layout.Priority.ALWAYS;
  * @author: Andy Moncsek
  * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
-@Perspective(id = BasicConfig.PERSPECTIVE_TWO, name = "contactPerspective",
-        components = {BasicConfig.COMPONENT_LEFT, BasicConfig.COMPONENT_RIGHT,BasicConfig.STATELESS_CALLBACK},
+@Perspective(id = BasicConfig.PERSPECTIVE_TWO,
+        name = "contactPerspective",
+        components = {
+                BasicConfig.COMPONENT_LEFT,
+                BasicConfig.COMPONENT_RIGHT,
+                BasicConfig.STATELESS_CALLBACK},
         viewLocation = "/fxml/perspectiveTwo.fxml",
         resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveTwo implements FXPerspective {
@@ -116,7 +121,7 @@ public class PerspectiveTwo implements FXPerspective {
         Button pressMe = new Button(resourceBundle.getString("p1.button"));
         pressMe.setOnAction((event) -> context.send(BasicConfig.PERSPECTIVE_ONE, "show"));
         toolbar.addAllOnEnd(pressMe);
-
+        toolbar.add(new Label(resourceBundle.getString("p2.button")));
         // let them grow
         LayoutUtil.GridPaneUtil.setFullGrow(ALWAYS, mainLayout);
         // register left menu

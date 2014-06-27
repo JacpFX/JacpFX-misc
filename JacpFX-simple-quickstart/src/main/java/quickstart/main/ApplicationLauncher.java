@@ -31,7 +31,7 @@ import quickstart.config.BasicConfig;
 import quickstart.workbench.JacpFXWorkbench;
 
 /**
- * The application launcher containing the main method
+ * The application launcher containing the main method, the workbench definition, the configuration class and the packages to scan
  *
  * @author Andy Moncsek
  */

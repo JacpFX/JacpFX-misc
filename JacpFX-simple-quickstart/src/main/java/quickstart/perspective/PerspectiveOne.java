@@ -25,6 +25,7 @@ package quickstart.perspective;
 import javafx.event.Event;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import org.jacpfx.api.annotations.Resource;
@@ -55,9 +56,12 @@ import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil;
  * @author: Andy Moncsek
  * @author: Patrick Symmangk (pete.jacp@gmail.com)
  */
-@Perspective(id = BasicConfig.PERSPECTIVE_ONE, name = "contactPerspective",
-        components = {BasicConfig.COMPONENT_LEFT, BasicConfig.COMPONENT_RIGHT, BasicConfig.STATEFUL_CALLBACK},
-        //viewLocation = "/fxml/perspectiveTwo.fxml",
+@Perspective(id = BasicConfig.PERSPECTIVE_ONE,
+        name = "contactPerspective",
+        components = {
+                BasicConfig.COMPONENT_LEFT,
+                BasicConfig.COMPONENT_RIGHT,
+                BasicConfig.STATEFUL_CALLBACK},
         resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveOne implements FXPerspective {
     private Logger log = Logger.getLogger(PerspectiveOne.class.getName());
@@ -104,6 +108,7 @@ public class PerspectiveOne implements FXPerspective {
         Button pressMe = new Button(resourceBundle.getString("p2.button"));
         pressMe.setOnAction((event) -> context.send(BasicConfig.PERSPECTIVE_TWO, "show"));
         toolbar.addAllOnEnd(pressMe);
+        toolbar.add(new Label(resourceBundle.getString("p1.button")));
 
 
         mainLayout = new SplitPane();
