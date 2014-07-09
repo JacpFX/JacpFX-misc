@@ -55,7 +55,7 @@ public class AnalyticsCallback implements CallbackComponent {
     }
 
     /**
-     * for quickstart purpose send Contact with "electronic" statistic data and than
+     * for jacpfx purpose send Contact with "electronic" statistic data and than
      * all other
      * 
      * @param contact
@@ -107,7 +107,7 @@ public class AnalyticsCallback implements CallbackComponent {
     }
 
     /**
-     * for quickstart purposes
+     * for jacpfx purposes
      */
     private void waitAmount(final int amount) {
         try {

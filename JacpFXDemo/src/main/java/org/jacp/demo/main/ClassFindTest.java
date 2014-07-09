@@ -14,7 +14,7 @@ public class ClassFindTest {
          ClassFinder finder = new ClassFinder();
        ClassFinderOrig finderOrig = new ClassFinderOrig();
        long start = System.currentTimeMillis();
-      /* Class[] result = finder.getAll("org.jacp.quickstart.callbacks");
+      /* Class[] result = finder.getAll("org.jacp.jacpfx.callbacks");
        for(Class c : result) {
            System.out.println(c);
        }*/

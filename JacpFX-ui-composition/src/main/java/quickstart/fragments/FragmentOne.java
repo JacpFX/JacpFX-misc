@@ -25,9 +25,16 @@
 
 package quickstart.fragments;
 
+import javafx.scene.control.Button;
+import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
 import quickstart.configuration.BaseConfiguration;
+
+import java.io.File;
+import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 /**
  * Created by Andy Moncsek on 24.04.14.
@@ -38,4 +45,15 @@ import quickstart.configuration.BaseConfiguration;
         localeID = "en_US",
         scope = Scope.PROTOTYPE)
 public class FragmentOne {
+    @Resource
+    private Context context;
+    @Resource
+    private ResourceBundle bundle;
+
+    public void init() {
+        Button button = new Button();
+        button.setOnAction((event)->context.send("hello world"));
+        File file= null;
+        Stream.of(file.list()).forEach(f-> System.out.println(f));
+    }
 }

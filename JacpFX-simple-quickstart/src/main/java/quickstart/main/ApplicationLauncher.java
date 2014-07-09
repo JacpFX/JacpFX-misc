@@ -66,7 +66,7 @@ public class ApplicationLauncher extends AFXSpringJavaConfigLauncher {
      /*   scene.getStylesheets().addAll(
                 ApplicationLauncher.class.getResource("/styles/style.css")
                         .toExternalForm(),
-                ApplicationLauncher.class.getResource("/styles/quickstart.css")
+                ApplicationLauncher.class.getResource("/styles/jacpfx.css")
                 .toExternalForm());*/
     }
 

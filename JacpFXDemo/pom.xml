@@ -22,7 +22,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>2.2</javafx.version>
-        <jacp.version>2.0-RC3-SNAPSHOT</jacp.version>
+        <jacp.version>2.0-RC3</jacp.version>
         <spring.version>4.0.0.RELEASE</spring.version>
     </properties>
     <build>
@@ -97,7 +97,7 @@
                             <JavaFX-Application-Class>org.jacp.quickstart.main.ContactMain</JavaFX-Application-Class>
                             <JavaFX-Class-Path>
                                 aopalliance-1.0.jar commons-logging-1.1.1.jar
-                                jacpfx.API-${jacp.version}.jar JACP.JavaFX-${jacp.version}.jar
+                                quickstart.API-${jacp.version}.jar JACP.JavaFX-${jacp.version}.jar
                                 JACP.JavaFXControls-${jacp.version}.jar
                                 JACP.JavaFXSpring-${jacp.version}.jar
                                 spring-aop-${spring.version}.jar

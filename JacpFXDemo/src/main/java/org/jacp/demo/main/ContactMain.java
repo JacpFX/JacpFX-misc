@@ -27,7 +27,7 @@ import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringXmlLauncher;
 
 /**
- * JacpFX application launcher and main method for contact quickstart. This is the
+ * JacpFX application launcher and main method for contact jacpfx. This is the
  * entry class to start initial context of an JacpFX application. Here you
  * define the location of the spring-xml and can handle settings like css
  * configuration.

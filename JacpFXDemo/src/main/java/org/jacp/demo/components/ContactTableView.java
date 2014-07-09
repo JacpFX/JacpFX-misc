@@ -580,7 +580,7 @@ public class ContactTableView extends GridPane {
 	/**
 	 * get parent contact (category)
 	 * 
-	 * @return org.jacp.quickstart.entity.Contact
+	 * @return org.jacp.jacpfx.entity.Contact
 	 */
 	public Contact getContact() {
 		return this.contact;

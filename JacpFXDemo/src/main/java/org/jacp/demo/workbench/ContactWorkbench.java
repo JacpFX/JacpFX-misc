@@ -51,7 +51,7 @@ import org.jacpfx.rcp.workbench.FXWorkbench;
 import static org.jacpfx.api.util.ToolbarPosition.*;
 
 /**
- * Workbench for contact quickstart with JacpFX (JavaFX2 and Spring). The workbench is
+ * Workbench for contact jacpfx with JacpFX (JavaFX2 and Spring). The workbench is
  * the root node of your JacpFX application.
  * 
  * @author Andy Moncsek, Patrick Symmangk
