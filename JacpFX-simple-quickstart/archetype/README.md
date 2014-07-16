@@ -8,3 +8,7 @@ This is a template for maven archetypes
 - mvn clean deploy
 
 use: mvn archetype:generate  -DarchetypeGroupId=org.jacpfx  -DarchetypeArtifactId=JacpFX-simple-quickstart  -DarchetypeVersion=VERSION
+
+
+mvnDebug clean package exec:java -Dexec.mainClass="quickstart.main.ApplicationLauncher"
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 -jar JacpFX-simple-quickstart-app.jar 

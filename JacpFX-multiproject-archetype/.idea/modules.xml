@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JacpFX-workbench/JacpFX-multiproject-workbench.iml" filepath="$PROJECT_DIR$/JacpFX-workbench/JacpFX-multiproject-workbench.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JacpFX-perspectiveOne/JacpFX-quickstart (1).iml" filepath="$PROJECT_DIR$/JacpFX-perspectiveOne/JacpFX-quickstart (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/JacpFX-perspectiveTwo/JacpFX-quickstart (2).iml" filepath="$PROJECT_DIR$/JacpFX-perspectiveTwo/JacpFX-quickstart (2).iml" />
+      <module fileurl="file://$PROJECT_DIR$/JacpFX-services/JacpFX-quickstart (3).iml" filepath="$PROJECT_DIR$/JacpFX-services/JacpFX-quickstart (3).iml" />
+      <module fileurl="file://$PROJECT_DIR$/jacpfx-parent.iml" filepath="$PROJECT_DIR$/jacpfx-parent.iml" />
+    </modules>
+  </component>
+</project>
+
