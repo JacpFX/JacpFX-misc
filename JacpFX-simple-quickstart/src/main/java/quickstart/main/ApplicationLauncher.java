@@ -23,7 +23,6 @@
 package quickstart.main;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
@@ -61,13 +60,7 @@ public class ApplicationLauncher extends AFXSpringJavaConfigLauncher {
 
     @Override
     public void postInit(Stage stage) {
-        Scene scene = stage.getScene();
-        // add style sheet
-     /*   scene.getStylesheets().addAll(
-                ApplicationLauncher.class.getResource("/styles/style.css")
-                        .toExternalForm(),
-                ApplicationLauncher.class.getResource("/styles/jacpfx.css")
-                .toExternalForm());*/
+
     }
 
     @Override
