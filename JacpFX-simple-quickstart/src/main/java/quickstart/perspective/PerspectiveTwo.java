@@ -133,7 +133,7 @@ public class PerspectiveTwo implements FXPerspective {
 
     @PreDestroy
     /**
-     * @OnTearDown annotated method will be executed when component is deactivated.
+     * @PreDestroy annotated method will be executed when component is deactivated.
      * @param layout, the component layout contains references to the toolbar and the menu
      */
     public void onTearDownPerspective(final FXComponentLayout layout) {
