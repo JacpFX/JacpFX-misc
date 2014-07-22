@@ -1,0 +1,57 @@
+.button,
+.jacp-tool-bar .button,
+.button-dark-grey {
+    -fx-background-color: linear-gradient(#c5c5c5 0%, #a5a5a5 100%), linear-gradient(#e1e1e1 0%, #c3c3c3 100%);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 2, 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.2), 2, 0.0, 1, 1);
+}
+
+.button:hover,
+.jacp-tool-bar .button:hover,
+.button-dark-grey:hover {
+    -fx-background-color: linear-gradient(#f3f3f3 0%, #ebebeb 100%), linear-gradient(#e1e1e1 0%, #c3c3c3 100%);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 2, 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.2), 2, 0.0, 1, 1);
+}
+
+.button:armed,
+.jacp-tool-bar .button:armed,
+.button-dark-grey:armed {
+    -fx-background-color: linear-gradient(#e9e9e9 0%, #e1e1e1 100%), linear-gradient(#cfcfcf 0%, #b1b1b1 100%);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 2, 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.2), 2, 0.0, 1, 1);
+}
+
+.button-dark-grey Text {
+    -fx-effect: dropshadow(one-pass-box, black, 0, 0.0, 0, -1);
+}
+
+.jacp-tool-bar,
+.jacp-tool-bar .pane {
+    -fx-background-color: linear-gradient(#e4e4e4, #bcbcbc);
+}
+
+.quickstart-component-button,
+.quickstart-component-button:hover
+{
+    -fx-min-width: 100;
+    -fx-min-height: 100;
+    -fx-background-radius: 10, 8;
+}
+
+.quickstart-component {
+    -fx-min-height: 100;
+    -fx-padding: 10 10 100 10;
+}
+
+.quickstart-component .label{
+    -fx-border-width: 1;
+    -fx-border-radius: 10, 8;
+    -fx-border-color: linear-gradient(#afafaf 0%, #f5f5f5 100%), linear-gradient(#787878 0%, #737373 100%);
+    -fx-border-insets: 0,1;
+    -fx-padding: 40 80 40 80 ;
+    -fx-min-width: 300;
+}

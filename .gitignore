@@ -10,6 +10,9 @@ target
 .name
 .idea/*
 .idea
+target/*
+
+
 
 
 
