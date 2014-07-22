@@ -7,6 +7,9 @@
 *.iml
 target
 .svn
+.name
+.idea/*
+.idea
 
 
 
