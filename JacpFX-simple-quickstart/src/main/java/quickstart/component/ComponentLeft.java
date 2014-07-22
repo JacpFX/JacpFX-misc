@@ -42,9 +42,6 @@ import quickstart.fragment.DialogFragment;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-import static javafx.scene.layout.Priority.ALWAYS;
-import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil.setFullGrow;
-
 /**
  * A simple JacpFX UI component
  *
@@ -115,7 +112,7 @@ public class ComponentLeft implements FXComponent {
         final VBox main = new VBox();
         main.setSpacing(10);
         main.setPadding(new Insets(0, 20, 10, 20));
-        setFullGrow(ALWAYS, main);
+
         final ManagedFragmentHandler<DialogFragment> handler = context.getManagedFragmentHandler(DialogFragment.class);
         final DialogFragment controller = handler.getController();
         controller.init();

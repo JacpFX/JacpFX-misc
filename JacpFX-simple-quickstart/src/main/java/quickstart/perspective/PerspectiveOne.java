@@ -46,9 +46,6 @@ import quickstart.config.BasicConfig;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-import static javafx.scene.layout.Priority.ALWAYS;
-import static org.jacpfx.rcp.util.LayoutUtil.GridPaneUtil;
-
 
 /**
  * A simple perspective defining a split pane
@@ -119,9 +116,6 @@ public class PerspectiveOne implements FXPerspective {
         GridPane leftMenu = new GridPane();
         // create main content Top
         GridPane mainContent = new GridPane();
-
-        // let them grow
-        GridPaneUtil.setFullGrow(ALWAYS, mainLayout);
 
         mainLayout.getItems().addAll(leftMenu, mainContent);
         // Register root component
