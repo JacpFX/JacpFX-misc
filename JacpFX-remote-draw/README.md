@@ -1,14 +1,12 @@
-vertx-samples
+JacpFX remote drawing example
 =============
 
-Samples Repository for JacpFX and vertx in Java.
-------------------------------------------------
 
 ### JacpFX, Vert.x, Java 8 Remote Drawing example.
-This example uses JacpFX 2.0 RC2. This version should be quite stable and hopefully RC3 will be the last version before release. The user API is final, so you should not expect any changes here.
+This example uses JacpFX 2.0 and Vertx 2. 
 
 **How to run the example**
-- start two or more ApplicationMain class(es), create or connect to server and draw.
+- start two or more ApplicationMain class(es), create or connect to server and draw.   Or build the project (mvn package) and run the *-app.jar.
 
 
 
