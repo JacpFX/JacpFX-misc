@@ -25,7 +25,6 @@
 package quickstart.component;
 
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -35,15 +34,11 @@ import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
-import org.jacpfx.api.component.SubComponent;
 import org.jacpfx.api.message.Message;
-import org.jacpfx.api.util.ToolbarPosition;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
-import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
-import org.jacpfx.rcp.registry.ComponentRegistry;
 import quickstart.configuration.BaseConfiguration;
 import quickstart.fragments.FragmentTwo;
 
@@ -102,11 +97,6 @@ public class ComponentOne implements FXComponent {
         ManagedFragmentHandler<FragmentTwo> fragment = context.getManagedFragmentHandler(FragmentTwo.class);
         lastRow.getChildren().addAll(fragment.getFragmentNode());
         mainPane.getChildren().add(lastRow);
-
-        JACPToolBar toolbar = layout.getRegisteredToolBar(ToolbarPosition.NORTH);
-
-        SubComponent<EventHandler<Event>, Event, Object> component = ComponentRegistry.findComponentByQualifiedId(this.context.getParentId(),this.context.getId());
-        System.out.println(component);
     }
 
     @PreDestroy
