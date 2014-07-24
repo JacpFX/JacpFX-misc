@@ -30,27 +30,61 @@
 }
 
 .jacp-tool-bar,
-.jacp-tool-bar .pane {
-    -fx-background-color: linear-gradient(#e4e4e4, #bcbcbc);
+.jacp-tool-bar {
+    -fx-background-color: linear-gradient(#e4e4e4, #C9C9C9);
 }
 
-.quickstart-component-button,
-.quickstart-component-button:hover {
-    -fx-min-width: 100;
-    -fx-min-height: 100;
-    -fx-background-radius: 10, 8;
+
+
+
+.text-area {
+    -fx-font-family: Consolas;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
 }
 
-.quickstart-component {
-    -fx-min-height: 100;
-    -fx-padding: 10 10 100 10;
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
 }
 
-.quickstart-component .label {
-    -fx-border-width: 1;
-    -fx-border-radius: 10, 8;
-    -fx-border-color: linear-gradient(#afafaf 0%, #f5f5f5 100%), linear-gradient(#787878 0%, #737373 100%);
-    -fx-border-insets: 0, 1;
-    -fx-padding: 40 80 40 80;
-    -fx-min-width: 300;
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.dark-border{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+}
+
+
+
+
+.pane{
+    -fx-background-color: transparent;
+}
+
+
+
+/* horizontal the two nodes are placed to the left/right of each other. */
+.split-pane:horizontal > * > .split-pane-divider {
+    -fx-border-color: transparent ;
+    -fx-background-color: transparent;
+    -fx-inner-border-horizontal: transparent;
+    -fx-background-insets: 0, 0 1 0 1;
+    -fx-box-border: transparent;
+}
+
+/* vertical the two nodes are placed on top of each other. */
+.split-pane:vertical > * > .split-pane-divider {
+    -fx-border-color: transparent ;
+    -fx-background-color: transparent;
+    -fx-inner-border-horizontal: transparent;
+    -fx-background-insets: 0, 0 1 0 1;
+    -fx-box-border: transparent;
 }

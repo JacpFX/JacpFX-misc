@@ -94,7 +94,7 @@ public class PerspectiveOne implements FXPerspective {
         SplitPane mainLayout = new SplitPane();
         LayoutUtil.GridPaneUtil.setFullGrow(ALWAYS, mainLayout);
         mainLayout.setOrientation(Orientation.VERTICAL);
-        mainLayout.setDividerPosition(0, 0.55f);
+        mainLayout.setDividerPosition(0, 0.5f);
 
 
         HBox contentTop = new HBox();
