@@ -46,7 +46,12 @@ public class ApplicationMain extends AFXSpringJavaConfigLauncher {
 
     @Override
     protected void postInit(Stage stage) {
-        final Scene scene = stage.getScene();
+        Scene scene = stage.getScene();
+        // add style sheet
+        scene.getStylesheets().addAll(
+                ApplicationMain.class.getResource("/styles/quickstart.css")
+                        .toExternalForm()
+        );
         stage.getIcons().add(new Image("images/icons/JACP_512_512.png"));
     }
 }
