@@ -60,6 +60,7 @@ public class CanvasComponent implements FXComponent {
                 beginPath(point.getX(),point.getY());
                 break;
             case DRAW:
+                graphicsContext.moveTo(point.getX(), point.getY());
                 graphicsContext.lineTo(point.getX(), point.getY());
                 break;
             case CLEAR:
@@ -126,7 +127,7 @@ public class CanvasComponent implements FXComponent {
 
     private void initDraw(final GraphicsContext gc) {
         gc.setStroke(Color.BLUE);
-        gc.setLineWidth(1);
+        gc.setLineWidth(3);
 
     }
 

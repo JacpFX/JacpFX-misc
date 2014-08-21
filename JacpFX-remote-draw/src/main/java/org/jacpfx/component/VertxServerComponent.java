@@ -1,4 +1,4 @@
-package org.jacpfx.gui.component;
+package org.jacpfx.component;
 
 import javafx.event.Event;
 import org.jacpfx.api.annotations.Resource;

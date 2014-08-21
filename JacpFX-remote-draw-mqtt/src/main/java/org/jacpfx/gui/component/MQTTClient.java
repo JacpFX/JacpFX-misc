@@ -80,7 +80,7 @@ public class MQTTClient implements CallbackComponent, MqttCallback {
 
     private void connect(final ConnectionProperties properties) {
         try {
-            client = new MqttClient("tcp://"+"localhost"+":1883", UUID.randomUUID().toString().substring(0,10));
+            client = new MqttClient("tcp://"+"broker.mqttdashboard.com"+":1883", UUID.randomUUID().toString().substring(0,10));
             client.setCallback(this);
             client.connect();
             topic = client.getTopic("jacpfxclient");

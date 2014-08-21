@@ -86,6 +86,7 @@ public class ColorPickerComponent implements FXComponent {
     @PostConstruct
     public void onStart(final FXComponentLayout layout) {
         label.setText("Vert.x demo   ");
+        colorPicker.setValue(Color.BLUE);
         colorPicker.setOnAction(event -> {
             Color color = colorPicker.getValue();
             context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.WEBSOCKET_COMPONENT),
