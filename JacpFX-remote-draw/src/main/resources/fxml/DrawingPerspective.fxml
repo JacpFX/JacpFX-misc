@@ -4,4 +4,6 @@
 <?import javafx.scene.layout.VBox?>
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
       xmlns:fx="http://javafx.com/fxml" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+    <HBox VBox.vgrow="ALWAYS" fx:id="top" maxHeight="40"></HBox>
+    <HBox VBox.vgrow="ALWAYS" fx:id="bottom" maxHeight="440"></HBox>
 </VBox>

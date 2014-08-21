@@ -11,14 +11,14 @@
   </resources>
   <resources>
     <j2se version="1.6+" java-vm-args="-Xms512m -Xmx1024m "  href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JacpFXDemo.jar" size="148331" download="eager" />
+    <jar href="JacpFXDemo.jar" size="148294" download="eager" />
     <jar href="aopalliance-1.0.jar" size="4467" download="eager" />
     <jar href="commons-logging-1.1.1.jar" size="60686" download="eager" />
     <jar href="hamcrest-core-1.1.jar" size="76643" download="eager" />
-    <jar href="jacpfx.API-2.0-RC1-SNAPSHOT.jar" size="34916" download="eager" />
-    <jar href="jacpfx.JavaFX-2.0-RC1-SNAPSHOT.jar" size="178385" download="eager" />
-    <jar href="jacpfx.JavaFXControls-2.0-RC1-SNAPSHOT.jar" size="13759" download="eager" />
-    <jar href="jacpfx.JavaFXSpring-2.0-RC1-SNAPSHOT.jar" size="12620" download="eager" />
+    <jar href="jacpfx.API-2.0.jar" size="36168" download="eager" />
+    <jar href="jacpfx.JavaFX-2.0.jar" size="194711" download="eager" />
+    <jar href="jacpfx.JavaFXControls-2.0.jar" size="13518" download="eager" />
+    <jar href="jacpfx.JavaFXSpring-2.0.jar" size="12933" download="eager" />
     <jar href="junit-4.9.jar" size="248994" download="eager" />
     <jar href="log4j-1.2.16.jar" size="481535" download="eager" />
     <jar href="spring-aop-4.0.0.RELEASE.jar" size="351240" download="eager" />

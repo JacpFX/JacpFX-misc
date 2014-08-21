@@ -32,7 +32,8 @@ public class ConnectFragment {
         if (connectValue == null || connectValue.isEmpty()) return;
         final String[] val = connectValue.split(":");
         if (val.length < 2) return;
-        context.send("id01.id002", new ConnectionProperties(val[0], val[1]));
+        context.send(BaseConfig.WEBSOCKET_COMPONENT, new ConnectionProperties(val[0], val[1]));
+        context.hideModalDialog();
     }
 
     @FXML

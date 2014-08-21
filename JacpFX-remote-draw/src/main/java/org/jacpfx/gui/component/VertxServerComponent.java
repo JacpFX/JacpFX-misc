@@ -3,6 +3,8 @@ package org.jacpfx.gui.component;
 import javafx.event.Event;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.Component;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.dto.ConnectionProperties;
 import org.jacpfx.gui.configuration.BaseConfig;
@@ -49,5 +51,14 @@ public class VertxServerComponent implements CallbackComponent {
                 10,
                 null,
                 (event) ->{if(event.succeeded())waitForDeployment.countDown();});
+    }
+
+    @PostConstruct
+    public void onStart() {
+    }
+
+    @PreDestroy
+    public void onClose() {
+        pm.stop();
     }
 }

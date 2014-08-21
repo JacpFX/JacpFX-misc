@@ -17,6 +17,7 @@ import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.api.util.ToolbarPosition;
 import org.jacpfx.dto.CanvasPoint;
+import org.jacpfx.dto.ColorDTO;
 import org.jacpfx.gui.configuration.BaseConfig;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
@@ -66,6 +67,8 @@ public class CanvasComponent implements FXComponent {
                 break;
             case RELEASE:
                 break;
+            case COLOR:
+                updateCanvasColor(graphicsContext,point.getColor());
             default:
         }
         graphicsContext.stroke();
@@ -115,6 +118,10 @@ public class CanvasComponent implements FXComponent {
                             final ReadOnlyDoubleProperty rootWidth) {
         canvas.heightProperty().bind(rootHight.multiply(.95));
         canvas.widthProperty().bind(rootWidth);
+    }
+
+    private void updateCanvasColor(final GraphicsContext gc, final ColorDTO color) {
+        gc.setStroke(Color.color(color.getRed(),color.getGreen(),color.getBlue()));
     }
 
     private void initDraw(final GraphicsContext gc) {

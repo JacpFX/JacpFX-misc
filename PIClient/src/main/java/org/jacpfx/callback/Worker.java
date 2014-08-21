@@ -61,7 +61,6 @@ public class Worker implements CallbackComponent {
         if (message.isMessageBodyTypeOf(Work.class)) {
             Work work = message.getTypedMessageBody(Work.class);
             double result = calculatePiFor(work.getStart(), work.getNrOfElements());
-           // System.out.println(Thread.currentThread()+"  "+this);
             return new Result(result);
         }
         return null;

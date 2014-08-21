@@ -43,6 +43,7 @@ public class CreateFragment {
     public void createServer() {
         final String port = ports.getSelectionModel().getSelectedItem().toString();
         context.send(BaseConfig.VERTX_COMPONENT, new ConnectionProperties(null, port));
+        context.hideModalDialog();
     }
 
     @FXML

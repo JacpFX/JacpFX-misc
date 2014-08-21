@@ -1,15 +1,20 @@
 package org.jacpfx.gui.workbench;
 
 import javafx.event.Event;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.workbench.Workbench;
 import org.jacpfx.api.componentLayout.WorkbenchLayout;
 import org.jacpfx.api.message.Message;
+import org.jacpfx.controls.optionPane.JACPDialogUtil;
+import org.jacpfx.controls.optionPane.JACPOptionPane;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
+import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 
 import static org.jacpfx.api.util.ToolbarPosition.WEST;
@@ -22,20 +27,24 @@ import static org.jacpfx.api.util.ToolbarPosition.WEST;
  */
 @Workbench(id = "id1", name = "workbench", perspectives = "id01")
 public class DrawingWorkbench implements FXWorkbench {
+    private final String message = "This Application is based on JacpFX (http://jacpfx.org) and a Vertx (http://vertx.io/ ) backend.";
     private Stage stage;
+
+    @Resource
+    private Context context;
 
     @Override
     public void postHandle(FXComponentLayout layout) {
         final JACPMenuBar menu = layout.getMenu();
         final Menu menuFile = new Menu("File");
-        menuFile.getItems().addAll(this.createExitEntry());
+        menuFile.getItems().addAll(this.createExitEntry(), this.createInfo());
         menu.getMenus().add(menuFile);
     }
 
     @Override
     public void handleInitialLayout(Message<Event, Object> action, WorkbenchLayout<Node> layout, Stage stage) {
         this.stage = stage;
-        layout.setWorkbenchXYSize(640,480);
+        layout.setWorkbenchXYSize(640, 480);
         layout.registerToolBars(WEST);
         layout.setMenuEnabled(true);
     }
@@ -44,6 +53,17 @@ public class DrawingWorkbench implements FXWorkbench {
         final MenuItem itemExit = new MenuItem("Exit");
         itemExit.setOnAction((event) -> System.exit(0));
         return itemExit;
+    }
+
+    private MenuItem createInfo() {
+        final MenuItem itemInfo = new MenuItem("About");
+        itemInfo.setOnAction(event -> {
+            final JACPOptionPane pane = JACPDialogUtil.createOptionPane("About", message);
+
+            pane.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
+            context.showModalDialog(pane);
+        });
+        return itemInfo;
     }
 
 

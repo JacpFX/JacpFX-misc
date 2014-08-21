@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Andy Moncsek on 16.12.13.
  * This Class represents a coordinate on canvas
+ *
  * @author Andy Moncsek
  */
 public class CanvasPoint implements Serializable {
@@ -12,6 +13,7 @@ public class CanvasPoint implements Serializable {
     private double x;
     private double y;
     private Type type;
+    private ColorDTO color;
 
     public CanvasPoint() {
 
@@ -20,6 +22,11 @@ public class CanvasPoint implements Serializable {
     public CanvasPoint(final double x, final double y, final Type type) {
         this.x = x;
         this.y = y;
+        this.type = type;
+    }
+
+    public CanvasPoint(final ColorDTO color, final Type type) {
+        this.color = color;
         this.type = type;
     }
 
@@ -43,8 +50,12 @@ public class CanvasPoint implements Serializable {
         return this.type;
     }
 
+    public ColorDTO getColor() {
+        return this.color;
+    }
+
     public enum Type {
-        BEGIN, DRAW, CLEAR, RELEASE
+        BEGIN, DRAW, CLEAR, RELEASE, COLOR
     }
 
 }

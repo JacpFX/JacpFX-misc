@@ -28,7 +28,6 @@ import javafx.stage.Stage;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
 import quickstart.config.BasicConfig;
-import quickstart.workbench.JacpFXWorkbench;
 
 /**
  * The application launcher containing the main method, the workbench definition, the configuration class and the packages to scan
@@ -44,7 +43,7 @@ public class ApplicationLauncher extends AFXSpringJavaConfigLauncher {
 
     @Override
     protected Class<? extends FXWorkbench> getWorkbenchClass() {
-        return JacpFXWorkbench.class;
+        return null;
     }
 
     @Override
@@ -64,7 +63,7 @@ public class ApplicationLauncher extends AFXSpringJavaConfigLauncher {
         Scene scene = stage.getScene();
         // add style sheet
         scene.getStylesheets().addAll(
-                ApplicationLauncher.class.getResource("/styles/quickstart.css")
+                ApplicationLauncher.class.getResource("/styles/default.css")
                         .toExternalForm()
         );
     }

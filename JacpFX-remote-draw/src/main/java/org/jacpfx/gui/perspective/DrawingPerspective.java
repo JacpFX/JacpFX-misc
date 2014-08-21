@@ -1,6 +1,8 @@
 package org.jacpfx.gui.perspective;
 
 import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
@@ -29,6 +31,7 @@ import java.util.ResourceBundle;
 @Perspective(id = BaseConfig.DRAWING_PERSPECTIVE, name = "drawingPerspective",
         components = {
                 BaseConfig.CANVAS_COMPONENT,
+                BaseConfig.COLOR_PICKER_COMPONENT,
                 BaseConfig.WEBSOCKET_COMPONENT,
                 BaseConfig.VERTX_COMPONENT},
         viewLocation = "/fxml/DrawingPerspective.fxml",
@@ -38,6 +41,11 @@ public class DrawingPerspective implements FXPerspective {
 
     @Resource
     private Context context;
+
+    @FXML
+    private HBox top;
+    @FXML
+    private HBox bottom;
 
     @Override
     public void handlePerspective(Message<Event, Object> message, PerspectiveLayout perspectiveLayout) {
@@ -88,7 +96,8 @@ public class DrawingPerspective implements FXPerspective {
     public void onStartPerspective(final PerspectiveLayout perspectiveLayout,
                                    final FXComponentLayout layout,
                                    final ResourceBundle resourceBundle) {
-        perspectiveLayout.registerTargetLayoutComponent("vMain", perspectiveLayout.getRootComponent());
+        perspectiveLayout.registerTargetLayoutComponent("vMain", bottom);
+        perspectiveLayout.registerTargetLayoutComponent("top", top);
         startConnectDialog();
 
     }
