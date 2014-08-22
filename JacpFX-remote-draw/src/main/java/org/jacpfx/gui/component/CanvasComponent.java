@@ -70,6 +70,7 @@ public class CanvasComponent implements FXComponent {
                 break;
             case COLOR:
                 updateCanvasColor(graphicsContext,point.getColor());
+                break;
             default:
         }
         graphicsContext.stroke();
@@ -121,14 +122,14 @@ public class CanvasComponent implements FXComponent {
         canvas.widthProperty().bind(rootWidth);
     }
 
-    private void updateCanvasColor(final GraphicsContext gc, final ColorDTO color) {
-        gc.setStroke(Color.color(color.getRed(),color.getGreen(),color.getBlue()));
-    }
-
     private void initDraw(final GraphicsContext gc) {
         gc.setStroke(Color.BLUE);
-        gc.setLineWidth(3);
+        gc.setLineWidth(4);
 
+    }
+
+    private void updateCanvasColor(final GraphicsContext gc, final ColorDTO color) {
+        gc.setStroke(Color.color(color.getRed(),color.getGreen(),color.getBlue()));
     }
 
     private void initEventHandler(final Canvas canvas) {

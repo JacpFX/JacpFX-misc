@@ -19,11 +19,11 @@
     <orderEntry type="library" name="Maven: com.hazelcast:hazelcast:2.6" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.16" level="project" />
     <orderEntry type="library" name="Maven: io.vertx:vertx-platform:2.0.2-final" level="project" />
-    <orderEntry type="module" module-name="JACP.API" />
+    <orderEntry type="library" name="Maven: org.jacpfx:jacpfx.API:2.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
-    <orderEntry type="module" module-name="JACP.JavaFX" />
-    <orderEntry type="module" module-name="JACP.JavaFXSpring" />
+    <orderEntry type="library" name="Maven: org.jacpfx:jacpfx.JavaFX:2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jacpfx:jacpfx.JavaFXSpring:2.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.0.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.1.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.0.6.RELEASE" level="project" />
@@ -31,7 +31,7 @@
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.0.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.0.6.RELEASE" level="project" />
-    <orderEntry type="module" module-name="JACP.JavaFXControls" />
+    <orderEntry type="library" name="Maven: org.jacpfx:jacpfx.JavaFXControls:2.0" level="project" />
   </component>
 </module>
 
