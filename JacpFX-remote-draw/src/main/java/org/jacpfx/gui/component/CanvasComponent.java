@@ -18,6 +18,7 @@ import org.jacpfx.api.message.Message;
 import org.jacpfx.api.util.ToolbarPosition;
 import org.jacpfx.dto.CanvasPoint;
 import org.jacpfx.dto.ColorDTO;
+import org.jacpfx.dto.FragmentNavigation;
 import org.jacpfx.gui.configuration.BaseConfig;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
@@ -43,13 +44,27 @@ public class CanvasComponent implements FXComponent {
     private VBox root;
     @FXML
     private VBox labelContainer;
+
+    final Button clear = new Button("clear");
     private
     @Resource  Context context;
     private GraphicsContext graphicsContext;
+
+    private String integrationId = BaseConfig.WEBSOCKET_COMPONENT;
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
         if (message.isMessageBodyTypeOf(CanvasPoint.class)) {
             drawPoint(message.getTypedMessageBody(CanvasPoint.class));
+        } else if(message.isMessageBodyTypeOf(FragmentNavigation.class)) {
+
+            if(message.getTypedMessageBody(FragmentNavigation.class).equals(FragmentNavigation.CONNECT_VERTX)) {
+                integrationId = BaseConfig.WEBSOCKET_COMPONENT;
+            } else {
+                integrationId = BaseConfig.MQTT_COMPONENT;
+            }
+            clear.setOnMouseClicked(context.getEventHandler(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE,integrationId),
+                    new CanvasPoint(0, 0, CanvasPoint.Type.CLEAR)));
+            System.out.println("integration:" + integrationId);
         }
         return null;
     }
@@ -134,11 +149,11 @@ public class CanvasComponent implements FXComponent {
 
     private void initEventHandler(final Canvas canvas) {
         canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, (event) ->
-            context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.WEBSOCKET_COMPONENT),
+            context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
                     new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.BEGIN))
         );
         canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, (event) ->
-            context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.WEBSOCKET_COMPONENT),
+            context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
                     new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.DRAW))
         );
     }
@@ -154,9 +169,8 @@ public class CanvasComponent implements FXComponent {
     }
     private void addClearButton(final FXComponentLayout layout) {
         final JACPToolBar registeredToolBar = layout.getRegisteredToolBar(ToolbarPosition.WEST);
-        final Button clear = new Button("clear");
-        clear.setOnMouseClicked(context.getEventHandler(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.WEBSOCKET_COMPONENT),
-                new CanvasPoint(0, 0, CanvasPoint.Type.CLEAR)));
+
+
         registeredToolBar.add(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.CANVAS_COMPONENT), clear);
     }
 

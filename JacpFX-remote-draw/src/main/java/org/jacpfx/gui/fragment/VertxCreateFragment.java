@@ -21,7 +21,7 @@ import org.jacpfx.rcp.context.Context;
         resourceBundleLocation = "bundles.languageBundle",
         localeID = "en_US",
         scope = Scope.PROTOTYPE)
-public class CreateFragment {
+public class VertxCreateFragment {
     @Resource
     private Context context;
 
@@ -42,12 +42,16 @@ public class CreateFragment {
     @FXML
     public void createServer() {
         final String port = ports.getSelectionModel().getSelectedItem().toString();
-        context.send(BaseConfig.VERTX_COMPONENT, new ConnectionProperties(null, port));
+        send(new ConnectionProperties(null,null, port));
         context.hideModalDialog();
+    }
+
+    private void send(ConnectionProperties connectionProperties) {
+        context.send(BaseConfig.VERTX_COMPONENT, connectionProperties);
     }
 
     @FXML
     public void back() {
-        context.send(FragmentNavigation.BACK);
+        context.send(FragmentNavigation.BACK_VERTX);
     }
 }

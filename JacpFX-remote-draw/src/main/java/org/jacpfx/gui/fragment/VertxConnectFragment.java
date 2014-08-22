@@ -18,7 +18,7 @@ import org.jacpfx.rcp.context.Context;
         resourceBundleLocation = "bundles.languageBundle",
         localeID = "en_US",
         scope = Scope.SINGLETON)
-public class ConnectFragment {
+public class VertxConnectFragment {
     @Resource
     private Context context;
 
@@ -32,12 +32,18 @@ public class ConnectFragment {
         if (connectValue == null || connectValue.isEmpty()) return;
         final String[] val = connectValue.split(":");
         if (val.length < 2) return;
-        context.send(BaseConfig.WEBSOCKET_COMPONENT, new ConnectionProperties(val[0], val[1]));
+        send(new ConnectionProperties("WS://",val[0], val[1]));
         context.hideModalDialog();
+    }
+
+    private void send(ConnectionProperties connectionProperties) {
+        context.send(BaseConfig.WEBSOCKET_COMPONENT, connectionProperties);
+        context.send(BaseConfig.CANVAS_COMPONENT, FragmentNavigation.CONNECT_VERTX);
+        context.send(BaseConfig.COLOR_PICKER_COMPONENT, FragmentNavigation.CONNECT_VERTX);
     }
 
     @FXML
     public void back() {
-        context.send(FragmentNavigation.BACK);
+        context.send(FragmentNavigation.BACK_VERTX);
     }
 }

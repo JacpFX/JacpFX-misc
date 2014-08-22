@@ -7,6 +7,7 @@ import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.dto.ConnectionProperties;
+import org.jacpfx.dto.FragmentNavigation;
 import org.jacpfx.gui.configuration.BaseConfig;
 import org.jacpfx.rcp.component.CallbackComponent;
 import org.jacpfx.rcp.context.Context;
@@ -39,7 +40,9 @@ public class VertxServerComponent implements CallbackComponent {
             final CountDownLatch waitForDeployment = new CountDownLatch(1);
             connect(waitForDeployment);
             waitForDeployment.await(1000, TimeUnit.MILLISECONDS);
-            context.send(BaseConfig.WEBSOCKET_COMPONENT, new ConnectionProperties("127.0.0.1", prop.getPort()));
+            context.send(BaseConfig.WEBSOCKET_COMPONENT, new ConnectionProperties("WS://","127.0.0.1", prop.getPort()));
+            context.send(BaseConfig.CANVAS_COMPONENT, FragmentNavigation.CONNECT_VERTX);
+            context.send(BaseConfig.COLOR_PICKER_COMPONENT, FragmentNavigation.CONNECT_VERTX);
         }
         return null;
     }

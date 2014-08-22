@@ -13,7 +13,7 @@ import org.jacpfx.rcp.context.Context;
  * The main selection dialog.
  */
 @Fragment(id = BaseConfig.SERVERCONFIG_FRAGMENT,
-        viewLocation = "/fxml/ServerCofigFragment.fxml",
+        viewLocation = "/fxml/ServerConfigFragment.fxml",
         resourceBundleLocation = "bundles.languageBundle",
         localeID = "en_US",
         scope = Scope.SINGLETON)
@@ -24,11 +24,11 @@ public class ServerConfigFragment {
     @FXML
     public void createConnection() {
 
-        context.send(FragmentNavigation.CREATE);
+        context.send(FragmentNavigation.CREATE_VERTX);
     }
 
     @FXML
     public void connect() {
-        context.send(FragmentNavigation.CONNECT);
+        context.send(FragmentNavigation.CONNECT_VERTX);
     }
 }

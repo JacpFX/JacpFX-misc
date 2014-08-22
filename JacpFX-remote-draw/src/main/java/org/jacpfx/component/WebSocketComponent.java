@@ -68,12 +68,12 @@ public class WebSocketComponent implements CallbackComponent {
                             ws.dataHandler(this::sendPixelDataToCanvas);
                         });
         connected.await(5000, TimeUnit.MILLISECONDS);
-        context.send(BaseConfig.DRAWING_PERSPECTIVE, FragmentNavigation.FINISH);
+        context.send(BaseConfig.DRAWING_PERSPECTIVE, FragmentNavigation.FINISH_VERTX);
     }
 
     private void sendPixelDataToCanvas(Buffer data) {
         try {
-            context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.CANVAS_COMPONENT), MessageUtil.getMessage(data.getBytes(), CanvasPoint.class));
+            context.send(BaseConfig.CANVAS_TARGET, MessageUtil.getMessage(data.getBytes(), CanvasPoint.class));
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -85,6 +85,6 @@ public class WebSocketComponent implements CallbackComponent {
 
     @PreDestroy
     public void onClose() {
-        client.close();
+        if(client!=null)client.close();
     }
 }

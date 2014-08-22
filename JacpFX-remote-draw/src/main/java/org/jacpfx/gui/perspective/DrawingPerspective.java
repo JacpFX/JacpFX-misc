@@ -11,9 +11,7 @@ import org.jacpfx.api.annotations.perspective.Perspective;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.dto.FragmentNavigation;
 import org.jacpfx.gui.configuration.BaseConfig;
-import org.jacpfx.gui.fragment.ConnectFragment;
-import org.jacpfx.gui.fragment.CreateFragment;
-import org.jacpfx.gui.fragment.ServerConfigFragment;
+import org.jacpfx.gui.fragment.*;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
@@ -33,7 +31,8 @@ import java.util.ResourceBundle;
                 BaseConfig.CANVAS_COMPONENT,
                 BaseConfig.COLOR_PICKER_COMPONENT,
                 BaseConfig.WEBSOCKET_COMPONENT,
-                BaseConfig.VERTX_COMPONENT},
+                BaseConfig.VERTX_COMPONENT,
+                BaseConfig.MQTT_COMPONENT},
         viewLocation = "/fxml/DrawingPerspective.fxml",
         resourceBundleLocation = "bundles.languageBundle",
         localeID = "en_US")
@@ -53,18 +52,27 @@ public class DrawingPerspective implements FXPerspective {
             // coordinate between fragments
             FragmentNavigation navigation = message.getTypedMessageBody(FragmentNavigation.class);
             switch (navigation) {
-                case CONNECT:
-                    ManagedFragmentHandler<ConnectFragment> handler = context.getManagedFragmentHandler(ConnectFragment.class);
+                case CONNECT_VERTX:
+                    ManagedFragmentHandler<VertxConnectFragment> handler = context.getManagedFragmentHandler(VertxConnectFragment.class);
                     context.showModalDialog(handler.getFragmentNode());
                     break;
-                case CREATE:
-                    ManagedFragmentHandler<CreateFragment> create = context.getManagedFragmentHandler(CreateFragment.class);
+                case CREATE_VERTX:
+                    ManagedFragmentHandler<VertxCreateFragment> create = context.getManagedFragmentHandler(VertxCreateFragment.class);
                     create.getController().init();
                     context.showModalDialog(create.getFragmentNode());
                     break;
-                case BACK:
+                case BACK_VERTX:
                     ManagedFragmentHandler<ServerConfigFragment> handlerMain = context.getManagedFragmentHandler(ServerConfigFragment.class);
                     context.showModalDialog(handlerMain.getFragmentNode());
+                    break;
+                case SHOW_VERTX:
+                    ManagedFragmentHandler<ServerConfigFragment> handlerMainShow = context.getManagedFragmentHandler(ServerConfigFragment.class);
+                    context.showModalDialog(handlerMainShow.getFragmentNode());
+                    break;
+                case SHOW_MQTT:
+                    ManagedFragmentHandler<MQTTConnectFragment> handlerMQTTMainShow = context.getManagedFragmentHandler(MQTTConnectFragment.class);
+                    handlerMQTTMainShow.getController().init();
+                    context.showModalDialog(handlerMQTTMainShow.getFragmentNode());
                     break;
                 default:
                     context.hideModalDialog();
@@ -113,7 +121,7 @@ public class DrawingPerspective implements FXPerspective {
     }
 
     private void startConnectDialog() {
-        ManagedFragmentHandler<ServerConfigFragment> handlerMain = context.getManagedFragmentHandler(ServerConfigFragment.class);
+        ManagedFragmentHandler<SelectConfigFragment> handlerMain = context.getManagedFragmentHandler(SelectConfigFragment.class);
         context.showModalDialog(handlerMain.getFragmentNode());
     }
 

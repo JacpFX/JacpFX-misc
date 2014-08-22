@@ -39,10 +39,13 @@ import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.dto.CanvasPoint;
 import org.jacpfx.dto.ColorDTO;
+import org.jacpfx.dto.FragmentNavigation;
 import org.jacpfx.gui.configuration.BaseConfig;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
+
+import java.util.ResourceBundle;
 
 /**
  * Created by Andy Moncsek on 16.12.13.
@@ -61,6 +64,8 @@ public class ColorPickerComponent implements FXComponent {
     private
     @Resource
     Context context;
+    @Resource
+    ResourceBundle bundle;
     @FXML
     private Label label;
 
@@ -68,11 +73,17 @@ public class ColorPickerComponent implements FXComponent {
     private ColorPicker colorPicker;
 
     private GraphicsContext graphicsContext;
-
+    private String integrationId = BaseConfig.WEBSOCKET_COMPONENT;
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
-        if (message.isMessageBodyTypeOf(CanvasPoint.class)) {
-            // drawPoint(message.getTypedMessageBody(CanvasPoint.class));
+        if(message.isMessageBodyTypeOf(FragmentNavigation.class)) {
+            if(message.getTypedMessageBody(FragmentNavigation.class).equals(FragmentNavigation.CONNECT_VERTX)) {
+                label.setText(bundle.getString("vertx")+" demo   ");
+                integrationId = BaseConfig.WEBSOCKET_COMPONENT;
+            } else {
+                label.setText(bundle.getString("mqtt")+" demo   ");
+                integrationId = BaseConfig.MQTT_COMPONENT;
+            }
         }
         return null;
     }
@@ -85,11 +96,11 @@ public class ColorPickerComponent implements FXComponent {
 
     @PostConstruct
     public void onStart(final FXComponentLayout layout) {
-        label.setText("Vert.x demo   ");
+        label.setText(" ");
         colorPicker.setValue(Color.BLUE);
         colorPicker.setOnAction(event -> {
             Color color = colorPicker.getValue();
-            context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.WEBSOCKET_COMPONENT),
+            context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
                     new CanvasPoint(new ColorDTO(color.getRed(), color.getGreen(), color.getBlue()), CanvasPoint.Type.COLOR));
 
         });

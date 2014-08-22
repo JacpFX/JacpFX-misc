@@ -29,9 +29,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox fx:id="root" alignment="TOP_RIGHT" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="root" alignment="CENTER_RIGHT"  HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="label" />
+        <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" text="label" HBox.hgrow="ALWAYS" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+        <HBox HBox.hgrow="ALWAYS" />
         <ColorPicker fx:id="colorPicker" />
     </children>
 </HBox>
