@@ -29,19 +29,19 @@ package org.jacpfx.entity;
  * Created by amo on 25.07.14.
  */
 public class Work {
-    private final int start;
-    private final int nrOfElements;
+    private final double start;
+    private final double nrOfElements;
 
-    public Work(int start, int nrOfElements) {
+    public Work(double start, double nrOfElements) {
         this.start = start;
         this.nrOfElements = nrOfElements;
     }
 
-    public int getStart() {
+    public double getStart() {
         return start;
     }
 
-    public int getNrOfElements() {
+    public double getNrOfElements() {
         return nrOfElements;
     }
 }

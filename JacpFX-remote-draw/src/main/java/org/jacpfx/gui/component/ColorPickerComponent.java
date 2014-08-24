@@ -28,7 +28,6 @@ package org.jacpfx.gui.component;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -42,7 +41,6 @@ import org.jacpfx.dto.ColorDTO;
 import org.jacpfx.dto.FragmentNavigation;
 import org.jacpfx.gui.configuration.BaseConfig;
 import org.jacpfx.rcp.component.FXComponent;
-import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 
 import java.util.ResourceBundle;
@@ -72,8 +70,8 @@ public class ColorPickerComponent implements FXComponent {
     @FXML
     private ColorPicker colorPicker;
 
-    private GraphicsContext graphicsContext;
     private String integrationId = BaseConfig.WEBSOCKET_COMPONENT;
+
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
         if(message.isMessageBodyTypeOf(FragmentNavigation.class)) {
@@ -95,7 +93,7 @@ public class ColorPickerComponent implements FXComponent {
     }
 
     @PostConstruct
-    public void onStart(final FXComponentLayout layout) {
+    public void onStart() {
         label.setText(" ");
         colorPicker.setValue(Color.BLUE);
         colorPicker.setOnAction(event -> {

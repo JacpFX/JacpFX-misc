@@ -66,9 +66,9 @@ public class Worker implements CallbackComponent {
         return null;
     }
 
-    private double calculatePiFor(int start, int nrOfElements) {
+    private double calculatePiFor(double start, double nrOfElements) {
         double acc = 0.0;
-        for (int i = start * nrOfElements; i <= ((start + 1) * nrOfElements - 1); i++) {
+        for (double i = start * nrOfElements; i <= ((start + 1) * nrOfElements - 1); i++) {
             acc += 4.0 * (1 - (i % 2) * 2) / (2 * i + 1);
         }
         return acc;

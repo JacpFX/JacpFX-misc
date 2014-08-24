@@ -54,11 +54,12 @@ public class Master implements CallbackComponent {
     @Resource
     private Context context;
 
-    private int nrOfMessages =1000000;
-    private int nrOfElements =10000;
-    private int nrOfResults =0;
+    private double nrOfMessages =500000;
+    private double nrOfElements =100000;
+    private double nrOfResults =0;
     private double pi;
     private final String target = BasicConfig.PERSPECTIVE_ONE.concat(".").concat(BasicConfig.STATELESS_CALLBACK);
+    private final String targetUI = BasicConfig.PERSPECTIVE_ONE.concat(".").concat(BasicConfig.COMPONENT_RIGHT);
 
     @Override
     public Object handle(final Message<Event, Object> message) {
@@ -70,6 +71,7 @@ public class Master implements CallbackComponent {
             Result result = message.getTypedMessageBody(Result.class);
             pi += result.getValue();
             nrOfResults += 1;
+            context.send(targetUI, String.valueOf(pi));
             if(nrOfResults==nrOfMessages) {
                 System.out.println("value:"+pi);
             }
