@@ -76,10 +76,10 @@ public class ColorPickerComponent implements FXComponent {
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
         if(message.isMessageBodyTypeOf(FragmentNavigation.class)) {
             if(message.getTypedMessageBody(FragmentNavigation.class).equals(FragmentNavigation.CONNECT_VERTX)) {
-                label.setText(bundle.getString("vertx")+" demo   ");
+                label.setText(bundle.getString("vertx"));
                 integrationId = BaseConfig.WEBSOCKET_COMPONENT;
             } else {
-                label.setText(bundle.getString("mqtt")+" demo   ");
+                label.setText(bundle.getString("mqtt"));
                 integrationId = BaseConfig.MQTT_COMPONENT;
             }
         }
@@ -99,7 +99,7 @@ public class ColorPickerComponent implements FXComponent {
         colorPicker.setOnAction(event -> {
             Color color = colorPicker.getValue();
             context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
-                    new CanvasPoint(new ColorDTO(color.getRed(), color.getGreen(), color.getBlue()), CanvasPoint.Type.COLOR));
+                    new CanvasPoint(new ColorDTO(color.getRed(), color.getGreen(), color.getBlue()), CanvasPoint.Type.COLOR,""));
 
         });
     }

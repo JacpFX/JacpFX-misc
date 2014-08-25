@@ -25,14 +25,20 @@
   ~ ***********************************************************************/
   -->
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-
-<HBox fx:id="root" alignment="CENTER_RIGHT"  HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="root" alignment="CENTER_RIGHT" prefWidth="300.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" text="label" HBox.hgrow="ALWAYS" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
-        <HBox HBox.hgrow="ALWAYS" />
-        <ColorPicker fx:id="colorPicker" />
+        <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333333;" text="label"
+               HBox.hgrow="ALWAYS"/>
+        <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+            <children>
+                <Label text="%canvasName" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+            </children>
+        </HBox>
+        <ColorPicker fx:id="colorPicker"/>
     </children>
 </HBox>

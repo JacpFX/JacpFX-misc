@@ -9,14 +9,6 @@
     <children>
         <VBox VBox.vgrow="ALWAYS" style="-fx-background-color:ghostwhite">
             <children>
-                <VBox maxWidth="1.7976931348623157E308" fx:id="labelContainer" alignment="CENTER">
-                    <padding>
-                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0"/>
-                    </padding>
-                    <children>
-                        <Label text="%canvasName" VBox.vgrow="ALWAYS"/>
-                    </children>
-                </VBox>
                 <Canvas fx:id="canvas" VBox.vgrow="ALWAYS" />
             </children>
         </VBox>

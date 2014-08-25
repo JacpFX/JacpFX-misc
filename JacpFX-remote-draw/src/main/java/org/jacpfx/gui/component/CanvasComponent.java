@@ -25,6 +25,8 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
 
+import java.util.UUID;
+
 /**
  * Created by Andy Moncsek on 16.12.13.
  * This Component contains a view with a JavaFX Canvas element.
@@ -42,29 +44,30 @@ public class CanvasComponent implements FXComponent {
     private Canvas canvas;
     @FXML
     private VBox root;
-    @FXML
-    private VBox labelContainer;
+
 
     final Button clear = new Button("clear");
+
+    private final String clientId = UUID.randomUUID().toString();
     private
     @Resource  Context context;
     private GraphicsContext graphicsContext;
 
     private String integrationId = BaseConfig.WEBSOCKET_COMPONENT;
+
+
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
         if (message.isMessageBodyTypeOf(CanvasPoint.class)) {
             drawPoint(message.getTypedMessageBody(CanvasPoint.class));
         } else if(message.isMessageBodyTypeOf(FragmentNavigation.class)) {
-
             if(message.getTypedMessageBody(FragmentNavigation.class).equals(FragmentNavigation.CONNECT_VERTX)) {
                 integrationId = BaseConfig.WEBSOCKET_COMPONENT;
             } else {
                 integrationId = BaseConfig.MQTT_COMPONENT;
             }
-            clear.setOnMouseClicked(context.getEventHandler(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE,integrationId),
-                    new CanvasPoint(0, 0, CanvasPoint.Type.CLEAR)));
-            System.out.println("integration:" + integrationId);
+            clear.setOnMouseClicked(context.getEventHandler(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
+                    new CanvasPoint(0, 0, CanvasPoint.Type.CLEAR,clientId)));
         }
         return null;
     }
@@ -100,7 +103,7 @@ public class CanvasComponent implements FXComponent {
     @PostConstruct
     public void onStart(final FXComponentLayout layout) {
         graphicsContext = canvas.getGraphicsContext2D();
-        initBinding(root, canvas, labelContainer);
+        initBinding(root, canvas);
         initDraw(canvas.getGraphicsContext2D());
         initEventHandler(canvas);
         addClearButton(layout);
@@ -109,26 +112,16 @@ public class CanvasComponent implements FXComponent {
 
     @PreDestroy
     public void onDestroy() {
-        if (labelContainer == null || canvas == null) return;
-        labelContainer.prefHeightProperty().unbind();
-        labelContainer.prefWidthProperty().unbind();
+        if (canvas == null) return;
         canvas.heightProperty().unbind();
         canvas.widthProperty().unbind();
     }
 
     private void initBinding(final VBox root,
-                             final Canvas canvas,
-                             final VBox labelContainer) {
-        bindLabeConteiner(labelContainer, root.heightProperty(), root.widthProperty());
+                             final Canvas canvas) {
         bindCanvas(canvas, root.heightProperty(), root.widthProperty());
     }
 
-    private void bindLabeConteiner(final VBox labelContainer,
-                                   final ReadOnlyDoubleProperty rootHight,
-                                   final ReadOnlyDoubleProperty rootWidth) {
-        labelContainer.prefHeightProperty().bind(rootHight.multiply(.05));
-        labelContainer.prefWidthProperty().bind(rootWidth);
-    }
 
     private void bindCanvas(final Canvas canvas,
                             final ReadOnlyDoubleProperty rootHight,
@@ -150,11 +143,15 @@ public class CanvasComponent implements FXComponent {
     private void initEventHandler(final Canvas canvas) {
         canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, (event) ->
             context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
-                    new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.BEGIN))
+                    new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.BEGIN,clientId))
         );
         canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, (event) ->
             context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
-                    new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.DRAW))
+                    new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.DRAW,clientId))
+        );
+        canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, (event) ->
+                        context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
+                                new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.RELEASE,clientId))
         );
     }
 
