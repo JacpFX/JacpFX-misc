@@ -34,9 +34,6 @@
     -fx-background-color: linear-gradient(to left, #F5F5F5 0%, #e4e4e4 100%);
 }
 
-
-
-
 .text-area {
     -fx-font-family: Consolas;
     -fx-background-color: transparent;
@@ -47,31 +44,27 @@
     -fx-background-color: transparent;
 }
 
-.text-area .scroll-pane .viewport{
+.text-area .scroll-pane .viewport {
     -fx-background-color: transparent;
 }
 
-
-.text-area .scroll-pane .content{
+.text-area .scroll-pane .content {
     -fx-background-color: transparent;
 }
 
-.dark-border{
+.dark-border {
     -fx-border-color: transparent;
     -fx-border-width: 0;
     -fx-background-color: transparent;
 }
 
-
-.pane{
+.pane {
     -fx-background-color: transparent;
 }
 
-
-
 /* horizontal the two nodes are placed to the left/right of each other. */
 .split-pane:horizontal > * > .split-pane-divider {
-    -fx-border-color: transparent ;
+    -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-inner-border-horizontal: transparent;
     -fx-background-insets: 0, 0 1 0 1;
@@ -80,7 +73,7 @@
 
 /* vertical the two nodes are placed on top of each other. */
 .split-pane:vertical > * > .split-pane-divider {
-    -fx-border-color: transparent ;
+    -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-inner-border-horizontal: transparent;
     -fx-background-insets: 0, 0 1 0 1;

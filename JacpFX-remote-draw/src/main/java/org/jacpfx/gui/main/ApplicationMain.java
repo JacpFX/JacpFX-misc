@@ -41,7 +41,7 @@ public class ApplicationMain extends AFXSpringJavaConfigLauncher {
 
     @Override
     protected String[] getBasePackages() {
-        return new String[]{"org.jacpfx.gui","org.jacpfx.component"};
+        return new String[]{"org.jacpfx.gui", "org.jacpfx.component"};
     }
 
     @Override

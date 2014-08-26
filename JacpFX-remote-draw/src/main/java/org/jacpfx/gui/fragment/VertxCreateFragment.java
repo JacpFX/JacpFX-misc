@@ -42,7 +42,7 @@ public class VertxCreateFragment {
     @FXML
     public void createServer() {
         final String port = ports.getSelectionModel().getSelectedItem().toString();
-        send(new ConnectionProperties(null,null, port));
+        send(new ConnectionProperties(null, null, port, ConnectionProperties.PROVIDER.VERTX));
         context.hideModalDialog();
     }
 

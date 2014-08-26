@@ -36,7 +36,9 @@
                         </goals>
                         <configuration>
                             <excludeScope>system</excludeScope>
-                            <excludeGroupIds>junit,org.mockito,org.hamcrest,org.springframework.jmx,org.springframework.ejb</excludeGroupIds>
+                            <excludeGroupIds>
+                                junit,org.mockito,org.hamcrest,org.springframework.jmx,org.springframework.ejb
+                            </excludeGroupIds>
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
                         </configuration>
                     </execution>

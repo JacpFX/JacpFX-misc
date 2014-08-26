@@ -12,6 +12,7 @@ import org.jacpfx.api.componentLayout.WorkbenchLayout;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.controls.optionPane.JACPDialogUtil;
 import org.jacpfx.controls.optionPane.JACPOptionPane;
+import org.jacpfx.gui.configuration.BaseConfig;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.menuBar.JACPMenuBar;
 import org.jacpfx.rcp.context.Context;
@@ -25,7 +26,7 @@ import static org.jacpfx.api.util.ToolbarPosition.WEST;
  *
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  */
-@Workbench(id = "id1", name = "workbench", perspectives = "id01")
+@Workbench(id = BaseConfig.WORKBENCH, name = "workbench", perspectives = {BaseConfig.DUMMY_PERSPECTIVE, BaseConfig.DRAWING_PERSPECTIVE})
 public class DrawingWorkbench implements FXWorkbench {
     private final String message = "This Application is based on JacpFX (http://jacpfx.org) and a Vertx (http://vertx.io/ ) backend.";
     private Stage stage;
@@ -37,7 +38,7 @@ public class DrawingWorkbench implements FXWorkbench {
     public void postHandle(FXComponentLayout layout) {
         final JACPMenuBar menu = layout.getMenu();
         final Menu menuFile = new Menu("File");
-        menuFile.getItems().addAll(this.createExitEntry(), this.createInfo());
+        menuFile.getItems().addAll(this.createExitEntry(), drawingPerspective(), dummyPerspective(), this.createInfo());
         menu.getMenus().add(menuFile);
     }
 
@@ -62,6 +63,24 @@ public class DrawingWorkbench implements FXWorkbench {
 
             pane.setDefaultCloseButtonOrientation(Pos.CENTER_RIGHT);
             context.showModalDialog(pane);
+        });
+        return itemInfo;
+    }
+
+    private MenuItem drawingPerspective() {
+        final MenuItem itemInfo = new MenuItem("Drawing perspective");
+        itemInfo.setOnAction(event -> {
+
+            context.send(BaseConfig.DRAWING_PERSPECTIVE, "show");
+        });
+        return itemInfo;
+    }
+
+    private MenuItem dummyPerspective() {
+        final MenuItem itemInfo = new MenuItem("Dummy perspective");
+        itemInfo.setOnAction(event -> {
+
+            context.send(BaseConfig.DUMMY_PERSPECTIVE, "show");
         });
         return itemInfo;
     }

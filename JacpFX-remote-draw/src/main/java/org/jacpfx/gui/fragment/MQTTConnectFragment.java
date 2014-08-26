@@ -35,7 +35,6 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.dto.ConnectionProperties;
-import org.jacpfx.dto.FragmentNavigation;
 import org.jacpfx.gui.configuration.BaseConfig;
 import org.jacpfx.rcp.context.Context;
 
@@ -58,7 +57,7 @@ public class MQTTConnectFragment {
     private String value;
 
     private ObservableList<String> values = FXCollections.observableArrayList(
-            "m2m.eclipse.org", "test.mosquitto.org", "dev.rabbitmq.com","broker.mqttdashboard.com","other");
+            "m2m.eclipse.org", "test.mosquitto.org", "dev.rabbitmq.com", "broker.mqttdashboard.com", "other");
 
     @FXML
     private TextField connectAddress;
@@ -69,11 +68,11 @@ public class MQTTConnectFragment {
         value = "m2m.eclipse.org";
         connection.getSelectionModel().selectedItemProperty()
                 .addListener((ov, old_val, new_val) -> {
-                     if(new_val.equals("other")) {
-                         ipFieldVisible(true);
-                     } else {
-                         ipFieldVisible(false);
-                     }
+                    if (new_val.equals("other")) {
+                        ipFieldVisible(true);
+                    } else {
+                        ipFieldVisible(false);
+                    }
                     value = (String) new_val;
                 });
     }
@@ -85,25 +84,23 @@ public class MQTTConnectFragment {
 
     @FXML
     public void connectToServer() {
-        if(!value.equals("other")) {
-            send( new ConnectionProperties("tcp://",value,"1883"));
+        if (!value.equals("other")) {
+            send(new ConnectionProperties("tcp://", value, "1883", ConnectionProperties.PROVIDER.MQTT));
             context.hideModalDialog();
         }
         final String connectValue = connectAddress.getText();
         if (connectValue == null || connectValue.isEmpty()) return;
         final String[] val = connectValue.split("://");
         if (val.length < 2) return;
-        final String protocol = val[0]+"://";
+        final String protocol = val[0] + "://";
         final String[] hostAndPort = val[1].split(":");
         if (hostAndPort.length < 2) return;
-        send(new ConnectionProperties(protocol,hostAndPort[0], hostAndPort[1]));
+        send(new ConnectionProperties(protocol, hostAndPort[0], hostAndPort[1], ConnectionProperties.PROVIDER.MQTT));
         context.hideModalDialog();
     }
 
     private void send(ConnectionProperties connectionProperties) {
-        context.send(BaseConfig.MQTT_COMPONENT, connectionProperties);
-        context.send(BaseConfig.CANVAS_COMPONENT, FragmentNavigation.CONNECT_MQTT);
-        context.send(BaseConfig.COLOR_PICKER_COMPONENT, FragmentNavigation.CONNECT_MQTT);
+        context.send(BaseConfig.CONFIG_PROVIDER, connectionProperties);
     }
 
 

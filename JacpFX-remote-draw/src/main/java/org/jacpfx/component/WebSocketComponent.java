@@ -34,6 +34,7 @@ public class WebSocketComponent implements CallbackComponent {
     private Context context;
     private WebSocket webSocket;
     private HttpClient client;
+    private final String canvasComponentId = BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.CANVAS_COMPONENT);
 
     @Override
     public Object handle(Message<Event, Object> message) throws Exception {
@@ -73,7 +74,7 @@ public class WebSocketComponent implements CallbackComponent {
 
     private void sendPixelDataToCanvas(Buffer data) {
         try {
-            context.send(BaseConfig.CANVAS_TARGET, MessageUtil.getMessage(data.getBytes(), CanvasPoint.class));
+            context.send(canvasComponentId, MessageUtil.getMessage(data.getBytes(), CanvasPoint.class));
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -85,6 +86,6 @@ public class WebSocketComponent implements CallbackComponent {
 
     @PreDestroy
     public void onClose() {
-        if(client!=null)client.close();
+        if (client != null) client.close();
     }
 }

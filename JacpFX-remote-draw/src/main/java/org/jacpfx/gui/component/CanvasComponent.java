@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -15,14 +14,12 @@ import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
-import org.jacpfx.api.util.ToolbarPosition;
 import org.jacpfx.dto.CanvasPoint;
 import org.jacpfx.dto.ColorDTO;
 import org.jacpfx.dto.FragmentNavigation;
 import org.jacpfx.gui.configuration.BaseConfig;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
-import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
 
 import java.util.UUID;
@@ -33,7 +30,7 @@ import java.util.UUID;
  */
 @DeclarativeView(id = BaseConfig.CANVAS_COMPONENT,
         name = "CanvasComponent",
-        active = true,
+        active = false,
         resourceBundleLocation = "bundles.languageBundle",
         localeID = "en_US",
         initialTargetLayoutId = "vMain",
@@ -46,28 +43,27 @@ public class CanvasComponent implements FXComponent {
     private VBox root;
 
 
-    final Button clear = new Button("clear");
-
     private final String clientId = UUID.randomUUID().toString();
     private
-    @Resource  Context context;
+    @Resource
+    Context context;
     private GraphicsContext graphicsContext;
 
-    private String integrationId = BaseConfig.WEBSOCKET_COMPONENT;
+    private String integrationId = BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.WEBSOCKET_COMPONENT);
 
 
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
         if (message.isMessageBodyTypeOf(CanvasPoint.class)) {
             drawPoint(message.getTypedMessageBody(CanvasPoint.class));
-        } else if(message.isMessageBodyTypeOf(FragmentNavigation.class)) {
-            if(message.getTypedMessageBody(FragmentNavigation.class).equals(FragmentNavigation.CONNECT_VERTX)) {
-                integrationId = BaseConfig.WEBSOCKET_COMPONENT;
+        } else if (message.isMessageBodyTypeOf(FragmentNavigation.class)) {
+            if (message.getTypedMessageBody(FragmentNavigation.class).equals(FragmentNavigation.CONNECT_VERTX)) {
+                integrationId = BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.WEBSOCKET_COMPONENT);
             } else {
-                integrationId = BaseConfig.MQTT_COMPONENT;
+                integrationId = BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.MQTT_COMPONENT);
             }
-            clear.setOnMouseClicked(context.getEventHandler(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
-                    new CanvasPoint(0, 0, CanvasPoint.Type.CLEAR,clientId)));
+            // clear.setOnMouseClicked(context.getEventHandler(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
+            //         new CanvasPoint(0, 0, CanvasPoint.Type.CLEAR, clientId)));
         }
         return null;
     }
@@ -75,19 +71,19 @@ public class CanvasComponent implements FXComponent {
     private void drawPoint(final CanvasPoint point) {
         switch (point.getType()) {
             case BEGIN:
-                beginPath(point.getX(),point.getY());
+                beginPath(point.getX(), point.getY());
                 break;
             case DRAW:
                 graphicsContext.moveTo(point.getX(), point.getY());
                 graphicsContext.lineTo(point.getX(), point.getY());
                 break;
             case CLEAR:
-                clearCanvas(canvas.getWidth(),canvas.getHeight());
+                clearCanvas(canvas.getWidth(), canvas.getHeight());
                 break;
             case RELEASE:
                 break;
             case COLOR:
-                updateCanvasColor(graphicsContext,point.getColor());
+                updateCanvasColor(graphicsContext, point.getColor());
                 break;
             default:
         }
@@ -106,7 +102,6 @@ public class CanvasComponent implements FXComponent {
         initBinding(root, canvas);
         initDraw(canvas.getGraphicsContext2D());
         initEventHandler(canvas);
-        addClearButton(layout);
     }
 
 
@@ -137,21 +132,21 @@ public class CanvasComponent implements FXComponent {
     }
 
     private void updateCanvasColor(final GraphicsContext gc, final ColorDTO color) {
-        gc.setStroke(Color.color(color.getRed(),color.getGreen(),color.getBlue()));
+        gc.setStroke(Color.color(color.getRed(), color.getGreen(), color.getBlue()));
     }
 
     private void initEventHandler(final Canvas canvas) {
         canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, (event) ->
-            context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
-                    new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.BEGIN,clientId))
+                        context.send(integrationId,
+                                new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.BEGIN, clientId))
         );
         canvas.addEventHandler(MouseEvent.MOUSE_DRAGGED, (event) ->
-            context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
-                    new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.DRAW,clientId))
+                        context.send(integrationId,
+                                new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.DRAW, clientId))
         );
         canvas.addEventHandler(MouseEvent.MOUSE_RELEASED, (event) ->
-                        context.send(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, integrationId),
-                                new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.RELEASE,clientId))
+                        context.send(integrationId,
+                                new CanvasPoint(event.getX(), event.getY(), CanvasPoint.Type.RELEASE, clientId))
         );
     }
 
@@ -164,11 +159,6 @@ public class CanvasComponent implements FXComponent {
         graphicsContext.beginPath();
         graphicsContext.clearRect(0, 0, width, height);
     }
-    private void addClearButton(final FXComponentLayout layout) {
-        final JACPToolBar registeredToolBar = layout.getRegisteredToolBar(ToolbarPosition.WEST);
 
-
-        registeredToolBar.add(BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.CANVAS_COMPONENT), clear);
-    }
 
 }

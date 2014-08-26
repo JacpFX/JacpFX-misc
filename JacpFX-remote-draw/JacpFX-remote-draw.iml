@@ -32,7 +32,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.0.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.0.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.jacpfx:jacpfx.JavaFXControls:2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.eclipse.paho:mqtt-client:0.4.0" level="project" />
   </component>
 </module>
 

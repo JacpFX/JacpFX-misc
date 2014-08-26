@@ -32,14 +32,12 @@ public class VertxConnectFragment {
         if (connectValue == null || connectValue.isEmpty()) return;
         final String[] val = connectValue.split(":");
         if (val.length < 2) return;
-        send(new ConnectionProperties("WS://",val[0], val[1]));
+        send(new ConnectionProperties("WS://", val[0], val[1], ConnectionProperties.PROVIDER.VERTX));
         context.hideModalDialog();
     }
 
     private void send(ConnectionProperties connectionProperties) {
-        context.send(BaseConfig.WEBSOCKET_COMPONENT, connectionProperties);
-        context.send(BaseConfig.CANVAS_COMPONENT, FragmentNavigation.CONNECT_VERTX);
-        context.send(BaseConfig.COLOR_PICKER_COMPONENT, FragmentNavigation.CONNECT_VERTX);
+        context.send(BaseConfig.CONFIG_PROVIDER, connectionProperties);
     }
 
     @FXML

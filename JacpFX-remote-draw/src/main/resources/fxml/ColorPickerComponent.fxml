@@ -36,7 +36,7 @@
                HBox.hgrow="ALWAYS"/>
         <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
             <children>
-                <Label text="%canvasName" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+                <Label text="%canvasName" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
             </children>
         </HBox>
         <ColorPicker fx:id="colorPicker"/>

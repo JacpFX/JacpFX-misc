@@ -17,7 +17,7 @@ public class CanvasPoint implements Serializable {
     private final ColorDTO color;
 
 
-    public CanvasPoint(final double x, final double y, final Type type,final String clientId) {
+    public CanvasPoint(final double x, final double y, final Type type, final String clientId) {
         this.x = x;
         this.y = y;
         this.type = type;
@@ -26,7 +26,7 @@ public class CanvasPoint implements Serializable {
 
     }
 
-    public CanvasPoint(final ColorDTO color, final Type type,final String clientId) {
+    public CanvasPoint(final ColorDTO color, final Type type, final String clientId) {
         this.color = color;
         this.type = type;
         this.x = 0;

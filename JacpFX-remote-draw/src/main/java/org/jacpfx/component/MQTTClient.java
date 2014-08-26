@@ -52,6 +52,8 @@ public class MQTTClient implements CallbackComponent, MqttCallback {
     private MqttTopic topic;
     private MqttClient client;
 
+    private final String canvasComponentId = BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.CANVAS_COMPONENT);
+
     @Override
     public Object handle(Message<Event, Object> message) throws Exception {
         if (message.isMessageBodyTypeOf(CanvasPoint.class)) {
@@ -80,7 +82,7 @@ public class MQTTClient implements CallbackComponent, MqttCallback {
 
     private void connect(final ConnectionProperties properties) {
         try {
-            System.out.println("CONNECT: "+properties.getProtocol() + properties.getIp() + ":" + properties.getPort());
+            System.out.println("CONNECT: " + properties.getProtocol() + properties.getIp() + ":" + properties.getPort());
             client = new MqttClient(properties.getProtocol() + properties.getIp() + ":" + properties.getPort(), UUID.randomUUID().toString().substring(0, 10));
             client.setCallback(this);
             client.connect();
@@ -99,7 +101,7 @@ public class MQTTClient implements CallbackComponent, MqttCallback {
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
         try {
-            context.send(BaseConfig.CANVAS_TARGET, MessageUtil.getMessage(mqttMessage.getPayload(), CanvasPoint.class));
+            context.send(canvasComponentId, MessageUtil.getMessage(mqttMessage.getPayload(), CanvasPoint.class));
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -113,7 +115,7 @@ public class MQTTClient implements CallbackComponent, MqttCallback {
     @PreDestroy
     public void onClose() {
         try {
-            if(client!=null)client.disconnect();
+            if (client != null) client.disconnect(1000L);
         } catch (MqttException e) {
             e.printStackTrace();
         }

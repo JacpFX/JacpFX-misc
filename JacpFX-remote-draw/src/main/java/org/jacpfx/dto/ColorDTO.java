@@ -30,7 +30,7 @@ import java.io.Serializable;
 /**
  * Created by amo on 20.08.14.
  */
-public class ColorDTO implements Serializable{
+public class ColorDTO implements Serializable {
     private final double red;
     private final double green;
     private final double blue;
