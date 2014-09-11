@@ -41,10 +41,13 @@ import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.components.toolBar.JACPToolBar;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
+import org.jacpfx.rcp.util.LayoutUtil;
 import quickstart.config.BasicConfig;
 
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+
+import static javafx.scene.layout.Priority.ALWAYS;
 
 
 /**
@@ -111,7 +114,8 @@ public class PerspectiveOne implements FXPerspective {
         mainLayout = new SplitPane();
         mainLayout.setOrientation(Orientation.HORIZONTAL);
         mainLayout.setDividerPosition(0, 0.3f);
-
+        // let them grow
+        LayoutUtil.GridPaneUtil.setFullGrow(ALWAYS, mainLayout);
         // create left button menu
         GridPane leftMenu = new GridPane();
         // create main content Top
