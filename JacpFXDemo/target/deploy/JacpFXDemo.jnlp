@@ -11,7 +11,7 @@
   </resources>
   <resources>
     <j2se version="1.6+" java-vm-args="-Xms512m -Xmx1024m "  href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JacpFXDemo.jar" size="148294" download="eager" />
+    <jar href="JacpFXDemo.jar" size="148287" download="eager" />
     <jar href="aopalliance-1.0.jar" size="4467" download="eager" />
     <jar href="commons-logging-1.1.1.jar" size="60686" download="eager" />
     <jar href="hamcrest-core-1.1.jar" size="76643" download="eager" />
