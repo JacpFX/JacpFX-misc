@@ -25,14 +25,9 @@
 
 package org.jacpfx.datafx.config;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-
 /**
  * Created by Amdy Moncsek on 28.01.14.
  */
-@Configuration
-@ComponentScan
 public class BasicConfig {
 
     public static final String PERSPECTIVE_ONE = "idPone";

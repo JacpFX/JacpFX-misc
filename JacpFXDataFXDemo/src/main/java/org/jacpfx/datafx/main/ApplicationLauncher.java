@@ -25,17 +25,16 @@ package org.jacpfx.datafx.main;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.jacpfx.rcp.workbench.FXWorkbench;
-import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
-import org.jacpfx.datafx.config.BasicConfig;
 import org.jacpfx.datafx.workbench.JacpFXWorkbench;
+import org.jacpfx.minimal.launcher.JacpFXApplicationLauncher;
+import org.jacpfx.rcp.workbench.FXWorkbench;
 
 /**
  * The application launcher containing the main method, the workbench definition, the configuration class and the packages to scan
  *
  * @author Andy Moncsek
  */
-public class ApplicationLauncher extends AFXSpringJavaConfigLauncher {
+public class ApplicationLauncher extends JacpFXApplicationLauncher {
 
 
     public ApplicationLauncher() {
@@ -69,8 +68,4 @@ public class ApplicationLauncher extends AFXSpringJavaConfigLauncher {
         );
     }
 
-    @Override
-    protected Class<?>[] getConfigClasses() {
-        return new Class<?>[]{BasicConfig.class};
-    }
 }

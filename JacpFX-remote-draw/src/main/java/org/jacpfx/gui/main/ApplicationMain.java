@@ -4,26 +4,21 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.jacpfx.gui.configuration.BaseConfig;
 import org.jacpfx.gui.workbench.DrawingWorkbench;
+import org.jacpfx.minimal.launcher.JacpFXApplicationLauncher;
 import org.jacpfx.rcp.workbench.FXWorkbench;
-import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
 
 /**
  * Created by amo on 13.12.13.
  *
  * @author <a href="mailto:amo.ahcp@gmail.com"> Andy Moncsek</a>
  */
-public class ApplicationMain extends AFXSpringJavaConfigLauncher {
+public class ApplicationMain extends JacpFXApplicationLauncher {
 
     public ApplicationMain() {
 
     }
 
-    @Override
-    protected Class<?>[] getConfigClasses() {
-        return new Class<?>[]{BaseConfig.class};
-    }
 
     /**
      * @param args aa  ddd

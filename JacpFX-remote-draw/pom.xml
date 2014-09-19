@@ -9,7 +9,7 @@
     <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jacp.version>2.0</jacp.version>
+        <jacp.version>2.0.2</jacp.version>
         <spring.version>4.0.0.RELEASE</spring.version>
         <vertex.version>2.0.2-final</vertex.version>
         <paho.version>0.4.0</paho.version>
@@ -56,7 +56,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${env.JAVA_HOME}/bin/javafxpackager</executable>
+                            <executable>${env.JAVA_HOME}/bin/javapackager</executable>
                             <arguments>
                                 <argument>-createjar</argument>
                                 <argument>-nocss2bin</argument>
@@ -107,7 +107,7 @@
         </dependency>
         <dependency>
             <groupId>org.jacpfx</groupId>
-            <artifactId>jacpfx.JavaFXSpring</artifactId>
+            <artifactId>jacpfx.JavaFXLauncher</artifactId>
             <version>${jacp.version}</version>
         </dependency>
         <dependency>

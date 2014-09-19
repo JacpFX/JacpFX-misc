@@ -28,10 +28,14 @@ package com.trivadis.com.component;
 import com.trivadis.com.config.BasicConfig;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
@@ -93,8 +97,11 @@ public class Demo3Component implements FXComponent {
      */
     public void onPostConstructComponent(final FXComponentLayout arg0,
                                          final ResourceBundle resourceBundle) {
-       // tab.setText(context.getName());
-        tab.getChildren().add(new Rectangle(200,200, Color.GREEN));
+        Browser b = new Browser();
+        b.prefWidthProperty().bind(tab.prefWidthProperty());
+        b.prefHeightProperty().bind(tab.prefHeightProperty());
+        HBox.setHgrow(b, Priority.ALWAYS);
+        tab.getChildren().add(b);
         this.log.info("run on start of Demo1Component ");
 
     }
@@ -106,6 +113,32 @@ public class Demo3Component implements FXComponent {
      */
     public void onPreDestroyComponent(final FXComponentLayout arg0) {
         this.log.info("run on tear down of Demo1Component ");
+
+    }
+
+    class Browser extends Region {
+
+        final WebView browser = new WebView();
+        final WebEngine webEngine = browser.getEngine();
+
+        public Browser() {
+
+            // webEngine.load("http://www.trivadis.com/");
+            webEngine.load("http://www.maps.google.com/");
+
+            // add the web view to the scene
+            getChildren().add(browser);
+
+        }
+
+        @Override
+        protected void layoutChildren() {
+            double w = getWidth();
+            double h = getHeight();
+            layoutInArea(browser, 0, 0, w, h, 0, HPos.CENTER, VPos.CENTER);
+        }
+
+
 
     }
 

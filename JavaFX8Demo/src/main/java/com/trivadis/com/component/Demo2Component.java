@@ -26,12 +26,16 @@
 package com.trivadis.com.component;
 
 import com.trivadis.com.config.BasicConfig;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Priority;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
@@ -42,6 +46,8 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.util.FXUtil;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
@@ -61,6 +67,22 @@ public class Demo2Component implements FXComponent {
     private Context context;
     @FXML
     private HBox tab;
+
+    List<Employee> employees = Arrays.<Employee> asList(new Employee(
+            "Max Ermantraut", "max.ermantraut@example.com"), new Employee(
+            "Andy Moncsek", "andy.moncsek@example.com"), new Employee(
+            "Michael Brown", "michael.brown@example.com"), new Employee(
+            "Anna Black", "anna.black@example.com"), new Employee(
+            "Rodger York", "roger.york@example.com"), new Employee(
+            "Susan Collins", "susan.collins@example.com"));
+
+    final TreeItem<Employee> root = new TreeItem<>(new Employee("Trivadis", ""));
+    final TreeItem<Employee> childNode1 = new TreeItem<>(new Employee("AD 1",
+            ""));
+    final TreeItem<Employee> childNode2 = new TreeItem<>(new Employee("AD 2",
+            ""));
+    final TreeItem<Employee> childNode3 = new TreeItem<>(new Employee("AD 3",
+            ""));
 
     @Override
     /**
@@ -93,8 +115,48 @@ public class Demo2Component implements FXComponent {
      */
     public void onPostConstructComponent(final FXComponentLayout arg0,
                                          final ResourceBundle resourceBundle) {
-       // tab.setText(context.getName());
-        tab.getChildren().add(new Rectangle(200,200, Color.RED));
+        root.setExpanded(true);
+        root.getChildren().add(childNode1);
+        root.getChildren().add(childNode2);
+        root.getChildren().add(childNode3);
+        childNode1.setExpanded(true);
+
+        employees.stream().forEach((employee) -> {
+            childNode1.getChildren().add(new TreeItem<>(employee));
+        });
+
+        employees.stream().forEach((employee) -> {
+            childNode2.getChildren().add(new TreeItem<>(employee));
+        });
+
+        employees.stream().forEach((employee) -> {
+            childNode3.getChildren().add(new TreeItem<>(employee));
+        });
+
+
+        tab.setStyle("-fx-background-color: lightgray");
+
+
+        TreeTableColumn<Employee, String> empColumn = new TreeTableColumn<>(
+                "Employee");
+        empColumn.setPrefWidth(250);
+        empColumn
+                .setCellValueFactory((
+                        TreeTableColumn.CellDataFeatures<Employee, String> param) -> new ReadOnlyStringWrapper(
+                        param.getValue().getValue().getName()));
+
+        TreeTableColumn<Employee, String> emailColumn = new TreeTableColumn<>(
+                "Email");
+        emailColumn.setPrefWidth(500);
+        emailColumn
+                .setCellValueFactory((
+                        TreeTableColumn.CellDataFeatures<Employee, String> param) -> new ReadOnlyStringWrapper(
+                        param.getValue().getValue().getEmail()));
+
+        TreeTableView<Employee> treeTableView = new TreeTableView<>(root);
+        treeTableView.getColumns().setAll(empColumn, emailColumn);
+        HBox.setHgrow(treeTableView, Priority.ALWAYS);
+        tab.getChildren().add(treeTableView);
         this.log.info("run on start of Demo1Component ");
 
     }
@@ -107,6 +169,48 @@ public class Demo2Component implements FXComponent {
     public void onPreDestroyComponent(final FXComponentLayout arg0) {
         this.log.info("run on tear down of Demo1Component ");
 
+    }
+
+
+    public class Employee {
+
+        private SimpleStringProperty name;
+        private SimpleStringProperty email;
+
+        public SimpleStringProperty nameProperty() {
+            if (name == null) {
+                name = new SimpleStringProperty(this, "name");
+            }
+            return name;
+        }
+
+        public SimpleStringProperty emailProperty() {
+            if (email == null) {
+                email = new SimpleStringProperty(this, "email");
+            }
+            return email;
+        }
+
+        private Employee(String name, String email) {
+            this.name = new SimpleStringProperty(name);
+            this.email = new SimpleStringProperty(email);
+        }
+
+        public String getName() {
+            return name.get();
+        }
+
+        public void setName(String fName) {
+            name.set(fName);
+        }
+
+        public String getEmail() {
+            return email.get();
+        }
+
+        public void setEmail(String fName) {
+            email.set(fName);
+        }
     }
 
 

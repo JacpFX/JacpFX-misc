@@ -3,7 +3,7 @@
  *
  *  Copyright (C) 2010 - 2014
  *
- *  [Component.java]
+ *  [DummyPerspective.java]
  *  JACPFX Project (https://github.com/JacpFX/JacpFX/)
  *  All rights reserved.
  *

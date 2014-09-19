@@ -21,7 +21,7 @@
     </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jacp.version>2.1-SNAPSHOT</jacp.version>
+        <jacp.version>2.0.2</jacp.version>
     </properties>
     <build>
         <plugins>
@@ -99,9 +99,8 @@
         </dependency>
         <dependency>
             <groupId>org.jacpfx</groupId>
-            <artifactId>jacpfx.JavaFXSpring</artifactId>
+            <artifactId>jacpfx.JavaFXLauncher</artifactId>
             <version>${jacp.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jacpfx</groupId>

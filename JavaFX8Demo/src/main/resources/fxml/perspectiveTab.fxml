@@ -32,19 +32,24 @@
 <TabPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:id="mainLayout"
          maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
     <tabs>
-        <Tab  text="Demo1">
+        <Tab  text="RichTextSupport">
             <content>
               <VBox fx:id="tab1" />
             </content>
         </Tab>
-        <Tab text="Demo2">
+        <Tab text="SimpleTreeTableView">
             <content>
                 <VBox fx:id="tab2" />
             </content>
         </Tab>
-        <Tab  text="Demo3">
+        <Tab  text="WebView">
             <content>
                 <VBox fx:id="tab3" />
+            </content>
+        </Tab>
+        <Tab  text="JavaFX3D">
+            <content>
+                <VBox fx:id="tab4" />
             </content>
         </Tab>
     </tabs>

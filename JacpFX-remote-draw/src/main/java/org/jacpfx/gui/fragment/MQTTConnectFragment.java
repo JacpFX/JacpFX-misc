@@ -3,7 +3,7 @@
  *
  *  Copyright (C) 2010 - 2014
  *
- *  [Component.java]
+ *  [MQTTConnectFragment.java]
  *  JACPFX Project (https://github.com/JacpFX/JacpFX/)
  *  All rights reserved.
  *
@@ -39,7 +39,7 @@ import org.jacpfx.gui.configuration.BaseConfig;
 import org.jacpfx.rcp.context.Context;
 
 /**
- * Created by Andy Moncsek on 27.12.13.
+ * Created by Andy Moncsek on 27.12.13. This fragment contains the MQTT connection dialg.
  */
 @Fragment(id = BaseConfig.MQTT_CONNECT_FRAGMENT,
         viewLocation = "/fxml/MQTTConnectFragment.fxml",

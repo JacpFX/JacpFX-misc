@@ -3,7 +3,7 @@
  *
  *  Copyright (C) 2010 - 2014
  *
- *  [Component.java]
+ *  [MQTTClient.java]
  *  JACPFX Project (https://github.com/JacpFX/JacpFX/)
  *  All rights reserved.
  *
@@ -43,7 +43,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * Created by amo on 16.08.14.
+ * Created by Andy Moncsek on 16.08.14.
  */
 @Component(id = BaseConfig.MQTT_COMPONENT, name = "MQTTComponent", active = false)
 public class MQTTClient implements CallbackComponent, MqttCallback {

@@ -3,7 +3,7 @@
  *
  *  Copyright (C) 2010 - 2014
  *
- *  [Component.java]
+ *  [ColorPickerComponent.java]
  *  JACPFX Project (https://github.com/JacpFX/JacpFX/)
  *  All rights reserved.
  *
@@ -47,7 +47,7 @@ import java.util.ResourceBundle;
 
 /**
  * Created by Andy Moncsek on 16.12.13.
- * This Component contains a view with a JavaFX Canvas element.
+ * This Component contains the color picker component.
  */
 @DeclarativeView(id = BaseConfig.COLOR_PICKER_COMPONENT,
         name = "CanvasComponent",

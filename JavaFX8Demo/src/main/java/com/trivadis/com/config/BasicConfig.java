@@ -41,6 +41,7 @@ public class BasicConfig {
     public static final String COMPONENT_DEMO1 = "id001";
     public static final String COMPONENT_DEMO2 = "id002";
     public static final String COMPONENT_DEMO3 = "id003";
+    public static final String COMPONENT_DEMO4 = "id004";
 
 
 
@@ -52,4 +53,5 @@ public class BasicConfig {
     public static final String TARGET_CONTAINER_TAB1 = "tab1";
     public static final String TARGET_CONTAINER_TAB2 = "tab2";
     public static final String TARGET_CONTAINER_TAB3 = "tab3";
+    public static final String TARGET_CONTAINER_TAB4 = "tab4";
 }

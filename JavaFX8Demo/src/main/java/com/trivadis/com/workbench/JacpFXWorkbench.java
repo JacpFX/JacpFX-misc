@@ -63,6 +63,7 @@ public class JacpFXWorkbench implements FXWorkbench {
        // layout.registerToolBar(ToolbarPosition.NORTH);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(true);
+
     }
 
     @Override

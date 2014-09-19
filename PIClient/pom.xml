@@ -21,7 +21,7 @@
     </developers>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jacp.version>2.0</jacp.version>
+        <jacp.version>2.0.2</jacp.version>
     </properties>
     <build>
         <plugins>

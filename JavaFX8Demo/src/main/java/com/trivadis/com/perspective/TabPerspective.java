@@ -52,7 +52,7 @@ import static javafx.scene.layout.Priority.ALWAYS;
  */
 @Perspective(id = BasicConfig.PERSPECTIVE_TAB,
         name = "contactPerspective",
-        components = {BasicConfig.COMPONENT_DEMO1,BasicConfig.COMPONENT_DEMO2,BasicConfig.COMPONENT_DEMO3},
+        components = {BasicConfig.COMPONENT_DEMO1,BasicConfig.COMPONENT_DEMO2,BasicConfig.COMPONENT_DEMO3,BasicConfig.COMPONENT_DEMO4},
         viewLocation = "/fxml/perspectiveTab.fxml",
         resourceBundleLocation = "bundles.languageBundle")
 public class TabPerspective implements FXPerspective {
@@ -69,6 +69,8 @@ public class TabPerspective implements FXPerspective {
     private VBox tab2;
     @FXML
     private VBox tab3;
+    @FXML
+    private VBox tab4;
 
     @Override
     /**
@@ -114,6 +116,8 @@ public class TabPerspective implements FXPerspective {
         perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_TAB1, tab1);
         perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_TAB2, tab2);
         perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_TAB3, tab3);
+        perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_TAB4, tab4);
+        tab4.setOnMouseClicked(e->context.send(BasicConfig.COMPONENT_DEMO4,"show"));
         log.info("on PostConstruct of TabPerspective");
     }
 

@@ -3,7 +3,7 @@
  *
  *  Copyright (C) 2010 - 2014
  *
- *  [Component.java]
+ *  [ConfigurationProviderComponent.java]
  *  JACPFX Project (https://github.com/JacpFX/JacpFX/)
  *  All rights reserved.
  *
@@ -36,7 +36,7 @@ import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.util.FXUtil;
 
 /**
- * Created by amo on 25.08.14.
+ * Created by Andy Moncsek on 25.08.14. The configuration provider distributes the current configuration.
  */
 @Component(id = BaseConfig.CONFIG_PROVIDER, name = "MQTTComponent", active = true)
 public class ConfigurationProviderComponent implements CallbackComponent {
