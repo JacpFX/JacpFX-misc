@@ -38,9 +38,6 @@ public class BasicConfig {
     public static final String STATELESS_CALLBACK = "id004";
     public static final String STATEFUL_CALLBACK = "id005";
 
-
-    public static final String DIALOG_FRAGMENT = "idD1";
-
     public static final String TARGET_CONTAINER_LEFT = "PLeft";
     public static final String TARGET_CONTAINER_MAIN = "PMain";
 }

@@ -105,12 +105,7 @@ public class PerspectiveOne implements FXPerspective {
                                    final ResourceBundle resourceBundle) {
 
         // define toolbars and menu entries
-        JACPToolBar toolbar = layout.getRegisteredToolBar(ToolbarPosition.NORTH);
-        Button pressMe = new Button(resourceBundle.getString("p2.button"));
-        pressMe.setOnAction((event) -> context.send(BasicConfig.PERSPECTIVE_TWO, "show"));
-        toolbar.addAllOnEnd(pressMe);
-        toolbar.add(new Label(resourceBundle.getString("p1.button")));
-
+        addPerspectiveSwitchButton(layout.getRegisteredToolBar(ToolbarPosition.NORTH),resourceBundle);
 
         mainLayout = new SplitPane();
         mainLayout.setOrientation(Orientation.HORIZONTAL);
@@ -131,6 +126,13 @@ public class PerspectiveOne implements FXPerspective {
         // register main content
         perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_MAIN, mainContent);
         log.info("on PostConstruct of PerspectiveOne");
+    }
+
+    private void addPerspectiveSwitchButton(final JACPToolBar toolbar,final ResourceBundle resourceBundle) {
+        Button pressMe = new Button(resourceBundle.getString("p2.button"));
+        pressMe.setOnAction((event) -> context.send(BasicConfig.PERSPECTIVE_TWO, "show"));
+        toolbar.addAllOnEnd(pressMe);
+        toolbar.add(new Label(resourceBundle.getString("p1.button")));
     }
 
 

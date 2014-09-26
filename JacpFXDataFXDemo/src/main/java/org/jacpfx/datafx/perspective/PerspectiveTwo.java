@@ -117,13 +117,8 @@ public class PerspectiveTwo implements FXPerspective {
                                    final ResourceBundle resourceBundle) {
         mainLayout.setId(this.context.getId());
         // define toolbars and menu entries
-        JACPToolBar toolbar = layout.getRegisteredToolBar(ToolbarPosition.NORTH);
+        addPerspectiveSwitchButton(layout.getRegisteredToolBar(ToolbarPosition.NORTH),resourceBundle);
 
-
-        Button pressMe = new Button(resourceBundle.getString("p1.button"));
-        pressMe.setOnAction((event) -> context.send(BasicConfig.PERSPECTIVE_ONE, "show"));
-        toolbar.addAllOnEnd(pressMe);
-        toolbar.add(new Label(resourceBundle.getString("p2.button")));
         // let them grow
         LayoutUtil.GridPaneUtil.setFullGrow(ALWAYS, mainLayout);
         // register left menu
@@ -131,6 +126,14 @@ public class PerspectiveTwo implements FXPerspective {
         // register main content
         perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_MAIN, mainContent);
         log.info("on PostConstruct of PerspectiveTwo");
+    }
+
+
+    private void addPerspectiveSwitchButton(final JACPToolBar toolbar,final ResourceBundle resourceBundle) {
+        Button pressMe = new Button(resourceBundle.getString("p1.button"));
+        pressMe.setOnAction((event) -> context.send(BasicConfig.PERSPECTIVE_ONE, "show"));
+        toolbar.addAllOnEnd(pressMe);
+        toolbar.add(new Label(resourceBundle.getString("p2.button")));
     }
 
     @PreDestroy

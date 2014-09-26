@@ -26,10 +26,14 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import org.datafx.controller.flow.Flow;
 import org.datafx.controller.flow.FlowException;
 import org.datafx.controller.flow.FlowHandler;
+import org.datafx.controller.flow.container.AnimatedFlowContainer;
+import org.datafx.controller.flow.container.ContainerAnimations;
 import org.datafx.controller.flow.container.DefaultFlowContainer;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
@@ -37,11 +41,12 @@ import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.datafx.config.BasicConfig;
-import org.jacpfx.datafx.controller.View1Controller;
+import org.jacpfx.datafx.controller.*;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.util.FXUtil;
+import org.jacpfx.rcp.util.LayoutUtil;
 
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -81,9 +86,6 @@ public class ComponentRight implements FXComponent {
     public Node postHandle(final Node arg0,
                            final Message<Event, Object> message) {
         // runs in FX application thread
-        if (!message.messageBodyEquals(FXUtil.MessageUtil.INIT)) {
-
-        }
         return null;
     }
 
@@ -97,18 +99,24 @@ public class ComponentRight implements FXComponent {
     public void onPostConstructComponent(final FXComponentLayout arg0,
                                          final ResourceBundle resourceBundle) {
         this.log.info("run on start of ComponentRight ");
-        Flow flow  = new Flow(View1Controller.class);
 
+        Flow flow=  new Flow(WizardStartController.class).
+                withLink(WizardStartController.class, "next", Wizard1Controller.class).
+                withLink(Wizard1Controller.class, "next", Wizard2Controller.class).
+                withLink(Wizard2Controller.class, "next", Wizard3Controller.class).
+                withLink(Wizard3Controller.class, "next", WizardDoneController.class).
+                withGlobalBackAction("back").
+                withGlobalLink("finish", WizardDoneController.class).
+                withGlobalTaskAction("help", () -> System.out.println("There is no help for the application :("));
         FlowHandler flowHandler = null;
         try {
             flowHandler = flow.createHandler();
-            StackPane pane = flowHandler.start(new DefaultFlowContainer());
+            StackPane pane = flowHandler.start(new AnimatedFlowContainer(Duration.millis(320), ContainerAnimations.ZOOM_IN));
+            LayoutUtil.GridPaneUtil.setFullGrow(Priority.ALWAYS, pane);
             this.grid.getChildren().add(pane) ;
         } catch (FlowException e) {
             e.printStackTrace();
         }
-
-
 
     }
 
