@@ -27,11 +27,19 @@
 
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
 <SplitPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:id="mainLayout"
-           dividerPositions="0.02f" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+           dividerPositions="0.2f" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
            orientation="VERTICAL">
     <items>
-        <GridPane fx:id="leftMenu"/>
+        <GridPane fx:id="topMenu">
+            <children>
+                <VBox fx:id="left" GridPane.columnIndex="0"
+                      GridPane.halignment="CENTER" GridPane.rowIndex="0"></VBox>
+                <VBox fx:id="right" GridPane.columnIndex="1"
+                      GridPane.halignment="CENTER" GridPane.rowIndex="0"></VBox>
+            </children>
+        </GridPane>
         <GridPane fx:id="mainContent"/>
     </items>
 </SplitPane>

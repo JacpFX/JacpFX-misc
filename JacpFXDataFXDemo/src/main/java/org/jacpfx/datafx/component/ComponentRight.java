@@ -34,7 +34,6 @@ import org.datafx.controller.flow.FlowException;
 import org.datafx.controller.flow.FlowHandler;
 import org.datafx.controller.flow.container.AnimatedFlowContainer;
 import org.datafx.controller.flow.container.ContainerAnimations;
-import org.datafx.controller.flow.container.DefaultFlowContainer;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
@@ -45,7 +44,6 @@ import org.jacpfx.datafx.controller.*;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
-import org.jacpfx.rcp.util.FXUtil;
 import org.jacpfx.rcp.util.LayoutUtil;
 
 import java.util.ResourceBundle;
@@ -111,6 +109,7 @@ public class ComponentRight implements FXComponent {
         FlowHandler flowHandler = null;
         try {
             flowHandler = flow.createHandler();
+            flowHandler.getFlowContext().register("context",context);
             StackPane pane = flowHandler.start(new AnimatedFlowContainer(Duration.millis(320), ContainerAnimations.ZOOM_IN));
             LayoutUtil.GridPaneUtil.setFullGrow(Priority.ALWAYS, pane);
             this.grid.getChildren().add(pane) ;

@@ -27,8 +27,16 @@ package org.jacpfx.datafx.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.TextField;
 import org.datafx.controller.FXMLController;
 import org.datafx.controller.flow.action.ActionTrigger;
+import org.datafx.controller.flow.context.FXMLViewFlowContext;
+import org.datafx.controller.flow.context.ViewFlowContext;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.datafx.config.BasicConfig;
+import org.jacpfx.rcp.context.Context;
+
+import javax.annotation.PostConstruct;
 
 /**
  * This is a view controller for one of the steps in the wizard. All buttons of the action-bar that
@@ -44,7 +52,27 @@ import org.datafx.controller.flow.action.ActionTrigger;
 @FXMLController(value="/fxml/wizard1.fxml", title = "Wizard: Step 1")
 public class Wizard1Controller extends AbstractWizardController {
 
+
+    @Resource
+    private Context context;
+
+    @FXMLViewFlowContext
+    private ViewFlowContext vContext;
+
+    @FXML
+    private TextField name;
+
     @FXML
     @ActionTrigger("help")
     private Hyperlink helpLink;
+
+
+    @PostConstruct
+    public void init() {
+        name.setOnKeyReleased(event->{
+            final String nameValue = name.getText();
+            context.send(context.getParentId().concat(".").concat(BasicConfig.COMPONENT_LEFT_TOP), nameValue);
+        });
+        System.out.println("CONTEXT: "+context);
+    }
 }

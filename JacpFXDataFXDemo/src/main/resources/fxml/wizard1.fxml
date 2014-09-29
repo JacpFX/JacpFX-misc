@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
-
 <!--
   ~ ***********************************************************************
   ~
@@ -36,30 +25,63 @@
   ~ ***********************************************************************/
   -->
 
-<BorderPane prefHeight="240.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <bottom>
         <fx:include source="actionBar.fxml" />
     </bottom>
     <center>
-        <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+        <GridPane hgap="14.0" minHeight="-Infinity" minWidth="-Infinity" vgap="20.0" BorderPane.alignment="CENTER">
             <children>
-                <Label text="This is the first step.">
-                    <StackPane.margin>
-                        <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
-                    </StackPane.margin>
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Label>
-                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0"
+                           GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="TOP">
+                    <image>
+                        <Image url="@../images/Monitor-icon.png"/>
+                    </image>
+                    <GridPane.margin>
+                        <Insets top="8.0"/>
+                    </GridPane.margin>
+                </ImageView>
+                <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" spacing="7.0"
+                      GridPane.columnIndex="1" GridPane.rowIndex="0">
                     <children>
-                        <Hyperlink fx:id="helpLink" layoutX="370.0" layoutY="14.0" text="?" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                        <Label fx:id="messageLabel" text="message" textAlignment="LEFT" wrapText="true">
                             <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font></Hyperlink>
+                                <Font name="System Bold" size="11.0"/>
+                            </font>
+                        </Label>
+                        <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                              GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <children>
+                                <TextField fx:id="name" text="">
+                                    <HBox.margin>
+                                        <Insets right="10.0"/>
+                                    </HBox.margin>
+                                </TextField>
+                            </children>
+                        </HBox>
                     </children>
-                </AnchorPane>
+                </VBox>
             </children>
-        </StackPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="+Infinity" minWidth="-Infinity"/>
+            </columnConstraints>
+            <padding>
+                <Insets bottom="14.0" left="14.0" right="14.0" top="14.0"/>
+            </padding>
+            <rowConstraints>
+                <RowConstraints maxHeight="+Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER"/>
+            </rowConstraints>
+        </GridPane>
+
     </center>
+
 </BorderPane>

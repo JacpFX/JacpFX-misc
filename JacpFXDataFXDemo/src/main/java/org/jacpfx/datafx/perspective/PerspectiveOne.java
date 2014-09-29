@@ -24,10 +24,14 @@ package org.jacpfx.datafx.perspective;
 
 import javafx.event.Event;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
@@ -61,6 +65,7 @@ import static javafx.scene.layout.Priority.ALWAYS;
         components = {
                 BasicConfig.COMPONENT_LEFT,
                 BasicConfig.COMPONENT_RIGHT,
+                BasicConfig.COMPONENT_LEFT_TOP,
                 BasicConfig.STATEFUL_CALLBACK},
         resourceBundleLocation = "bundles.languageBundle")
 public class PerspectiveOne implements FXPerspective {
@@ -114,15 +119,23 @@ public class PerspectiveOne implements FXPerspective {
         // let them grow
         LayoutUtil.GridPaneUtil.setFullGrow(ALWAYS, mainLayout);
         // create left button menu
-        GridPane leftMenu = new GridPane();
+        final GridPane leftMenu = new GridPane();
+
+        final HBox top = new HBox();
+        final HBox bottom = new HBox();
+        bottom.setAlignment(Pos.CENTER);
+        LayoutUtil.GridPaneUtil.setFullGrow(Priority.ALWAYS, bottom);
+        leftMenu.add(top,0,0);
+        leftMenu.add(bottom,0,1);
         // create main content Top
-        GridPane mainContent = new GridPane();
+        final GridPane mainContent = new GridPane();
 
         mainLayout.getItems().addAll(leftMenu, mainContent);
         // Register root component
         perspectiveLayout.registerRootComponent(mainLayout);
         // register left menu
-        perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_LEFT, leftMenu);
+        perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_LEFT, bottom);
+        perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_LEFT_TOP, top);
         // register main content
         perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_MAIN, mainContent);
         log.info("on PostConstruct of PerspectiveOne");

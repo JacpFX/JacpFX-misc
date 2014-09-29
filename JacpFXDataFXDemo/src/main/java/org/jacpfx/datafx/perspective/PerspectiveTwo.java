@@ -28,6 +28,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
@@ -60,6 +62,7 @@ import static javafx.scene.layout.Priority.ALWAYS;
         components = {
                 BasicConfig.COMPONENT_LEFT,
                 BasicConfig.COMPONENT_RIGHT,
+                BasicConfig.COMPONENT_LEFT_TOP,
                 BasicConfig.STATELESS_CALLBACK},
         viewLocation = "/fxml/perspectiveTwo.fxml",
         resourceBundleLocation = "bundles.languageBundle",
@@ -69,9 +72,13 @@ public class PerspectiveTwo implements FXPerspective {
     @FXML
     private SplitPane mainLayout;
     @FXML
-    private GridPane leftMenu;
+    private GridPane topMenu;
     @FXML
     private GridPane mainContent;
+    @FXML
+    private VBox left;
+    @FXML
+    private VBox right;
 
 
     @Resource
@@ -121,8 +128,10 @@ public class PerspectiveTwo implements FXPerspective {
 
         // let them grow
         LayoutUtil.GridPaneUtil.setFullGrow(ALWAYS, mainLayout);
+        LayoutUtil.GridPaneUtil.setFullGrow(Priority.ALWAYS, right);
         // register left menu
-        perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_LEFT, leftMenu);
+        perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_LEFT_TOP, left);
+        perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_LEFT, right);
         // register main content
         perspectiveLayout.registerTargetLayoutComponent(BasicConfig.TARGET_CONTAINER_MAIN, mainContent);
         log.info("on PostConstruct of PerspectiveTwo");

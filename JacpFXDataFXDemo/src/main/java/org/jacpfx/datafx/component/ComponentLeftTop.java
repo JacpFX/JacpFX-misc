@@ -1,25 +1,27 @@
-/************************************************************************
+/*
+ * **********************************************************************
  *
- * Copyright (C) 2010 - 2012
+ *  Copyright (C) 2010 - 2014
  *
- * [ComponentLeft.java]
- * AHCP Project (http://jacp.googlecode.com)
- * All rights reserved.
+ *  [Component.java]
+ *  JACPFX Project (https://github.com/JacpFX/JacpFX/)
+ *  All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at 
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0 
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an "AS IS"
- * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an "AS IS"
+ *  BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ *  express or implied. See the License for the specific language
+ *  governing permissions and limitations under the License.
  *
  *
- ************************************************************************/
+ * *********************************************************************
+ */
 package org.jacpfx.datafx.component;
 
 import javafx.event.Event;
@@ -27,21 +29,13 @@ import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
-import org.datafx.controller.flow.Flow;
-import org.datafx.controller.flow.FlowException;
-import org.datafx.controller.flow.FlowHandler;
-import org.datafx.controller.flow.container.AnimatedFlowContainer;
-import org.datafx.controller.flow.container.ContainerAnimations;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.View;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.datafx.config.BasicConfig;
-import org.jacpfx.datafx.controller.View1Controller;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
@@ -55,15 +49,15 @@ import java.util.logging.Logger;
  *
  * @author Andy Moncsek
  */
-@View(id = BasicConfig.COMPONENT_LEFT,
+@View(id = BasicConfig.COMPONENT_LEFT_TOP,
         name = "SimpleView",
         active = true,
         resourceBundleLocation = "bundles.languageBundle",
-        initialTargetLayoutId = BasicConfig.TARGET_CONTAINER_LEFT)
-public class ComponentLeft implements FXComponent {
+        initialTargetLayoutId = BasicConfig.TARGET_CONTAINER_LEFT_TOP)
+public class ComponentLeftTop implements FXComponent {
     private Node pane;
     private TextArea text;
-    private Logger log = Logger.getLogger(ComponentLeft.class.getName());
+    private Logger log = Logger.getLogger(ComponentLeftTop.class.getName());
     @Resource
     private Context context;
 
@@ -117,21 +111,15 @@ public class ComponentLeft implements FXComponent {
      * @return
      */
     private Node createUI() {
-        final Flow flow = new Flow(View1Controller.class);
-        FlowHandler flowHandler = null;
-        try {
-            flowHandler = flow.createHandler();
-            final StackPane pane = flowHandler.start(new AnimatedFlowContainer(Duration.millis(320), ContainerAnimations.FADE));
-            pane.setStyle("-fx-background-color: #0093FF");
-            HBox.setHgrow(pane, Priority.ALWAYS);
-            VBox.setVgrow(pane, Priority.ALWAYS);
-            return pane;
+        text = new TextArea();
+        text.setText("");
+        text.setWrapText(true);
+        text.setStyle("-fx-background-color: #4D7A97; -fx-text-fill: #e1e1e1; -fx-font-style: oblique;-fx-font-size: 20;");
+        HBox.setHgrow(text, Priority.ALWAYS);
+        VBox.setVgrow(text, Priority.ALWAYS);
+        text.setMaxHeight(250);
 
-        } catch (FlowException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return text;
     }
 
 

@@ -23,23 +23,26 @@
  * *********************************************************************
  */
 
-package org.jacpfx.datafx.config;
+package org.jacpfx.datafx.plugin;
+
+import org.datafx.controller.context.ViewContext;
+import org.datafx.controller.context.resource.AnnotatedControllerResourceType;
+import org.datafx.controller.flow.context.ViewFlowContext;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.rcp.context.Context;
 
 /**
- * Created by Amdy Moncsek on 28.01.14.
+ * Created by amo on 29.09.14.
  */
-public class BasicConfig {
+public class JacpFXContextInjection implements AnnotatedControllerResourceType<Resource,Context> {
+    @Override
+    public Context getResource(Resource jacpFXContext, Class<Context> contextClass, ViewContext<?> viewContext) {
+        // TODO context holen..........
+        return (Context) viewContext.getRegisteredObject(ViewFlowContext.class).getRegisteredObject("context");
+    }
 
-    public static final String PERSPECTIVE_ONE = "idPone";
-    public static final String PERSPECTIVE_TWO = "idPtwo";
-
-    public static final String COMPONENT_LEFT = "id002";
-    public static final String COMPONENT_LEFT_TOP = "id006";
-    public static final String COMPONENT_RIGHT = "id003";
-    public static final String STATELESS_CALLBACK = "id004";
-    public static final String STATEFUL_CALLBACK = "id005";
-
-    public static final String TARGET_CONTAINER_LEFT = "PLeft";
-    public static final String TARGET_CONTAINER_LEFT_TOP = "PLeft_TOP";
-    public static final String TARGET_CONTAINER_MAIN = "PMain";
+    @Override
+    public Class<Resource> getSupportedAnnotation() {
+        return Resource.class;
+    }
 }

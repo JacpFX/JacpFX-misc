@@ -23,23 +23,17 @@
  * *********************************************************************
  */
 
-package org.jacpfx.datafx.config;
+package org.jacpfx.datafx.plugin;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Created by Amdy Moncsek on 28.01.14.
+ * Created by amo on 29.09.14.
  */
-public class BasicConfig {
-
-    public static final String PERSPECTIVE_ONE = "idPone";
-    public static final String PERSPECTIVE_TWO = "idPtwo";
-
-    public static final String COMPONENT_LEFT = "id002";
-    public static final String COMPONENT_LEFT_TOP = "id006";
-    public static final String COMPONENT_RIGHT = "id003";
-    public static final String STATELESS_CALLBACK = "id004";
-    public static final String STATEFUL_CALLBACK = "id005";
-
-    public static final String TARGET_CONTAINER_LEFT = "PLeft";
-    public static final String TARGET_CONTAINER_LEFT_TOP = "PLeft_TOP";
-    public static final String TARGET_CONTAINER_MAIN = "PMain";
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface JacpFXContext {
 }
