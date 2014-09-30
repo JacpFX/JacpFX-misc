@@ -59,7 +59,7 @@
                         <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity"
                               GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <children>
-                                <TextField fx:id="name" text="">
+                                <TextField fx:id="name" text="" prefWidth="150">
                                     <HBox.margin>
                                         <Insets right="10.0"/>
                                     </HBox.margin>

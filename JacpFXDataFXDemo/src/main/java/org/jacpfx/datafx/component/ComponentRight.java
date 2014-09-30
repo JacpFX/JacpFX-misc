@@ -41,6 +41,7 @@ import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.datafx.config.BasicConfig;
 import org.jacpfx.datafx.controller.*;
+import org.jacpfx.datafx.playground.DataFXFlowWrapper;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
@@ -97,8 +98,9 @@ public class ComponentRight implements FXComponent {
     public void onPostConstructComponent(final FXComponentLayout arg0,
                                          final ResourceBundle resourceBundle) {
         this.log.info("run on start of ComponentRight ");
+        Flow flow=  new DataFXFlowWrapper(WizardStartController.class,this.context.getParentId().concat(".").concat(this.context.getId())).
 
-        Flow flow=  new Flow(WizardStartController.class).
+       // Flow flow=  new DataFXFlowWrapper(WizardStartController.class,this.context.getId()).
                 withLink(WizardStartController.class, "next", Wizard1Controller.class).
                 withLink(Wizard1Controller.class, "next", Wizard2Controller.class).
                 withLink(Wizard2Controller.class, "next", Wizard3Controller.class).
@@ -109,7 +111,7 @@ public class ComponentRight implements FXComponent {
         FlowHandler flowHandler = null;
         try {
             flowHandler = flow.createHandler();
-            flowHandler.getFlowContext().register("context",context);
+           // flowHandler.getFlowContext().register("jacpfxContext",context);
             StackPane pane = flowHandler.start(new AnimatedFlowContainer(Duration.millis(320), ContainerAnimations.ZOOM_IN));
             LayoutUtil.GridPaneUtil.setFullGrow(Priority.ALWAYS, pane);
             this.grid.getChildren().add(pane) ;

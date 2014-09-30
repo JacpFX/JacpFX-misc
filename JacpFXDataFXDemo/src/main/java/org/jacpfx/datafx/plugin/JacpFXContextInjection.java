@@ -38,7 +38,7 @@ public class JacpFXContextInjection implements AnnotatedControllerResourceType<R
     @Override
     public Context getResource(Resource jacpFXContext, Class<Context> contextClass, ViewContext<?> viewContext) {
         // TODO context holen..........
-        return (Context) viewContext.getRegisteredObject(ViewFlowContext.class).getRegisteredObject("context");
+        return (Context) viewContext.getRegisteredObject(ViewFlowContext.class).getRegisteredObject("jacpfxContext");
     }
 
     @Override
