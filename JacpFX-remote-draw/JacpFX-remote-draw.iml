@@ -19,12 +19,12 @@
     <orderEntry type="library" name="Maven: com.hazelcast:hazelcast:2.6" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.16" level="project" />
     <orderEntry type="library" name="Maven: io.vertx:vertx-platform:2.0.2-final" level="project" />
-    <orderEntry type="module" module-name="JACP.API" />
+    <orderEntry type="module" module-name="jacpfx.API" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
-    <orderEntry type="module" module-name="JACP.JavaFX" />
+    <orderEntry type="module" module-name="jacpfx.JavaFX" />
     <orderEntry type="module" module-name="jacpfx.JavaFXLauncher" />
-    <orderEntry type="module" module-name="JACP.JavaFXControls" />
+    <orderEntry type="module" module-name="jacpfx.JavaFXControls" />
     <orderEntry type="library" name="Maven: org.eclipse.paho:mqtt-client:0.4.0" level="project" />
   </component>
 </module>

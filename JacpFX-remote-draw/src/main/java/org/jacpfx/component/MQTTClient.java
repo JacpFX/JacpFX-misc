@@ -27,6 +27,7 @@ package org.jacpfx.component;
 
 import javafx.event.Event;
 import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.Component;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
@@ -40,7 +41,7 @@ import org.jacpfx.util.MessageUtil;
 import org.jacpfx.util.Serializer;
 
 import java.io.IOException;
-import java.util.UUID;
+import java.util.logging.Logger;
 
 /**
  * Created by Andy Moncsek on 16.08.14.
@@ -51,7 +52,7 @@ public class MQTTClient implements CallbackComponent, MqttCallback {
     private Context context;
     private MqttTopic topic;
     private MqttClient client;
-
+    private Logger log = Logger.getLogger(MQTTClient.class.getName());
     private final String canvasComponentId = BaseConfig.getGlobalId(BaseConfig.DRAWING_PERSPECTIVE, BaseConfig.CANVAS_COMPONENT);
 
     @Override
@@ -82,8 +83,8 @@ public class MQTTClient implements CallbackComponent, MqttCallback {
 
     private void connect(final ConnectionProperties properties) {
         try {
-            System.out.println("CONNECT: " + properties.getProtocol() + properties.getIp() + ":" + properties.getPort());
-            client = new MqttClient(properties.getProtocol() + properties.getIp() + ":" + properties.getPort(), UUID.randomUUID().toString().substring(0, 10));
+            log.info("CONNECT: " + properties.getProtocol() + properties.getIp() + ":" + properties.getPort());
+            client = new MqttClient(properties.getProtocol() + properties.getIp() + ":" + properties.getPort(), MqttClient.generateClientId(), new MemoryPersistence());
             client.setCallback(this);
             client.connect();
             topic = client.getTopic("jacpfxclient");
